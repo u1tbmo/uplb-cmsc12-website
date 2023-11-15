@@ -498,7 +498,7 @@ section.footer .about {
   font-weight: 400;
   font-size: 1rem;
   color: var(--text);
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .credit-link + .credit-link {
