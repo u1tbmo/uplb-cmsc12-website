@@ -25,25 +25,28 @@ https://www.realtimecolors.com/?colors=07090d-eef1f6-f2d491-c6cfe1-3c5faa
   --primary: #f2d491;
   --secondary: #c6cfe1;
   --accent: #3c5faa;
-  --h1: 4.209rem;
-  --h2: 3.157rem;
-  --h3: 2.369rem;
-  --h4: 1.777rem;
-  --h5: 1.333rem;
-  --h6: 1rem;
+  --h1: 3.815rem;
+  --h2: 3.052rem;
+  --h3: 2.441rem;
+  --h4: 1.953rem;
+  --h5: 1.563rem;
+  --h6: 1.25rem;
+  --p: 1rem;
+  --small: 0.8rem;
+  --tiny: 0.64rem;
 }
 
 body {
-  background-color: var(--secondary);
+  background-color: var(--background);
   margin: 0;
   font-family: "Inter", sans-serif;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: var(--p);
   color: var(--text);
 }
 
 /*
-Typescale - Perfect Fourth (1.333)
+Typescale - Major Third
 https://typescale.com/
 */
 h1 {
@@ -85,7 +88,7 @@ h6 {
 p {
   font-family: "Inter", sans-serif;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: var(--p);
   color: var(--text);
 }
 
@@ -94,8 +97,8 @@ p {
   margin: 0;
 }
 
-header .nav-items {
-  max-width: 75em;
+.nav-items {
+  max-width: min(75em, 70%);
   margin: 0 auto;
   position: relative;
   display: flex;
@@ -103,20 +106,21 @@ header .nav-items {
   align-items: center;
 }
 
-nav {
+.nav-buttons {
   margin: 1em;
 }
 
-nav ul {
+.nav-buttons ul {
   list-style-type: none;
   display: flex;
   justify-content: space-between;
   gap: 3em;
   margin: 0;
+  padding: 0;
 }
 
-nav ul li a,
-header a {
+.nav-buttons ul li a,
+.nav-bar a {
   text-decoration: none;
   color: var(--text);
   font-family: "Inter", sans-serif;
@@ -124,14 +128,26 @@ header a {
   font-size: var(--h5);
 }
 
-nav ul li a:hover,
-header a:hover {
+.nav-buttons ul li a:hover,
+.nav-bar a:hover {
   color: var(--accent);
   text-shadow: var(--secondary) 0px 0px 4px;
 }
 
-nav ul li a.active {
+.nav-buttons ul li a.active {
   color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .u1tbmo-logo {
+    display: none;
+  }
+  .nav-items {
+    align-items: center;
+  }
+  .nav-buttons {
+    margin: 1em auto;
+  }
 }
 
 /* Hero Section */
@@ -142,10 +158,11 @@ section.hero {
   justify-content: center;
   align-items: center;
   height: 22em;
+  margin: 2em 0;
 }
 
 section.hero * {
-  max-width: 75em;
+  max-width: min(75em, 70%);
   margin: 0 auto;
   text-align: center;
 }
@@ -158,6 +175,20 @@ section.hero .emoji {
 
 section.hero p {
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  section.hero {
+    margin: 1em 0;
+    height: 18em;
+  }
+  section.hero .emoji {
+    width: var(--h2);
+    height: var(--h2);
+  }
+  section.hero h1 {
+    font-size: var(--h2);
+  }
 }
 
 .nav-hero-wrapper {
@@ -185,26 +216,39 @@ section.hero p {
 }
 
 .nav-hero-tilt .shape-fill {
-  fill: var(--secondary);
+  fill: var(--background);
 }
 
 /* Form Section */
 
 .wrapper {
-  max-width: 75em;
+  max-width: min(75em, 90%);
   margin: 0 auto;
   position: relative;
 }
 
 section.form {
-  margin-bottom: 6em;
-  padding-top: 10em;
+  display: flex;
+  padding-top: 5em;
+  max-width: min(40em, 100%);
+  min-width: max(20em, 50%);
+  margin: 0 auto;
 }
 
 .party-package-form {
-  max-width: 50vw;
-  min-width: max(50vw, 30em);
-  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  section.form {
+    max-width: min(40em, 90%);
+  }
+}
+
+.card {
+  border-radius: 8px;
+  background: #c6cfe1;
+  box-shadow: 20px 20px 60px #a8b0bf, -20px -20px 60px #e4eeff;
 }
 .party-package-form fieldset {
   position: relative;
@@ -212,9 +256,7 @@ section.form {
   margin: 0;
   margin-bottom: 4em;
   border: none;
-  border-radius: 32px;
-  background: var(--secondary);
-  box-shadow: 41px 41px 82px #a8b0bf, -41px -41px 82px #e4eeff;
+  width: 100%;
 }
 .party-package-form fieldset legend {
   font-family: "IBM Plex Sans", sans-serif;
@@ -224,32 +266,54 @@ section.form {
   padding: 0 0.5em;
   position: absolute;
   top: -1.5em;
+  cursor: default;
 }
 .party-package-form fieldset .subheader {
+  margin: 0;
+  margin-bottom: 2em;
+  cursor: default;
+}
+.party-package-form fieldset .subheader p {
   font-family: "IBM Plex Sans", sans-serif;
   font-weight: 700;
   font-size: var(--h5);
   color: var(--text);
-  margin: 1em 0 0.5em 0;
+  font-size: var(--h5);
+
+  margin: 0;
+  margin-bottom: 0.5em;
 }
-.party-package-form fieldset .subheader label {
+.subheader + .subheader {
+  margin-top: 1em;
+}
+.type-input-wrapper {
   display: flex;
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-size: 1rem;
-  color: var(--text);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
 }
 .type-input {
   background: var(--background);
-  margin: 0.5em;
+  margin: 0.5em 0 1.5em 0;
   padding: 0.5em;
   border: none;
   font-family: "Inter", sans-serif;
   font-weight: 400;
-  font-size: 1rem;
+  font-size: var(--h6);
   color: var(--text);
   outline: none;
   border-radius: 8px;
+}
+.type-input-wrapper .type-input {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .party-package-form fieldset legend {
+    font-size: var(--h5);
+    top: -1.5em;
+  }
 }
 
 /* Modern CSS / Custom Radio Buttons and Checkboxes
@@ -271,11 +335,11 @@ https://moderncss.dev/pure-css-custom-checkbox-style/
   display: grid;
   grid-template-columns: 1em auto;
   gap: 0.5em;
-  cursor: pointer;
 }
 
 .radio-label input {
   -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   background-color: var(--background);
   margin: 0;
@@ -295,6 +359,7 @@ https://moderncss.dev/pure-css-custom-checkbox-style/
 
 .checkbox-label input {
   -webkit-appearance: none;
+  -moz-appearance: none;
   appearance: none;
   background-color: var(--background);
   margin: 0;
@@ -331,6 +396,14 @@ https://moderncss.dev/pure-css-custom-checkbox-style/
   transition: 120ms transform ease-in-out;
   box-shadow: inset 1em 1em var(--accent);
   transform-origin: bottom left;
+  -webkit-clip-path: polygon(
+    14% 44%,
+    0 65%,
+    50% 100%,
+    100% 16%,
+    80% 0%,
+    43% 62%
+  );
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
 }
 
@@ -355,9 +428,6 @@ https://moderncss.dev/pure-css-custom-checkbox-style/
 }
 
 .venue-address-wrapper .venue-address {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
   width: 100%;
   resize: none;
 }
@@ -381,14 +451,12 @@ https://moderncss.dev/pure-css-custom-checkbox-style/
   padding: 1em 5em;
   border: none;
   border-radius: 8px;
-  background: var(--background);
+  background: var(--primary);
   cursor: pointer;
 }
 
 .form-buttons input:hover {
-  background: var(--accent);
-  color: var(--background);
-  text-shadow: var(--secondary) 0px 0px 4px;
+  background: var(--secondary);
   transition: 120ms transform ease-in-out;
 }
 
@@ -409,7 +477,7 @@ section.footer .about,
 section.footer .credits {
   margin: 0 auto;
   text-align: center;
-  max-width: 75em;
+  max-width: min(75em, 70%);
 }
 
 section.footer .credits p {
@@ -437,7 +505,7 @@ section.footer .about {
   margin-top: 0.5em;
 }
 
-.footer-curve {
+.footer-tilt {
   position: absolute;
   top: 0;
   left: 0;
@@ -446,13 +514,13 @@ section.footer .about {
   line-height: 0;
 }
 
-.footer-curve svg {
+.footer-tilt svg {
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
-  height: 64px;
+  height: 128px;
 }
 
-.footer-curve .shape-fill {
-  fill: var(--secondary);
+.footer-tilt .shape-fill {
+  fill: var(--background);
 }

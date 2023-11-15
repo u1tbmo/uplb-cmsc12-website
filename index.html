@@ -7,9 +7,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Euan's Party Package Order Form</title>
-    <link rel="stylesheet" href="tabamo_ex9.css">
+    <link rel="stylesheet" href="css/tabamo_ex9.css">
     <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
 </head>
 
@@ -18,8 +18,8 @@
     <div class="nav-hero-wrapper">
         <header class="nav-bar">
             <div class="nav-items">
-                <a href="#">u1tbmo</a>
-                <nav>
+                <a href="#" class="u1tbmo-logo">u1tbmo</a>
+                <nav class="nav-buttons">
                     <ul>
                         <li><a href="#">home</a></li>
                         <li><a href="#">about</a></li>
@@ -46,91 +46,109 @@
         <section class="form">
             <form action="" class="party-package-form">
                 <!-- Customer Information Fieldset -->
-                <fieldset>
+                <fieldset class="card">
                     <legend>Customer Information</legend>
-                    <label for="name">Name
-                        <br><input class="type-input" type="text" name="name" id="name" required>
-                    </label><br>
+                    <label for="name">
+                        Name <br>
+                        <div class="type-input-wrapper">
+                            <input class="type-input" type="text" name="name" id="name" required>
+                        </div>
+                    </label>
                     <label for="mobileNumber">
-                        Mobile Number <br><input class="type-input" type="tel" pattern="09{1}[0-9]{9}"
-                            title="09XXXXXXXXX" placeholder="09XXXXXXXXX" name="mobileNumber" id="mobileNumber"
-                            required>
-                    </label><br>
+                        Mobile Number <br>
+                        <div class="type-input-wrapper">
+                            <input class="type-input" type="tel" pattern="09{1}[0-9]{9}" title="09XXXXXXXXX"
+                                placeholder="09XXXXXXXXX" name="mobileNumber" id="mobileNumber" required>
+                        </div>
+                    </label>
                     <label for="emailAddress">
-                        Email Address <br><input class="type-input" type="email" name="emailAddress" id="emailAddress"
-                            required>
-                    </label><br>
+                        Email Address <br>
+                        <div class="type-input-wrapper">
+                            <input class="type-input" type="email" name="emailAddress" id="emailAddress" required>
+                        </div>
+                    </label>
                 </fieldset>
                 <br>
                 <!-- Party Details Fieldset -->
-                <fieldset>
+                <fieldset class="card">
                     <legend>Party Details</legend>
                     <label for="qty">
-                        Number of People <br><input class="type-input" type="number" name="qty" id="qty" required>
-                    </label><br>
-                    <p class="subheader">
-                        Appetizer<br>
-                    </p>
-                    <label class="radio-label" for="salad"><input type="radio" name="appetizer" id="salad"
-                            checked>Salad</label>
-                    <label class="radio-label" for="breadWithDip"><input type="radio" name="appetizer"
-                            id="breadWithDip">Bread
-                        w/Dip</label>
-                    <label class="radio-label" for="tomatoSurprise"><input type="radio" name="appetizer"
-                            id="tomatoSurprise">Tomato
-                        Surprise</label>
-                    <label class="radio-label" for="mushroomBites"><input type="radio" name="appetizer"
-                            id="mushroomBites">Mushroom
-                        Bites</label>
-                    <p class="subheader">
-                        Main Dishes<br>
-                    </p>
-                    <label class="checkbox-label" for="roastBeef"><input type="checkbox" name="mainDishes"
-                            id="roastBeef">Roast
-                        Beef</label>
-                    <label class="checkbox-label" for="beefSteak"><input type="checkbox" name="mainDishes"
-                            id="beefSteak">Beef
-                        Steak</label>
-                    <label class="checkbox-label" for="porkSpareribs"><input type="checkbox" name="mainDishes"
-                            id="porkSpareribs">Pork
-                        Spareribs</label>
-                    <label class="checkbox-label" for="porkMarbella"><input type="checkbox" name="mainDishes"
-                            id="porkMarbella">Pork
-                        Marbella</label>
-                    <label class="checkbox-label" for="grilledChicken"><input type="checkbox" name="mainDishes"
-                            id="grilledChicken">Grilled
-                        Chicken</label>
-                    <label class="checkbox-label" for="roastChicken"><input type="checkbox" name="mainDishes"
-                            id="roastChicken">Roast
-                        Chicken</label>
-                    <label class="checkbox-label" for="broiledSalmon"><input type="checkbox" name="mainDishes"
-                            id="broiledSalmon">Broiled
-                        Salmon</label>
-                    <label class="checkbox-label" for="grilledSalmon"><input type="checkbox" name="mainDishes"
-                            id="grilledSalmon">Grilled
-                        Salmon</label>
-                    <p class="subheader" for="Desserts">
-                        Desserts<br>
-                    </p>
-                    <label class="checkbox-label" for="moltenChocoCake"><input type="checkbox" name="desserts"
-                            id="moltenChocoCake">Molten
-                        Chocolate Cake</label>
-                    <label class="checkbox-label" for="redVelvetCake"><input type="checkbox" name="desserts"
-                            id="redVelvetCake">Red Velvet
-                        Cake</label>
-                    <label class="checkbox-label" for="lemonBars"><input type="checkbox" name="desserts"
-                            id="lemonBars">Lemon
-                        Bars</label>
-                    <label class="checkbox-label" for="peanutButterBars"><input type="checkbox" name="desserts"
-                            id="peanutButterBars">Peanut
-                        Butter
-                        Bars</label>
-                    <label class="checkbox-label" for="bukoPie"><input type="checkbox" name="desserts" id="bukoPie">Buko
-                        Pie</label>
-                    <label class="checkbox-label" for="lemonMeringuePie"><input type="checkbox" name="desserts"
-                            id="lemonMeringuePie">Lemon
-                        Meringue Pie</label>
+                        Number of People <br>
+                        <div class="type-input-wrapper">
+                            <input class="type-input" type="number" name="qty" id="qty" required>
+                        </div>
+                    </label>
+                    <div class="subheader">
+                        <p>
+                            Appetizer<br>
+                        </p>
+                        <label class="radio-label" for="salad"><input type="radio" name="appetizer" id="salad"
+                                checked>Salad</label>
+                        <label class="radio-label" for="breadWithDip"><input type="radio" name="appetizer"
+                                id="breadWithDip">Bread
+                            w/Dip</label>
+                        <label class="radio-label" for="tomatoSurprise"><input type="radio" name="appetizer"
+                                id="tomatoSurprise">Tomato
+                            Surprise</label>
+                        <label class="radio-label" for="mushroomBites"><input type="radio" name="appetizer"
+                                id="mushroomBites">Mushroom
+                            Bites</label>
+                    </div>
+                    <div class="subheader">
+                        <p>
+                            Main Dishes<br>
+                        </p>
+                        <label class="checkbox-label" for="roastBeef"><input type="checkbox" name="mainDishes"
+                                id="roastBeef">Roast
+                            Beef</label>
+                        <label class="checkbox-label" for="beefSteak"><input type="checkbox" name="mainDishes"
+                                id="beefSteak">Beef
+                            Steak</label>
+                        <label class="checkbox-label" for="porkSpareribs"><input type="checkbox" name="mainDishes"
+                                id="porkSpareribs">Pork
+                            Spareribs</label>
+                        <label class="checkbox-label" for="porkMarbella"><input type="checkbox" name="mainDishes"
+                                id="porkMarbella">Pork
+                            Marbella</label>
+                        <label class="checkbox-label" for="grilledChicken"><input type="checkbox" name="mainDishes"
+                                id="grilledChicken">Grilled
+                            Chicken</label>
+                        <label class="checkbox-label" for="roastChicken"><input type="checkbox" name="mainDishes"
+                                id="roastChicken">Roast
+                            Chicken</label>
+                        <label class="checkbox-label" for="broiledSalmon"><input type="checkbox" name="mainDishes"
+                                id="broiledSalmon">Broiled
+                            Salmon</label>
+                        <label class="checkbox-label" for="grilledSalmon"><input type="checkbox" name="mainDishes"
+                                id="grilledSalmon">Grilled
+                            Salmon</label>
+                    </div>
+                    <div class="subheader">
+                        <p>
+                            Desserts<br>
+                        </p>
+                        <label class="checkbox-label" for="moltenChocoCake"><input type="checkbox" name="desserts"
+                                id="moltenChocoCake">Molten
+                            Chocolate Cake</label>
+                        <label class="checkbox-label" for="redVelvetCake"><input type="checkbox" name="desserts"
+                                id="redVelvetCake">Red Velvet
+                            Cake</label>
+                        <label class="checkbox-label" for="lemonBars"><input type="checkbox" name="desserts"
+                                id="lemonBars">Lemon
+                            Bars</label>
+                        <label class="checkbox-label" for="peanutButterBars"><input type="checkbox" name="desserts"
+                                id="peanutButterBars">Peanut
+                            Butter
+                            Bars</label>
+                        <label class="checkbox-label" for="bukoPie"><input type="checkbox" name="desserts"
+                                id="bukoPie">Buko
+                            Pie</label>
+                        <label class="checkbox-label" for="lemonMeringuePie"><input type="checkbox" name="desserts"
+                                id="lemonMeringuePie">Lemon
+                            Meringue Pie</label>
+                    </div>
                     <p class="subheader" for="rice">
+                    <p>
                         Rice<br>
                     </p>
                     <label class="radio-label" for="plainRice"><input type="radio" name="rice" id="plainRice"
@@ -139,7 +157,9 @@
                             id="garlicRice">Garlic</label>
                     <label class="radio-label" for="bagoongRice"><input type="radio" name="rice"
                             id="bagoongRice">Bagoong</label>
+                    </p>
                     <p class="subheader" for="drinks">
+                    <p>
                         Drinks<br>
                     </p>
                     <label class="radio-label" for="cucumberLemonade"><input type="radio" name="drink"
@@ -151,31 +171,37 @@
                     <label class="radio-label" for="ripeMangoJuice"><input type="radio" name="drink"
                             id="ripeMangoJuice">Ripe Mango
                         Juice</label>
+                    </p>
                 </fieldset>
                 <br>
                 <!-- Venue Details Fieldset -->
-                <fieldset>
+                <fieldset class="card">
                     <legend>Venue Details</legend>
-                    <p>Venue Address<br></p>
-                    <div class="venue-address-wrapper">
-                        <textarea class="type-input venue-address" name="venueAddress" id="venueAddress" rows="10"
-                            placeholder="Address here..." required></textarea>
-                    </div>
-                    <p>Party Date</p><input class="type-input" type="date" name="partyDate" id="partyDate" required>
-                    <p>Party Time</p><input class="type-input" type="time" name="partyTime" id="partyTime" required>
+                    <label for="venueAddress">Venue Address<br>
+                        <div class="venue-address-wrapper">
+                            <textarea class="type-input venue-address" name="venueAddress" id="venueAddress" rows="10"
+                                placeholder="Address here..." required></textarea>
+                        </div>
+                    </label><br>
+                    <label for="partyDate">Party Date<br>
+                        <input class="type-input" type="date" name="partyDate" id="partyDate" required>
+                    </label><br>
+                    <label for="partyTime">Party Time<br>
+                        <input class="type-input" type="time" name="partyTime" id="partyTime" required>
+                    </label>
                 </fieldset>
                 <br>
+                <div class="form-buttons">
+                    <input type="submit" value="Submit"><input type="reset" value="Reset">
+                </div>
+            </form>
         </section>
-        <div class="form-buttons">
-            <input type="submit" value="Submit"><input type="reset" value="Reset">
-        </div>
-        </form>
     </div>
     <section class="footer">
-        <div class="footer-curve">
+        <div class="footer-tilt">
             <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
                 preserveAspectRatio="none">
-                <path d="M0,0V7.23C0,65.52,268.63,112.77,600,112.77S1200,65.52,1200,7.23V0Z" class="shape-fill"></path>
+                <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
             </svg>
         </div>
         <div class="about">
