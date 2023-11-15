@@ -36,6 +36,13 @@ https://www.realtimecolors.com/?colors=07090d-eef1f6-f2d491-c6cfe1-3c5faa
   --tiny: 0.64rem;
 }
 
+/* Background Color on Overscroll
+https://stackoverflow.com/a/56257456
+*/
+html {
+  background-color: var(--primary);
+}
+
 body {
   background-color: var(--background);
   margin: 0;
@@ -93,10 +100,6 @@ p {
 }
 
 /* Navigation Bar */
-.u1tbmo-logo {
-  margin: 0;
-}
-
 .nav-items {
   max-width: min(75em, 70%);
   margin: 0 auto;
@@ -110,7 +113,8 @@ p {
   margin: 1em;
 }
 
-.nav-buttons ul {
+.nav-buttons ul,
+.u1tbmo-logo {
   list-style-type: none;
   display: flex;
   justify-content: space-between;
@@ -120,18 +124,20 @@ p {
 }
 
 .nav-buttons ul li a,
-.nav-bar a {
+.u1tbmo-logo {
   text-decoration: none;
   color: var(--text);
   font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: var(--h5);
+  transition: ease-in-out 0.2s;
 }
 
 .nav-buttons ul li a:hover,
-.nav-bar a:hover {
+.u1tbmo-logo:hover {
   color: var(--accent);
   text-shadow: var(--secondary) 0px 0px 4px;
+  transition: ease-in-out 0.2s;
 }
 
 .nav-buttons ul li a.active {
@@ -142,11 +148,24 @@ p {
   .u1tbmo-logo {
     display: none;
   }
-  .nav-items {
-    align-items: center;
-  }
   .nav-buttons {
     margin: 1em auto;
+  }
+}
+@media (max-width: 480px) {
+  .nav-buttons ul {
+    gap: 1.2em;
+  }
+  .nav-buttons ul li a {
+    font-size: var(--h6);
+  }
+}
+@media (max-width: 360px) {
+  .nav-buttons ul {
+    gap: 0.8em;
+  }
+  .nav-buttons ul li a {
+    font-size: var(--p);
   }
 }
 
@@ -161,10 +180,12 @@ section.hero {
   margin: 2em 0;
 }
 
-section.hero * {
-  max-width: min(75em, 70%);
+section.hero h1,
+section.hero p {
+  max-width: min(75em, 90%);
   margin: 0 auto;
   text-align: center;
+  transition: ease-in-out 0.2s;
 }
 
 section.hero .emoji {
@@ -189,13 +210,28 @@ section.hero p {
   section.hero h1 {
     font-size: var(--h2);
   }
+  section.hero p {
+    font-size: var(--small);
+  }
+}
+@media (max-width: 480px) {
+  section.hero {
+    margin: 0.5em 0;
+    height: 14em;
+  }
+  section.hero .emoji {
+    width: var(--h3);
+    height: var(--h3);
+  }
+  section.hero h1 {
+    font-size: var(--h3);
+  }
 }
 
 .nav-hero-wrapper {
   position: relative;
   padding-bottom: 10em;
   background: var(--primary);
-  box-shadow: inset 26px 26px 51px #ceb47b, inset -26px -26px 51px #fff4a7;
 }
 
 .nav-hero-tilt {
@@ -231,7 +267,6 @@ section.form {
   display: flex;
   padding-top: 5em;
   max-width: min(40em, 100%);
-  min-width: max(20em, 50%);
   margin: 0 auto;
 }
 
@@ -241,7 +276,7 @@ section.form {
 
 @media (max-width: 768px) {
   section.form {
-    max-width: min(40em, 90%);
+    max-width: min(40em, 95%);
   }
 }
 
@@ -263,9 +298,18 @@ section.form {
   font-weight: 700;
   font-size: var(--h4);
   color: var(--text);
-  padding: 0 0.5em;
-  position: absolute;
-  top: -1.5em;
+  text-align: center;
+  width: auto;
+  margin: 0 auto;
+  cursor: default;
+
+  transition: ease-in-out 0.2s;
+}
+.party-package-form fieldset label {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: var(--p);
+  color: var(--text);
   cursor: default;
 }
 .party-package-form fieldset .subheader {
@@ -294,14 +338,14 @@ section.form {
   margin: 0;
 }
 .type-input {
-  background: var(--background);
-  margin: 0.5em 0 1.5em 0;
-  padding: 0.5em;
-  border: none;
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: var(--p);
   color: var(--text);
+  background: var(--background);
+  margin: 0.5em 0 1.5em 0;
+  padding: 0.5em;
+  border: none;
   outline: none;
   border-radius: 8px;
 }
@@ -310,9 +354,22 @@ section.form {
 }
 
 @media (max-width: 768px) {
-  .party-package-form fieldset legend {
-    font-size: var(--h5);
-    top: -1.5em;
+  .type-input {
+    font-size: var(--h6);
+  }
+  .party-package-form fieldset label {
+    font-size: var(--h6);
+  }
+}
+@media (max-width: 360px) {
+  /* .type-input {
+    font-size: var(--p);
+  }
+  .party-package-form fieldset label {
+    font-size: var(--p);
+  } */
+  .party-package-form fieldset {
+    padding: 1em;
   }
 }
 
@@ -329,7 +386,7 @@ https://moderncss.dev/pure-css-custom-checkbox-style/
 .radio-label,
 .checkbox-label {
   font-family: "Inter", sans-serif;
-  font-size: 1rem;
+  font-size: var(--p);
   font-weight: 400;
   line-height: 1.1;
   display: grid;
@@ -417,6 +474,13 @@ https://moderncss.dev/pure-css-custom-checkbox-style/
   margin-top: 0.5em;
 }
 
+@media (max-width: 768px) {
+  .radio-label,
+  .checkbox-label {
+    font-size: var(--h6);
+  }
+}
+
 /* Text Area*/
 
 .venue-address-wrapper {
@@ -437,9 +501,8 @@ https://moderncss.dev/pure-css-custom-checkbox-style/
 .form-buttons {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 6em;
+  margin-bottom: 4em;
 }
 
 .form-buttons input {
@@ -453,11 +516,20 @@ https://moderncss.dev/pure-css-custom-checkbox-style/
   border-radius: 8px;
   background: var(--primary);
   cursor: pointer;
+
+  transition: ease-in-out 0.2s;
 }
 
 .form-buttons input:hover {
-  background: var(--secondary);
-  transition: 120ms transform ease-in-out;
+  background: var(--accent);
+  transition: ease-in-out 0.2s;
+  color: var(--background);
+}
+
+@media (max-width: 480px) {
+  .form-buttons input {
+    padding: 1em 3em;
+  }
 }
 
 /* Footer */
@@ -467,10 +539,9 @@ section.footer {
   justify-content: center;
   align-items: center;
   margin: 0;
-  padding: 10em 0 14em 0;
+  padding: 8em 0 8em 0;
   position: relative;
   background: var(--primary);
-  box-shadow: inset 26px 26px 51px #ceb47b, inset -26px -26px 51px #fff4a7;
 }
 
 section.footer .about,
