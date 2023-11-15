@@ -85,7 +85,7 @@ p {
   color: var(--text);
 }
 
-/* Restricts the whole page to the center */
+/* Restricts all elements in the page to the center */
 .wrapper {
   max-width: 1200px;
   margin: 0 auto;
@@ -208,16 +208,16 @@ section.hero p {
   border-radius: 8px;
 }
 
+/* Modern CSS / Custom Radio Buttons and Checkboxes
+https://moderncss.dev/pure-css-custom-styled-radio-buttons/
+https://moderncss.dev/pure-css-custom-checkbox-style/
+*/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
 }
 
-/* Modern CSS
-https://moderncss.dev/pure-css-custom-styled-radio-buttons/
-https://moderncss.dev/pure-css-custom-checkbox-style/
-*/
 .radio-label,
 .checkbox-label {
   font-family: "Inter", sans-serif;
@@ -294,6 +294,8 @@ https://moderncss.dev/pure-css-custom-checkbox-style/
 .checkbox-label + .checkbox-label {
   margin-top: 0.5em;
 }
+
+/* Text Area*/
 
 .venue-address-wrapper {
   display: flex;
