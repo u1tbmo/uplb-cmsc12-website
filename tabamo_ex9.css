@@ -3,12 +3,16 @@
 /* This is the CSS for the previous exercise. */
 
 /* Credits
-https://neumorphism.io/ - for Soft UI CSS
+Neumorphism - Soft UI CSS
+https://neumorphism.io/
+
+Fluent Emoji - Emojis Source
+https://github.com/microsoft/fluentui-emoji
 */
 
 /* Google Fonts
 IBM Plex Sans - https://fonts.google.com/specimen/IBM+Plex+Sans
-Inter - https://fonts.google.com/specimen/Inter
+Inter - https://fonts.google.com/specimen/IBM+Plex+Sans
 */
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;600;800&display=swap");
 
@@ -30,7 +34,7 @@ https://www.realtimecolors.com/?colors=07090d-eef1f6-f2d491-c6cfe1-3c5faa
 }
 
 body {
-  background-color: var(--background);
+  background-color: var(--secondary);
   margin: 0;
   font-family: "Inter", sans-serif;
   font-weight: 400;
@@ -85,18 +89,15 @@ p {
   color: var(--text);
 }
 
-/* Restricts all elements in the page to the center */
-.wrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
 /* Navigation Bar */
 .u1tbmo-logo {
   margin: 0;
 }
 
-header {
+header .nav-items {
+  max-width: 75em;
+  margin: 0 auto;
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -144,7 +145,8 @@ section.hero {
 }
 
 section.hero * {
-  margin: 0;
+  max-width: 75em;
+  margin: 0 auto;
   text-align: center;
 }
 
@@ -158,7 +160,46 @@ section.hero p {
   text-align: center;
 }
 
+.nav-hero-wrapper {
+  position: relative;
+  padding-bottom: 10em;
+  background: var(--primary);
+  box-shadow: inset 26px 26px 51px #ceb47b, inset -26px -26px 51px #fff4a7;
+}
+
+.nav-hero-tilt {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.nav-hero-tilt svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 128px;
+}
+
+.nav-hero-tilt .shape-fill {
+  fill: var(--secondary);
+}
+
 /* Form Section */
+
+.wrapper {
+  max-width: 75em;
+  margin: 0 auto;
+  position: relative;
+}
+
+section.form {
+  margin-bottom: 6em;
+  padding-top: 10em;
+}
 
 .party-package-form {
   max-width: 50vw;
@@ -166,13 +207,14 @@ section.hero p {
   margin: 0 auto;
 }
 .party-package-form fieldset {
+  position: relative;
   padding: 2em;
   margin: 0;
+  margin-bottom: 4em;
   border: none;
-  border-radius: 16px;
-  border-radius: 16px;
+  border-radius: 32px;
   background: var(--secondary);
-  box-shadow: 33px 33px 66px #a6aebd, -33px -33px 66px #e6f0ff;
+  box-shadow: 41px 41px 82px #a8b0bf, -41px -41px 82px #e4eeff;
 }
 .party-package-form fieldset legend {
   font-family: "IBM Plex Sans", sans-serif;
@@ -180,6 +222,8 @@ section.hero p {
   font-size: var(--h4);
   color: var(--text);
   padding: 0 0.5em;
+  position: absolute;
+  top: -1.5em;
 }
 .party-package-form fieldset .subheader {
   font-family: "IBM Plex Sans", sans-serif;
@@ -227,6 +271,7 @@ https://moderncss.dev/pure-css-custom-checkbox-style/
   display: grid;
   grid-template-columns: 1em auto;
   gap: 0.5em;
+  cursor: pointer;
 }
 
 .radio-label input {
@@ -241,6 +286,8 @@ https://moderncss.dev/pure-css-custom-checkbox-style/
   border: none;
   border-radius: 50%;
   transform: translateY(-0.075em);
+
+  cursor: pointer;
 
   display: grid;
   place-content: center;
@@ -258,6 +305,8 @@ https://moderncss.dev/pure-css-custom-checkbox-style/
   border: none;
   border-radius: 0.2em;
   transform: translateY(-0.075em);
+
+  cursor: pointer;
 
   display: grid;
   place-content: center;
@@ -311,4 +360,99 @@ https://moderncss.dev/pure-css-custom-checkbox-style/
   box-sizing: border-box;
   width: 100%;
   resize: none;
+}
+
+/* Submit and Reset Buttons */
+
+.form-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6em;
+}
+
+.form-buttons input {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-size: var(--h6);
+  font-weight: 700;
+  margin: 0;
+  margin-bottom: 1em;
+  padding: 1em 5em;
+  border: none;
+  border-radius: 8px;
+  background: var(--background);
+  cursor: pointer;
+}
+
+.form-buttons input:hover {
+  background: var(--accent);
+  color: var(--background);
+  text-shadow: var(--secondary) 0px 0px 4px;
+  transition: 120ms transform ease-in-out;
+}
+
+/* Footer */
+section.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 10em 0 14em 0;
+  position: relative;
+  background: var(--primary);
+  box-shadow: inset 26px 26px 51px #ceb47b, inset -26px -26px 51px #fff4a7;
+}
+
+section.footer .about,
+section.footer .credits {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 75em;
+}
+
+section.footer .credits p {
+  display: flex;
+  flex-direction: column;
+}
+
+section.footer .about h4,
+section.footer .credits h4 {
+  margin: 0;
+}
+section.footer .about {
+  margin-bottom: 1em;
+}
+
+.credit-link {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.credit-link + .credit-link {
+  margin-top: 0.5em;
+}
+
+.footer-curve {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.footer-curve svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 64px;
+}
+
+.footer-curve .shape-fill {
+  fill: var(--secondary);
 }
