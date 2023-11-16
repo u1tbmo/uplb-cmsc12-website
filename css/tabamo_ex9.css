@@ -404,6 +404,11 @@ section.form {
   margin-top: 1em;
 }
 
+@media (max-width: 768px) {
+  .party-package-form fieldset {
+    padding: 2em;
+  }
+}
 @media (max-width: 360px) {
   .party-package-form fieldset {
     padding: 1em;
