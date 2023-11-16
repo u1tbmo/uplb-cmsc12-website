@@ -29,6 +29,9 @@ https://typescale.com/
 
 Glassmorphism
 https://ui.glass/generator/
+
+Mesher
+https://csshero.org/mesher/
 */
 
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;600;800&display=swap");
@@ -38,7 +41,7 @@ https://ui.glass/generator/
   --background: #eef1f6;
   --gray: #d7dadf;
   --primary: #f2d491;
-  --secondary: #c6cfe1;
+  --secondary: #ffd48a;
   --accent: #3c5faa;
   --h1: 3.815rem;
   --h2: 3.052rem;
@@ -51,22 +54,6 @@ https://ui.glass/generator/
   --tiny: 0.64rem;
   --ibm-plex-sans: "IBM Plex Sans", sans-serif;
   --inter: "Inter", sans-serif;
-}
-
-/* Background Color on Overscroll
-https://stackoverflow.com/a/56257456
-*/
-html {
-  background-color: var(--primary);
-}
-
-body {
-  background-color: var(--background);
-  margin: 0;
-  font-family: var(--inter);
-  font-weight: 400;
-  font-size: var(--p);
-  color: var(--text);
 }
 
 h1 {
@@ -112,16 +99,40 @@ p {
   color: var(--text);
 }
 
-/* Navigation Bar */
+/* General */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
 
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  overflow: auto;
+  height: 100%;
+
+  background-color: var(--background);
+  margin: 0;
+  font-family: var(--inter);
+  font-weight: 400;
+  font-size: var(--p);
+  color: var(--text);
+}
+
+/* Navigation Bar */
 .nav-bar {
+  position: relative;
   max-width: min(75em, 90%);
   margin: 0 auto;
-  margin-top: 2em;
-  border-radius: 12px;
-  backdrop-filter: blur(16px) saturate(100%);
-  -webkit-backdrop-filter: blur(16px) saturate(100%);
-  background-color: rgba(255, 255, 255, 0.65);
+  top: 2em;
+  border-radius: 8px;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.125);
 }
 
@@ -139,7 +150,8 @@ p {
 }
 
 .u1tbmo-logo {
-  width: 10em;
+  height: 4em;
+  margin: 1em 0 1.2em 0;
 }
 
 .nav-buttons ul {
@@ -162,7 +174,6 @@ p {
 
 .nav-buttons ul li a:hover {
   color: var(--accent);
-  text-shadow: var(--secondary) 0px 0px 4px;
   transition: ease-in-out 0.2s;
 }
 
@@ -172,7 +183,11 @@ p {
 
 @media (max-width: 768px) {
   .u1tbmo-logo {
-    display: none;
+    margin: 0.5em;
+  }
+  .nav-items {
+    display: flex;
+    flex-direction: column;
   }
   .nav-buttons {
     margin: 1em auto;
@@ -183,13 +198,13 @@ p {
 }
 @media (max-width: 480px) {
   .nav-bar {
-    margin: 1em;
+    top: 1em;
   }
   .nav-buttons ul {
     gap: 1.2em;
   }
   .nav-buttons ul li a {
-    font-size: var(--h6);
+    font-size: var(--p);
   }
 }
 @media (max-width: 360px) {
@@ -202,7 +217,6 @@ p {
 }
 
 /* Hero Section */
-
 section.hero {
   display: flex;
   flex-direction: column;
@@ -264,10 +278,22 @@ section.hero p {
   }
 }
 
+/* Nav + Hero Wrapper */
 .nav-hero-wrapper {
   position: relative;
   padding-bottom: 10em;
-  background: var(--primary);
+  background-color: #99beff;
+  background-image: radial-gradient(
+      at 89% 84%,
+      hsla(55, 83%, 72%, 1) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 75% 66%, hsla(62, 73%, 66%, 1) 0px, transparent 50%),
+    radial-gradient(at 59% 36%, hsla(147, 80%, 66%, 1) 0px, transparent 50%),
+    radial-gradient(at 21% 75%, hsla(346, 78%, 63%, 1) 0px, transparent 50%),
+    radial-gradient(at 80% 1%, hsla(264, 79%, 78%, 1) 0px, transparent 50%),
+    radial-gradient(at 67% 84%, hsla(309, 88%, 71%, 1) 0px, transparent 50%),
+    radial-gradient(at 97% 96%, hsla(58, 84%, 68%, 1) 0px, transparent 50%);
 }
 
 .nav-hero-tilt {
@@ -292,7 +318,6 @@ section.hero p {
 }
 
 /* Form Section */
-
 .wrapper {
   max-width: min(75em, 90%);
   margin: 0 auto;
@@ -304,6 +329,7 @@ section.form {
   padding-top: 5em;
   max-width: min(40em, 100%);
   margin: 0 auto;
+  place-items: center;
 }
 
 .party-package-form {
@@ -317,18 +343,25 @@ section.form {
 }
 
 .card {
-  border-radius: 8px;
-  background: var(--secondary);
-  box-shadow: 20px 20px 60px #a8b0bf, -20px -20px 60px #e4eeff;
+  border-radius: 16px;
+  background: rgb(255, 216, 150);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 216, 150, 1) 0%,
+    rgba(255, 212, 138, 1) 50%,
+    rgba(255, 208, 127, 1) 100%
+  );
+  box-shadow: 41px 41px 82px #cacdd1, -41px -41px 82px #ffffff;
 }
+
 .party-package-form fieldset {
-  position: relative;
-  padding: 2em;
+  padding: 2em 4em;
   margin: 0;
   margin-bottom: 4em;
   border: none;
   width: 100%;
 }
+
 .party-package-form fieldset legend {
   font-family: var(--ibm-plex-sans);
   font-weight: 700;
@@ -341,6 +374,7 @@ section.form {
 
   transition: ease-in-out 0.2s;
 }
+
 .party-package-form fieldset label {
   font-family: var(--inter);
   font-weight: 400;
@@ -348,11 +382,13 @@ section.form {
   color: var(--text);
   cursor: default;
 }
+
 .party-package-form fieldset .subheader {
   margin: 0;
   margin-bottom: 2em;
   cursor: default;
 }
+
 .party-package-form fieldset .subheader p {
   font-family: var(--ibm-plex-sans);
   font-weight: 700;
@@ -363,9 +399,18 @@ section.form {
   margin: 0;
   margin-bottom: 0.5em;
 }
+
 .subheader + .subheader {
   margin-top: 1em;
 }
+
+@media (max-width: 360px) {
+  .party-package-form fieldset {
+    padding: 1em;
+  }
+}
+
+/* Inputs */
 .type-input-wrapper {
   display: flex;
   flex-direction: column;
@@ -373,38 +418,19 @@ section.form {
   align-items: center;
   margin: 0;
 }
+
 .type-input {
   font-family: var(--inter);
   font-weight: 400;
   font-size: var(--p);
   color: var(--text);
-  background: var(--background);
   margin: 0.5em 0 1.5em 0;
   padding: 0.5em;
   border: none;
   outline: none;
-  border-radius: 8px;
   width: 100%;
-}
-
-@media (max-width: 768px) {
-  .type-input {
-    font-size: var(--h6);
-  }
-  .party-package-form fieldset label {
-    font-size: var(--h6);
-  }
-}
-@media (max-width: 360px) {
-  .party-package-form fieldset {
-    padding: 1em;
-  }
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+  border-radius: 4px;
+  background: var(--background);
 }
 
 .radio-label,
@@ -498,15 +524,6 @@ section.form {
   margin-top: 0.5em;
 }
 
-@media (max-width: 768px) {
-  .radio-label,
-  .checkbox-label {
-    font-size: var(--h6);
-  }
-}
-
-/* Text Area*/
-
 .venue-address-wrapper {
   display: flex;
   flex-direction: column;
@@ -520,13 +537,13 @@ section.form {
   resize: none;
 }
 
-/* Submit and Reset Buttons */
-
 .form-buttons {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 1em;
+  margin: 0 auto;
   margin-bottom: 4em;
+  align-items: center;
 }
 
 .form-buttons input {
@@ -538,18 +555,18 @@ section.form {
   padding: 1em 5em;
   border: none;
   border-radius: 8px;
-  background: var(--primary);
+  background: var(--secondary);
   cursor: pointer;
 
   border-radius: 8px;
-  box-shadow: 7px 7px 14px #a6aebd, -7px -7px 14px #e6f0ff;
+  box-shadow: 8px 8px 16px #cacdd1, -8px -8px 16px #ffffff;
   transition: ease-in-out 0.05s;
 }
 
 .form-buttons input:hover {
   color: var(--background);
   background: var(--accent);
-  box-shadow: inset 7px 7px 14px #32508f, inset -7px -7px 14px #466ec5;
+  box-shadow: inset 8px 8px 16px #32508f, inset -8px -8px 16px #466ec5;
   transition: ease-in-out 0.05s;
 }
 
@@ -566,9 +583,20 @@ section.footer {
   justify-content: center;
   align-items: center;
   margin: 0;
-  padding: 8em 0 8em 0;
+  padding: 12em 0 4em 0;
   position: relative;
-  background: var(--primary);
+  background-color: #99beff;
+  background-image: radial-gradient(
+      at 88% 76%,
+      hsla(55, 83%, 72%, 1) 0px,
+      transparent 50%
+    ),
+    radial-gradient(at 62% 72%, hsla(62, 73%, 66%, 1) 0px, transparent 50%),
+    radial-gradient(at 29% 83%, hsla(147, 80%, 66%, 1) 0px, transparent 50%),
+    radial-gradient(at 29% 35%, hsla(346, 78%, 63%, 1) 0px, transparent 50%),
+    radial-gradient(at 85% 24%, hsla(264, 79%, 78%, 1) 0px, transparent 50%),
+    radial-gradient(at 69% 36%, hsla(309, 88%, 71%, 1) 0px, transparent 50%),
+    radial-gradient(at 97% 96%, hsla(58, 84%, 68%, 1) 0px, transparent 50%);
 }
 
 section.footer .about,
@@ -601,6 +629,24 @@ section.footer .about {
 
 .credit-link + .credit-link {
   margin-top: 0.5em;
+}
+
+.footer-wrapper {
+  padding: 3em 2em 2em 2em;
+  border-radius: 12px;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.125);
+
+  max-width: min(75em, 90%);
+  margin: 0 auto;
+}
+
+@media (max-width: 480px) {
+  .footer-wrapper {
+    padding: 1.5em 1em 1em 1em;
+  }
 }
 
 .footer-tilt {
