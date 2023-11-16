@@ -523,12 +523,14 @@ section.form {
 
   border-radius: 8px;
   box-shadow: 7px 7px 14px #a6aebd, -7px -7px 14px #e6f0ff;
+  transition: ease-in-out 0.05s;
 }
 
 .form-buttons input:hover {
   color: var(--background);
   background: var(--accent);
   box-shadow: inset 7px 7px 14px #32508f, inset -7px -7px 14px #466ec5;
+  transition: ease-in-out 0.05s;
 }
 
 @media (max-width: 480px) {
