@@ -3,10 +3,11 @@
 /* This is the CSS for the previous exercise. */
 
 /* Credits
-Neumorphism - Soft UI CSS
+
+Neumorphism
 https://neumorphism.io/
 
-Fluent Emoji - Emojis Source
+Fluent Emoji
 https://github.com/microsoft/fluentui-emoji
 
 Shave Divider
@@ -18,6 +19,10 @@ https://www.realtimecolors.com/?colors=07090d-eef1f6-f2d491-c6cfe1-3c5faa
 Google Fonts
 IBM Plex Sans - https://fonts.google.com/specimen/IBM+Plex+Sans
 Inter - https://fonts.google.com/specimen/Inter
+
+Modern CSS
+https://moderncss.dev/pure-css-custom-styled-radio-buttons/
+https://moderncss.dev/pure-css-custom-checkbox-style/
 */
 
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;600;800&display=swap");
@@ -25,6 +30,7 @@ Inter - https://fonts.google.com/specimen/Inter
 :root {
   --text: #07090d;
   --background: #eef1f6;
+  --gray: #d7dadf;
   --primary: #f2d491;
   --secondary: #c6cfe1;
   --accent: #3c5faa;
@@ -156,6 +162,9 @@ p {
   .nav-buttons {
     margin: 1em auto;
   }
+  .nav-buttons ul li a {
+    font-size: var(--h6);
+  }
 }
 @media (max-width: 480px) {
   .nav-buttons ul {
@@ -181,7 +190,6 @@ section.hero {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 22em;
   margin: 2em 0;
 }
 
@@ -206,11 +214,14 @@ section.hero p {
 @media (max-width: 768px) {
   section.hero {
     margin: 1em 0;
-    height: 18em;
   }
   section.hero .emoji {
     width: var(--h2);
     height: var(--h2);
+  }
+  section.hero h1,
+  section.hero p {
+    max-width: min(75em, 75%);
   }
   section.hero h1 {
     font-size: var(--h2);
@@ -287,7 +298,7 @@ section.form {
 
 .card {
   border-radius: 8px;
-  background: #c6cfe1;
+  background: var(--secondary);
   box-shadow: 20px 20px 60px #a8b0bf, -20px -20px 60px #e4eeff;
 }
 .party-package-form fieldset {
@@ -353,8 +364,6 @@ section.form {
   border: none;
   outline: none;
   border-radius: 8px;
-}
-.type-input-wrapper .type-input {
   width: 100%;
 }
 
@@ -367,21 +376,11 @@ section.form {
   }
 }
 @media (max-width: 360px) {
-  /* .type-input {
-    font-size: var(--p);
-  }
-  .party-package-form fieldset label {
-    font-size: var(--p);
-  } */
   .party-package-form fieldset {
     padding: 1em;
   }
 }
 
-/* Modern CSS / Custom Radio Buttons and Checkboxes
-https://moderncss.dev/pure-css-custom-styled-radio-buttons/
-https://moderncss.dev/pure-css-custom-checkbox-style/
-*/
 *,
 *:before,
 *:after {
@@ -522,13 +521,14 @@ https://moderncss.dev/pure-css-custom-checkbox-style/
   background: var(--primary);
   cursor: pointer;
 
-  transition: ease-in-out 0.2s;
+  border-radius: 8px;
+  box-shadow: 7px 7px 14px #a6aebd, -7px -7px 14px #e6f0ff;
 }
 
 .form-buttons input:hover {
-  background: var(--accent);
-  transition: ease-in-out 0.2s;
   color: var(--background);
+  background: #3c5faa;
+  box-shadow: inset 7px 7px 14px #32508f, inset -7px -7px 14px #466ec5;
 }
 
 @media (max-width: 480px) {
