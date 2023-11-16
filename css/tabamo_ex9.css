@@ -527,7 +527,7 @@ section.form {
 
 .form-buttons input:hover {
   color: var(--background);
-  background: #3c5faa;
+  background: var(--accent);
   box-shadow: inset 7px 7px 14px #32508f, inset -7px -7px 14px #466ec5;
 }
 
