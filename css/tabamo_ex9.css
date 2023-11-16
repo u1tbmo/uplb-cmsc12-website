@@ -23,6 +23,12 @@ Inter - https://fonts.google.com/specimen/Inter
 Modern CSS
 https://moderncss.dev/pure-css-custom-styled-radio-buttons/
 https://moderncss.dev/pure-css-custom-checkbox-style/
+
+Typescale - Major Third
+https://typescale.com/
+
+Glassmorphism
+https://ui.glass/generator/
 */
 
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;600;800&display=swap");
@@ -63,10 +69,6 @@ body {
   color: var(--text);
 }
 
-/*
-Typescale - Major Third
-https://typescale.com/
-*/
 h1 {
   font-family: var(--ibm-plex-sans);
   font-weight: 700;
