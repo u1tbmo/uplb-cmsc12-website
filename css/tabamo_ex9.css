@@ -24,7 +24,7 @@ Modern CSS
 https://moderncss.dev/pure-css-custom-styled-radio-buttons/
 https://moderncss.dev/pure-css-custom-checkbox-style/
 
-Typescale - Major Third
+Typescale
 https://typescale.com/
 
 Glassmorphism
@@ -38,11 +38,13 @@ https://csshero.org/mesher/
 
 :root {
   --text: #07090d;
-  --background: #eef1f6;
-  --gray: #d7dadf;
+  --background: #f6f5ee;
   --primary: #f2d491;
   --secondary: #ffd48a;
   --accent: #3c5faa;
+  --red: #df8989;
+  --green: #9ee890;
+  --purple: #bf9bf4;
   --h1: 3.815rem;
   --h2: 3.052rem;
   --h3: 2.441rem;
@@ -114,13 +116,13 @@ html {
 body {
   overflow: auto;
   height: 100%;
-
-  background-color: var(--background);
   margin: 0;
   font-family: var(--inter);
   font-weight: 400;
   font-size: var(--p);
   color: var(--text);
+
+  background: var(--background);
 }
 
 /* Navigation Bar */
@@ -232,9 +234,7 @@ section.hero p {
   margin: 0 auto;
   text-align: center;
   transition: ease-in-out 0.2s;
-}
 
-section.hero h1 {
   background-image: linear-gradient(
     153deg,
     rgb(35, 56, 94) 0%,
@@ -356,14 +356,11 @@ section.form {
 }
 
 .card {
-  border-radius: 16px;
-  background: rgb(255, 216, 150);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 216, 150, 1) 0%,
-    rgba(255, 212, 138, 1) 50%,
-    rgba(255, 208, 127, 1) 100%
-  );
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 212, 138, 0.75);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
   box-shadow: 41px 41px 82px #cacdd1, -41px -41px 82px #ffffff;
 }
 
@@ -598,10 +595,12 @@ section.form {
   margin-bottom: 1em;
   padding: 1em 2.5em;
   border: none;
-  background: var(--secondary);
   cursor: pointer;
   width: 100%;
 
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(255, 212, 138, 0.75);
   border-radius: 8px;
   box-shadow: 8px 8px 16px #cacdd1, -8px -8px 16px #ffffff;
   transition: ease-in-out 0.05s;
@@ -688,6 +687,7 @@ section.footer .about {
   border: 1px solid rgba(255, 255, 255, 0.125);
 
   max-width: min(75em, 90%);
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -715,4 +715,126 @@ section.footer .about {
 
 .footer-tilt .shape-fill {
   fill: var(--background);
+}
+
+/* Prototypes Gallery
+Inspired by TikTok User @codetheworld.io
+https://vt.tiktok.com/ZSNaJXRJr/
+*/
+
+.prototypes h2 {
+  font-size: var(--h4);
+  text-align: center;
+  margin: 0 0 0.2em 0;
+}
+
+.prototypes p {
+  font-size: var(--p);
+  text-align: center;
+  margin: 0 0 2em 0;
+}
+
+.proto1 {
+  background: url("../images/proto1.jpg") center center;
+}
+
+.proto2 {
+  background: url("../images/proto2.jpg") center center;
+}
+
+.proto3 {
+  background: url("../images/proto3.jpg") center center;
+}
+
+.proto4 {
+  background: url("../images/proto4.jpg") center center;
+}
+
+.final {
+  background: url("../images/final.jpg") center center;
+  background: var(--accent);
+}
+
+.prototypes .container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 1em;
+  width: 50em;
+  height: 31.25em;
+
+  font-family: var(--ibm-plex-sans);
+  font-weight: 700;
+
+  transition: all 0.4s;
+
+  margin: 0 auto;
+}
+
+.gallery-box {
+  position: relative;
+  transition: all 0.4s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  border-radius: 4px;
+}
+
+.gallery-box::after {
+  content: attr(data-text);
+  position: absolute;
+  bottom: 2em;
+  background: var(--background);
+  color: var(--text);
+  padding: 0.2em;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  transform: translateY(4em);
+  opacity: 0;
+  transition: all 0.4s;
+}
+
+.container:hover .gallery-box {
+  filter: grayscale(100%) opacity(0.4);
+}
+
+.gallery-box:hover::after {
+  transform: translateY(0em);
+  opacity: 1;
+  transition-delay: 0.4s;
+}
+
+.container .gallery-box:hover {
+  filter: grayscale(0%) opacity(1);
+}
+
+.container:has(.proto1:hover) {
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+}
+
+.container:has(.proto2:hover) {
+  grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+}
+
+.container:has(.proto3:hover) {
+  grid-template-columns: 1fr 1fr 3fr 1fr 1fr;
+}
+
+.container:has(.proto4:hover) {
+  grid-template-columns: 1fr 1fr 1fr 3fr 1fr;
+}
+
+.container:has(.final:hover) {
+  grid-template-columns: 1fr 1fr 1fr 1fr 3fr;
+}
+
+.gallery-box:nth-child(odd) {
+  transform: translateY(-0.6em);
+}
+
+.gallery-box:nth-child(even) {
+  transform: translateY(0.6em);
 }
