@@ -759,7 +759,7 @@ https://vt.tiktok.com/ZSNaJXRJr/
   position: relative;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  gap: 1em;
+  gap: min(1em, 2%);
   width: 50em;
   height: 31.25em;
 
@@ -769,6 +769,21 @@ https://vt.tiktok.com/ZSNaJXRJr/
   transition: all 0.4s;
 
   margin: 0 auto;
+
+  max-width: min(75em, 90%);
+}
+
+@media (max-width: 768px) {
+  .prototypes .container {
+    width: 40em;
+    height: 25em;
+  }
+}
+@media (max-width: 480px) {
+  .prototypes .container {
+    width: 30em;
+    height: 19.75em;
+  }
 }
 
 .gallery-box {
@@ -778,7 +793,18 @@ https://vt.tiktok.com/ZSNaJXRJr/
   justify-content: center;
   align-items: center;
   background-size: cover;
-  border-radius: 4px;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .gallery-box {
+    border-radius: 4px;
+  }
+}
+@media (max-width: 480px) {
+  .gallery-box {
+    border-radius: 2px;
+  }
 }
 
 .gallery-box::after {
@@ -787,8 +813,8 @@ https://vt.tiktok.com/ZSNaJXRJr/
   bottom: 2em;
   background: var(--background);
   color: var(--text);
-  padding: 0.2em;
-  border-radius: 4px;
+  padding: 0.2em 1.5em;
+  border-radius: 2px;
   letter-spacing: 1px;
   text-transform: uppercase;
 
@@ -798,6 +824,7 @@ https://vt.tiktok.com/ZSNaJXRJr/
 }
 
 .container:hover .gallery-box {
+  -webkit-filter: grayscale(100%) opacity(0.4);
   filter: grayscale(100%) opacity(0.4);
 }
 
@@ -808,6 +835,7 @@ https://vt.tiktok.com/ZSNaJXRJr/
 }
 
 .container .gallery-box:hover {
+  -webkit-filter: grayscale(0%) opacity(1);
   filter: grayscale(0%) opacity(1);
 }
 
@@ -829,12 +857,4 @@ https://vt.tiktok.com/ZSNaJXRJr/
 
 .container:has(.final:hover) {
   grid-template-columns: 1fr 1fr 1fr 1fr 3fr;
-}
-
-.gallery-box:nth-child(odd) {
-  transform: translateY(-0.6em);
-}
-
-.gallery-box:nth-child(even) {
-  transform: translateY(0.6em);
 }
