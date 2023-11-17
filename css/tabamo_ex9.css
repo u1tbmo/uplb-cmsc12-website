@@ -126,9 +126,9 @@ body {
 /* Navigation Bar */
 .nav-bar {
   position: relative;
+  top: 2em;
   max-width: min(75em, 90%);
   margin: 0 auto;
-  top: 2em;
   border-radius: 8px;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
@@ -232,6 +232,19 @@ section.hero p {
   margin: 0 auto;
   text-align: center;
   transition: ease-in-out 0.2s;
+}
+
+section.hero h1 {
+  background-image: linear-gradient(
+    153deg,
+    rgb(35, 56, 94) 0%,
+    rgb(7, 16, 37) 50%,
+    rgb(35, 35, 131) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
 }
 
 section.hero .emoji {
@@ -355,7 +368,7 @@ section.form {
 }
 
 .party-package-form fieldset {
-  padding: 2em 4em;
+  padding: 2em min(2em, 5%);
   margin: 0;
   margin-bottom: 4em;
   border: none;
@@ -383,10 +396,25 @@ section.form {
   cursor: default;
 }
 
+.party-details-wrapper {
+  -moz-columns: 2;
+  columns: 2;
+}
+
 .party-package-form fieldset .subheader {
   margin: 0;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   cursor: default;
+
+  -moz-column-break-inside: avoid;
+
+  break-inside: avoid-column;
+}
+
+.party-package-form fieldset .subheader:nth-of-type(2) {
+  -moz-column-break-after: column;
+  break-after: column;
+  display: block;
 }
 
 .party-package-form fieldset .subheader p {
@@ -404,14 +432,24 @@ section.form {
   margin-top: 1em;
 }
 
-@media (max-width: 768px) {
-  .party-package-form fieldset {
-    padding: 2em;
+@media (max-width: 480px) {
+  .party-details-wrapper {
+    -moz-columns: 1;
+    columns: 1;
   }
-}
-@media (max-width: 360px) {
-  .party-package-form fieldset {
-    padding: 1em;
+  .party-package-form fieldset .subheader {
+    margin: 0;
+    margin-bottom: 1em;
+    cursor: default;
+
+    -moz-column-break-inside: initial;
+
+    break-inside: initial;
+  }
+  .party-package-form fieldset .subheader:nth-of-type(2) {
+    -moz-column-break-after: initial;
+    break-after: initial;
+    display: initial;
   }
 }
 
@@ -544,11 +582,12 @@ section.form {
 
 .form-buttons {
   display: flex;
-  flex-direction: column;
-  gap: 1em;
+  flex-direction: row;
+  gap: 2em;
   margin: 0 auto;
   margin-bottom: 4em;
-  align-items: center;
+  justify-content: center;
+  max-width: min(75em, 90%);
 }
 
 .form-buttons input {
@@ -557,11 +596,11 @@ section.form {
   font-weight: 700;
   margin: 0;
   margin-bottom: 1em;
-  padding: 1em 5em;
+  padding: 1em 2.5em;
   border: none;
-  border-radius: 8px;
   background: var(--secondary);
   cursor: pointer;
+  width: 100%;
 
   border-radius: 8px;
   box-shadow: 8px 8px 16px #cacdd1, -8px -8px 16px #ffffff;
@@ -576,8 +615,12 @@ section.form {
 }
 
 @media (max-width: 480px) {
+  .form-buttons {
+    flex-direction: column;
+    gap: 0.5em;
+  }
   .form-buttons input {
-    padding: 1em 3em;
+    padding: 0.8em 2em;
   }
 }
 

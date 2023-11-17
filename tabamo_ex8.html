@@ -1,0 +1,249 @@
+<!-- Tabamo, Euan Jed S. | B-1L -->
+<!-- Exercise 8 - November 7, 2023-->
+<!-- This webpage is a form to order party packages. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Euan's Party Services</title>
+    <link rel="stylesheet" href="css/tabamo_ex9.css">
+    <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div class="nav-hero-wrapper">
+        <!-- Navigation Bar -->
+        <header class="nav-bar">
+            <div class="nav-items">
+                <img class="u1tbmo-logo" src="images/u1tbmo-party-logo.png" alt="">
+                <nav class="nav-buttons">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="tabamo_ex8.html" class="active">Order</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <!-- Hero Section -->
+        <section class="hero">
+            <img class="emoji" src="images/party_popper_3d.png" alt="Party Popper Emoji">
+            <h1>Party Package<br>Order Form</h1>
+            <p>Order your party packages here!</p>
+        </section>
+        <div class="nav-hero-tilt">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="skewed"></div>
+    </div>
+    <!-- Form Section -->
+    <div class="wrapper">
+        <section class="form">
+            <form action="" class="party-package-form">
+                <!-- Customer Information Fieldset -->
+                <fieldset class="card">
+                    <legend>Customer Information</legend>
+                    <label for="name">
+                        Name
+                        <div class="type-input-wrapper">
+                            <input class="type-input" type="text" name="name" id="name" required>
+                        </div>
+                    </label>
+                    <label for="mobileNumber">
+                        Mobile Number
+                        <div class="type-input-wrapper">
+                            <input class="type-input" type="tel" pattern="09{1}[0-9]{9}" title="09XXXXXXXXX"
+                                placeholder="09XXXXXXXXX" name="mobileNumber" id="mobileNumber" required>
+                        </div>
+                    </label>
+                    <label for="emailAddress">
+                        Email Address
+                        <div class="type-input-wrapper">
+                            <input class="type-input" type="email" name="emailAddress" id="emailAddress" required>
+                        </div>
+                    </label>
+                </fieldset>
+                <br>
+                <!-- Party Details Fieldset -->
+                <fieldset class="card">
+                    <legend>Party Details</legend>
+                    <label for="qty">
+                        Number of People <br>
+                        <div class="type-input-wrapper">
+                            <input class="type-input" type="number" name="qty" id="qty" required>
+                        </div>
+                    </label>
+                    <div class="party-details-wrapper">
+                        <div class="subheader">
+                            <p>
+                                Appetizer<br>
+                            </p>
+                            <label class="radio-label" for="salad"><input type="radio" name="appetizer" id="salad"
+                                    checked>Salad</label>
+                            <label class="radio-label" for="breadWithDip"><input type="radio" name="appetizer"
+                                    id="breadWithDip">Bread
+                                w/Dip</label>
+                            <label class="radio-label" for="tomatoSurprise"><input type="radio" name="appetizer"
+                                    id="tomatoSurprise">Tomato
+                                Surprise</label>
+                            <label class="radio-label" for="mushroomBites"><input type="radio" name="appetizer"
+                                    id="mushroomBites">Mushroom
+                                Bites</label>
+                        </div>
+                        <div class="subheader">
+                            <p>
+                                Main Dishes<br>
+                            </p>
+                            <label class="checkbox-label" for="roastBeef"><input type="checkbox" name="mainDishes"
+                                    id="roastBeef">Roast
+                                Beef</label>
+                            <label class="checkbox-label" for="beefSteak"><input type="checkbox" name="mainDishes"
+                                    id="beefSteak">Beef
+                                Steak</label>
+                            <label class="checkbox-label" for="porkSpareribs"><input type="checkbox" name="mainDishes"
+                                    id="porkSpareribs">Pork
+                                Spareribs</label>
+                            <label class="checkbox-label" for="porkMarbella"><input type="checkbox" name="mainDishes"
+                                    id="porkMarbella">Pork
+                                Marbella</label>
+                            <label class="checkbox-label" for="grilledChicken"><input type="checkbox" name="mainDishes"
+                                    id="grilledChicken">Grilled
+                                Chicken</label>
+                            <label class="checkbox-label" for="roastChicken"><input type="checkbox" name="mainDishes"
+                                    id="roastChicken">Roast
+                                Chicken</label>
+                            <label class="checkbox-label" for="broiledSalmon"><input type="checkbox" name="mainDishes"
+                                    id="broiledSalmon">Broiled
+                                Salmon</label>
+                            <label class="checkbox-label" for="grilledSalmon"><input type="checkbox" name="mainDishes"
+                                    id="grilledSalmon">Grilled
+                                Salmon</label>
+                        </div>
+                        <div class="subheader">
+                            <p>
+                                Desserts<br>
+                            </p>
+                            <label class="checkbox-label" for="moltenChocoCake"><input type="checkbox" name="desserts"
+                                    id="moltenChocoCake">Molten
+                                Chocolate Cake</label>
+                            <label class="checkbox-label" for="redVelvetCake"><input type="checkbox" name="desserts"
+                                    id="redVelvetCake">Red Velvet
+                                Cake</label>
+                            <label class="checkbox-label" for="lemonBars"><input type="checkbox" name="desserts"
+                                    id="lemonBars">Lemon
+                                Bars</label>
+                            <label class="checkbox-label" for="peanutButterBars"><input type="checkbox" name="desserts"
+                                    id="peanutButterBars">Peanut
+                                Butter
+                                Bars</label>
+                            <label class="checkbox-label" for="bukoPie"><input type="checkbox" name="desserts"
+                                    id="bukoPie">Buko
+                                Pie</label>
+                            <label class="checkbox-label" for="lemonMeringuePie"><input type="checkbox" name="desserts"
+                                    id="lemonMeringuePie">Lemon
+                                Meringue Pie</label>
+                        </div>
+                        <div class="subheader" for="rice">
+                            <p>
+                                Rice<br>
+                            </p>
+                            <label class="radio-label" for="plainRice"><input type="radio" name="rice" id="plainRice"
+                                    checked>Plain</label>
+                            <label class="radio-label" for="garlicRice"><input type="radio" name="rice"
+                                    id="garlicRice">Garlic</label>
+                            <label class="radio-label" for="bagoongRice"><input type="radio" name="rice"
+                                    id="bagoongRice">Bagoong</label>
+                        </div>
+                        <div class="subheader" for="drinks">
+                            <p>
+                                Drinks<br>
+                            </p>
+                            <label class="radio-label" for="cucumberLemonade"><input type="radio" name="drink"
+                                    id="cucumberLemonade" checked>Cucumber
+                                Lemonade</label>
+                            <label class="radio-label" for="redIcedTea"><input type="radio" name="drink"
+                                    id="redIcedTea">Red
+                                Iced
+                                Tea</label>
+                            <label class="radio-label" for="ripeMangoJuice"><input type="radio" name="drink"
+                                    id="ripeMangoJuice">Ripe Mango
+                                Juice</label>
+                        </div>
+                    </div>
+                </fieldset>
+                <br>
+                <!-- Venue Details Fieldset -->
+                <fieldset class="card">
+                    <legend>Venue Details</legend>
+                    <label for="venueAddress">Venue Address
+                        <div class="venue-address-wrapper">
+                            <textarea class="type-input venue-address" name="venueAddress" id="venueAddress" rows="10"
+                                placeholder="Address here..." required></textarea>
+                        </div>
+                    </label><br>
+                    <label for="partyDate">Party Date
+                        <div class="type-input-wrapper">
+                            <input class="type-input" type="date" name="partyDate" id="partyDate" required>
+                        </div>
+                    </label><br>
+                    <label for="partyTime">Party Time
+                        <div class="type-input-wrapper">
+                            <input class="type-input" type="time" name="partyTime" id="partyTime" required>
+                        </div>
+                    </label>
+                </fieldset>
+                <br>
+                <div class="form-buttons">
+                    <input type="submit" value="Submit"><input type="reset" value="Reset">
+                </div>
+            </form>
+        </section>
+    </div>
+    <section class="footer">
+        <div class="footer-tilt">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
+            </svg>
+        </div>
+        <div class="footer-wrapper">
+            <div class="about">
+                <h4>
+                    Created by: <br>
+                </h4>
+                <p>
+                    Euan Jed Tabamo<br>
+                    CMSC 12 B-1L
+                </p>
+            </div>
+            <div class="credits">
+                <h4>
+                    Credits to:
+                </h4>
+                <p>
+                    <a class="credit-link" href="https://neumorphism.io/">Neumorphism</a>
+                    <a class="credit-link" href="https://github.com/microsoft/fluentui-emoji">Fluent Emoji -
+                        Microsoft</a>
+                    <a class="credit-link" href="https://moderncss.dev/pure-css-custom-styled-radio-buttons/">Modern CSS
+                        -
+                        Custom Radio
+                        Buttons</a>
+                    <a class="credit-link" href="https://moderncss.dev/pure-css-custom-checkbox-style/">Modern CSS -
+                        Custom
+                        Checkboxes</a>
+                    <a class="credit-link" href="https://www.shapedivider.app/">Shape Divider</a>
+                    <a class="credit-link" href="https://ui.glass/generator/" class="credit-link">Glass UI</a>
+                    <a class="credit-link" href="https://csshero.org/mesher/">Mesher</a>
+                </p>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
