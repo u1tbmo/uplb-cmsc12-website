@@ -454,6 +454,7 @@ section.home p {
 }
 
 .cta:hover {
+  color: var(--background);
   background: var(--glass-accent);
 }
 
@@ -967,6 +968,7 @@ section.form {
 }
 
 .form-buttons input:hover {
+  color: var(--background);
   background: var(--glass-accent);
 }
 
