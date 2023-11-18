@@ -39,12 +39,12 @@ https://csshero.org/mesher/
 :root {
   --text: #07090d;
   --background: #f6f5ee;
-  --primary: #f2d491;
-  --secondary: #ffd48a;
+  --primary: #a2c2f6;
+  --secondary: #04040c;
   --accent: #3c5faa;
-  --red: #df8989;
-  --green: #9ee890;
-  --purple: #bf9bf4;
+  --glass-primary: rgba(162, 194, 246, 0.75);
+  --glass-secondary: rgba(166, 167, 238, 0.75);
+  --glass-accent: rgba(60, 95, 170, 0.75);
   --h1: 3.815rem;
   --h2: 3.052rem;
   --h3: 2.441rem;
@@ -411,16 +411,22 @@ section.home p {
 }
 
 @media (max-width: 768px) {
-  section.home h2 {
-    font-size: var(--h3);
+  section.home h1 {
+    font-size: var(--h2);
   }
   section.home p {
     font-size: var(--p);
   }
+  section.home h1 img {
+    width: var(--h2);
+  }
 }
 @media (max-width: 480px) {
-  section.home h2 {
-    font-size: var(--h4);
+  section.home h1 {
+    font-size: var(--h3);
+  }
+  section.home h1 img {
+    width: var(--h3);
   }
   section.home p {
     font-size: var(--p);
@@ -428,45 +434,38 @@ section.home p {
 }
 
 .cta {
-  font-family: var(--ibm-plex-sans);
-  font-weight: 700;
   margin: 2em 0 1em 0;
-  padding: 1em 3em;
-  border: none;
+  padding: 0.8em 2em;
   cursor: pointer;
 
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  background-color: rgba(255, 212, 138, 0.75);
-  border-radius: 8px;
-  box-shadow: 8px 8px 16px rgba(44, 45, 46, 0.205), -8px -8px 16px #0000000e;
-  transition: ease-in-out 0.05s;
-}
-
-.cta:hover {
-  a {
-    color: var(--background);
-    transition: ease-in-out 0.2s;
-  }
-  background: var(--accent);
-  box-shadow: inset 8px 8px 16px #32508f, inset -8px -8px 16px #466ec5;
-  transition: ease-in-out 0.05s;
-}
-
-.cta a {
   text-decoration: none;
   color: var(--text);
   font-family: var(--ibm-plex-sans);
   font-weight: 600;
   font-size: var(--h5);
+
+  border: 1px solid rgba(255, 255, 255, 0.125);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: var(--glass-primary);
+  border-radius: 12px;
+  box-shadow: 8px 8px 16px rgba(44, 45, 46, 0.205), -8px -8px 16px #0000000e;
   transition: ease-in-out 0.2s;
+}
+
+.cta:hover {
+  background: var(--glass-accent);
+}
+
+.cta:active {
+  color: var(--background);
+  background: var(--glass-accent);
+  box-shadow: inset 8px 8px 16px #32508f, inset -8px -8px 16px #466ec5;
 }
 
 @media (max-width: 768px) {
   .cta {
-    padding: 1em 2em;
-  }
-  .cta a {
+    padding: 0.8em 2em;
     font-size: var(--h6);
   }
 }
@@ -644,18 +643,6 @@ section.about p {
 .nav-hero-wrapper {
   position: relative;
   padding-bottom: 10em;
-  /* background-color: #99beff;
-  background-image: radial-gradient(
-      at 89% 84%,
-      hsla(55, 83%, 72%, 1) 0px,
-      transparent 50%
-    ),
-    radial-gradient(at 75% 66%, hsla(62, 73%, 66%, 1) 0px, transparent 50%),
-    radial-gradient(at 59% 36%, hsla(147, 80%, 66%, 1) 0px, transparent 50%),
-    radial-gradient(at 21% 75%, hsla(346, 78%, 63%, 1) 0px, transparent 50%),
-    radial-gradient(at 80% 1%, hsla(264, 79%, 78%, 1) 0px, transparent 50%),
-    radial-gradient(at 67% 84%, hsla(309, 88%, 71%, 1) 0px, transparent 50%),
-    radial-gradient(at 97% 96%, hsla(58, 84%, 68%, 1) 0px, transparent 50%); */
   background-color: #99e6ff;
   background-image: radial-gradient(
       at 92% 42%,
@@ -719,7 +706,7 @@ section.form {
 .card {
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  background-color: rgba(255, 212, 138, 0.75);
+  background-color: var(--glass-primary);
   border-radius: 12px;
   border: 1px solid rgba(209, 213, 219, 0.3);
   box-shadow: 41px 41px 82px #cacdd1, -41px -41px 82px #ffffff;
@@ -832,6 +819,7 @@ section.form {
   width: 100%;
   border-radius: 4px;
   background: var(--background);
+  transition: ease-in-out 0.2s;
 }
 
 .radio-label,
@@ -894,7 +882,8 @@ section.form {
   transition: 120ms transform ease-in-out;
   box-shadow: inset 1em 1em var(--accent);
 }
-input:focus {
+.radio-label input:focus,
+.checkbox-label input:focus {
   outline: max(2px, 0.12em) solid var(--accent);
 }
 
@@ -965,23 +954,26 @@ input:focus {
   margin: 0;
   margin-bottom: 1em;
   padding: 1em 2.5em;
-  border: none;
   cursor: pointer;
   width: 100%;
 
+  border: 1px solid rgba(255, 255, 255, 0.125);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  background-color: rgba(255, 212, 138, 0.75);
+  background-color: var(--glass-primary);
   border-radius: 8px;
   box-shadow: 8px 8px 16px #cacdd1, -8px -8px 16px #ffffff;
-  transition: ease-in-out 0.05s;
+  transition: ease-in-out 0.2s;
 }
 
 .form-buttons input:hover {
+  background: var(--glass-accent);
+}
+
+.form-buttons input:active {
   color: var(--background);
-  background: var(--accent);
+  background: var(--glass-accent);
   box-shadow: inset 8px 8px 16px #32508f, inset -8px -8px 16px #466ec5;
-  transition: ease-in-out 0.05s;
 }
 
 @media (max-width: 480px) {
@@ -1003,18 +995,6 @@ section.footer {
   margin: 0;
   padding: 12em 0 4em 0;
   position: relative;
-  /* background-color: #99beff;
-  background-image: radial-gradient(
-      at 88% 76%,
-      hsla(55, 83%, 72%, 1) 0px,
-      transparent 50%
-    ),
-    radial-gradient(at 62% 72%, hsla(62, 73%, 66%, 1) 0px, transparent 50%),
-    radial-gradient(at 29% 83%, hsla(147, 80%, 66%, 1) 0px, transparent 50%),
-    radial-gradient(at 29% 35%, hsla(346, 78%, 63%, 1) 0px, transparent 50%),
-    radial-gradient(at 85% 24%, hsla(264, 79%, 78%, 1) 0px, transparent 50%),
-    radial-gradient(at 69% 36%, hsla(309, 88%, 71%, 1) 0px, transparent 50%),
-    radial-gradient(at 97% 96%, hsla(58, 84%, 68%, 1) 0px, transparent 50%); */
   background-color: #cf99ff;
   background-image: radial-gradient(
       at 22% 45%,
@@ -1034,6 +1014,21 @@ section.footer .credits {
   max-width: min(75em, 70%);
 }
 
+section.footer .about h4,
+section.footer .credits h4 {
+  background-image: linear-gradient(
+    153deg,
+    rgb(35, 56, 94) 0%,
+    rgb(11, 27, 65) 50%,
+    rgb(35, 35, 131) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+}
+
+section.footer .about p,
 section.footer .credits p {
   display: flex;
   flex-direction: column;
