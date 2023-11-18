@@ -4,8 +4,13 @@
 
 /* Credits
 
+!!! To be removed soon with Josh W. Comeau's shadow palette.
 Neumorphism
 https://neumorphism.io/
+
+Josh W. Comeau
+https://www.joshwcomeau.com/shadow-palette/
+https://www.joshwcomeau.com/gradient-generator/
 
 Fluent Emoji
 https://github.com/microsoft/fluentui-emoji
@@ -56,6 +61,22 @@ https://csshero.org/mesher/
   --tiny: 0.64rem;
   --ibm-plex-sans: "IBM Plex Sans", sans-serif;
   --inter: "Inter", sans-serif;
+  --shadow-color: 0deg 0% 0%;
+  --shadow-elevation-low: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.1),
+    0px 0.8px 0.9px -1.2px hsl(var(--shadow-color) / 0.1),
+    0px 2px 2.3px -2.5px hsl(var(--shadow-color) / 0.1);
+  --shadow-elevation-medium: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.11),
+    0px 1.6px 1.8px -0.8px hsl(var(--shadow-color) / 0.11),
+    0px 4px 4.5px -1.7px hsl(var(--shadow-color) / 0.11),
+    -0.1px 9.8px 11px -2.5px hsl(var(--shadow-color) / 0.11);
+  --shadow-elevation-high: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.1),
+    0px 2.9px 3.3px -0.4px hsl(var(--shadow-color) / 0.1),
+    0px 5.3px 6px -0.7px hsl(var(--shadow-color) / 0.1),
+    -0.1px 8.8px 9.9px -1.1px hsl(var(--shadow-color) / 0.1),
+    -0.1px 14px 15.8px -1.4px hsl(var(--shadow-color) / 0.1),
+    -0.2px 21.9px 24.6px -1.8px hsl(var(--shadow-color) / 0.1),
+    -0.3px 33.3px 37.5px -2.1px hsl(var(--shadow-color) / 0.1),
+    -0.5px 49px 55.1px -2.5px hsl(var(--shadow-color) / 0.1);
 }
 
 h1 {
@@ -269,10 +290,19 @@ section.hero p {
   transition: ease-in-out 0.2s;
 
   background-image: linear-gradient(
-    153deg,
-    rgb(35, 56, 94) 0%,
-    rgb(7, 16, 37) 50%,
-    rgb(35, 35, 131) 100%
+    110deg,
+    hsl(240deg 73% 28%) 0%,
+    hsl(240deg 68% 25%) 9%,
+    hsl(240deg 64% 22%) 18%,
+    hsl(240deg 61% 19%) 27%,
+    hsl(240deg 65% 17%) 36%,
+    hsl(240deg 69% 16%) 45%,
+    hsl(240deg 73% 15%) 55%,
+    hsl(240deg 77% 15%) 64%,
+    hsl(240deg 81% 16%) 73%,
+    hsl(240deg 83% 18%) 82%,
+    hsl(240deg 83% 22%) 91%,
+    hsl(240deg 83% 26%) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -445,7 +475,7 @@ section.home p {
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color: var(--glass-primary);
   border-radius: 12px;
-  box-shadow: 8px 8px 16px rgba(44, 45, 46, 0.205), -8px -8px 16px #0000000e;
+  box-shadow: var(--shadow-elevation-medium);
   transition: ease-in-out 0.2s;
 }
 
@@ -705,7 +735,7 @@ section.form {
   background-color: var(--glass-primary);
   border-radius: 12px;
   border: 1px solid rgba(209, 213, 219, 0.3);
-  box-shadow: 41px 41px 82px #cacdd1, -41px -41px 82px #ffffff;
+  box-shadow: var(--shadow-elevation-medium);
 }
 
 .party-package-form fieldset {
@@ -958,7 +988,7 @@ section.form {
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color: var(--glass-primary);
   border-radius: 8px;
-  box-shadow: 8px 8px 16px #cacdd1, -8px -8px 16px #ffffff;
+  box-shadow: var(--shadow-elevation-medium);
   transition: ease-in-out 0.2s;
 }
 
@@ -1014,10 +1044,19 @@ section.footer .credits {
 section.footer .about h4,
 section.footer .credits h4 {
   background-image: linear-gradient(
-    153deg,
-    rgb(35, 56, 94) 0%,
-    rgb(11, 27, 65) 50%,
-    rgb(35, 35, 131) 100%
+    110deg,
+    hsl(240deg 73% 28%) 0%,
+    hsl(240deg 68% 25%) 9%,
+    hsl(240deg 64% 22%) 18%,
+    hsl(240deg 61% 19%) 27%,
+    hsl(240deg 65% 17%) 36%,
+    hsl(240deg 69% 16%) 45%,
+    hsl(240deg 73% 15%) 55%,
+    hsl(240deg 77% 15%) 64%,
+    hsl(240deg 81% 16%) 73%,
+    hsl(240deg 83% 18%) 82%,
+    hsl(240deg 83% 22%) 91%,
+    hsl(240deg 83% 26%) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
