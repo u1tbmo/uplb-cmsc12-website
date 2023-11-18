@@ -395,10 +395,6 @@ section.home h1 img {
   width: var(--h2);
 }
 
-section.home h1 img:nth-child(2) {
-  margin: 0 0em 0 0.1em;
-}
-
 section.home h2 {
   font-size: var(--h2);
   text-align: center;
