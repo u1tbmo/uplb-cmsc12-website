@@ -2,6 +2,11 @@
 
 A website for ordering party packages.
 
+## Website
+
+- Check out the website [here!](https://u1tbmo.github.io/uplb-cmsc12-website/)
+- Current repository is [here!](https://github.com/u1tbmo/uplb-cmsc12-website)
+
 ## Special Thanks
 
 The following tools were used in this project.
