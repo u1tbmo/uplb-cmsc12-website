@@ -4,7 +4,6 @@
 
 /* Credits
 
-!!! To be removed soon with Josh W. Comeau's shadow palette.
 Neumorphism
 https://neumorphism.io/
 
@@ -19,7 +18,7 @@ Shave Divider
 https://www.shapedivider.app/
 
 Realtime Colors
-https://www.realtimecolors.com/?colors=07090d-eef1f6-f2d491-c6cfe1-3c5faa
+https://www.realtimecolors.com/
 
 Google Fonts
 IBM Plex Sans - https://fonts.google.com/specimen/IBM+Plex+Sans
@@ -127,6 +126,54 @@ p {
   font-size: var(--p);
   color: var(--text);
   margin: 0 0 0.2em 0;
+}
+
+.shadow-background-elevation-low {
+  box-shadow: 0px 0.5px 0.6px hsl(53deg 10% 59% / 0.34),
+    0px 0.8px 0.9px -1.2px hsl(53deg 10% 59% / 0.34),
+    0px 1.9px 2.1px -2.5px hsl(53deg 10% 59% / 0.34);
+}
+
+.shadow-background-elevation-medium {
+  box-shadow: 0.5px 0.6px hsl(53deg 10% 59% / 0.36),
+    0px 1.6px 1.8px -0.8px hsl(53deg 10% 59% / 0.36),
+    0px 4px 4.5px -1.7px hsl(53deg 10% 59% / 0.36),
+    0px 9.7px 10.9px -2.5px hsl(53deg 10% 59% / 0.36);
+}
+
+.shadow-background-elevation-high {
+  box-shadow: 0.5px 0.6px hsl(53deg 10% 59% / 0.34),
+    0px 2.8px 3.1px -0.4px hsl(53deg 10% 59% / 0.34),
+    0px 5.3px 6px -0.7px hsl(53deg 10% 59% / 0.34),
+    0px 8.7px 9.8px -1.1px hsl(53deg 10% 59% / 0.34),
+    0px 13.8px 15.5px -1.4px hsl(53deg 10% 59% / 0.34),
+    0px 21.6px 24.3px -1.8px hsl(53deg 10% 59% / 0.34),
+    0.1px 32.9px 37px -2.1px hsl(53deg 10% 59% / 0.34),
+    0.1px 48.5px 54.6px -2.5px hsl(53deg 10% 59% / 0.34);
+}
+
+.shadow-background-elevation-low-inset {
+  box-shadow: inset 0px 0.5px 0.6px hsl(53deg 10% 59% / 0.34),
+    inset 0px 0.8px 0.9px -1.2px hsl(53deg 10% 59% / 0.34),
+    inset 0px 1.9px 2.1px -2.5px hsl(53deg 10% 59% / 0.34);
+}
+
+.shadow-background-elevation-medium-inset {
+  box-shadow: inset 0.5px 0.6px hsl(53deg 10% 59% / 0.36),
+    inset 0px 1.6px 1.8px -0.8px hsl(53deg 10% 59% / 0.36),
+    inset 0px 4px 4.5px -1.7px hsl(53deg 10% 59% / 0.36),
+    inset 0px 9.7px 10.9px -2.5px hsl(53deg 10% 59% / 0.36);
+}
+
+.shadow-background-elevation-high-inset {
+  box-shadow: inset 0.5px 0.6px hsl(53deg 10% 59% / 0.34),
+    inset 0px 2.8px 3.1px -0.4px hsl(53deg 10% 59% / 0.34),
+    inset 0px 5.3px 6px -0.7px hsl(53deg 10% 59% / 0.34),
+    inset 0px 8.7px 9.8px -1.1px hsl(53deg 10% 59% / 0.34),
+    inset 0px 13.8px 15.5px -1.4px hsl(53deg 10% 59% / 0.34),
+    inset 0px 21.6px 24.3px -1.8px hsl(53deg 10% 59% / 0.34),
+    inset 0.1px 32.9px 37px -2.1px hsl(53deg 10% 59% / 0.34),
+    inset 0.1px 48.5px 54.6px -2.5px hsl(53deg 10% 59% / 0.34);
 }
 
 /* General */
@@ -268,6 +315,13 @@ body {
   }
 }
 
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2em 0;
+}
+
 /* Hero Sections */
 section.hero {
   display: flex;
@@ -287,7 +341,6 @@ section.hero p {
   max-width: min(75em, 90%);
   margin: 0 auto;
   text-align: center;
-  transition: ease-in-out 0.2s;
 
   background-image: linear-gradient(
     110deg,
@@ -338,22 +391,28 @@ section.hero p {
   section.hero p {
     max-width: min(75em, 75%);
   }
-  section.hero h1 {
+  section.hero h1,
+  section h1 {
     font-size: var(--h2);
   }
-  section.hero h2 {
+  section.hero h2,
+  section h2 {
     font-size: var(--h3);
   }
-  section.hero h3 {
+  section.hero h3,
+  section h3 {
     font-size: var(--h4);
   }
-  section.hero h4 {
+  section.hero h4,
+  section h4 {
     font-size: var(--h5);
   }
-  section.hero h5 {
+  section.hero h5,
+  section h5 {
     font-size: var(--h6);
   }
-  section.hero h6 {
+  section.hero h6,
+  section h6 {
     font-size: var(--p);
   }
 }
@@ -366,22 +425,28 @@ section.hero p {
     width: var(--h3);
     height: var(--h3);
   }
-  section.hero h1 {
+  section.hero h1,
+  section h1 {
     font-size: var(--h3);
   }
-  section.hero h2 {
+  section.hero h2,
+  section h2 {
     font-size: var(--h4);
   }
-  section.hero h3 {
+  section.hero h3,
+  section h3 {
     font-size: var(--h5);
   }
-  section.hero h4 {
+  section.hero h4,
+  section h4 {
     font-size: var(--h6);
   }
-  section.hero h5 {
+  section.hero h5,
+  section h5 {
     font-size: var(--p);
   }
-  section.hero h6 {
+  section.hero h6,
+  section h6 {
     font-size: var(--small);
   }
 }
@@ -394,22 +459,28 @@ section.hero p {
     width: var(--h4);
     height: var(--h4);
   }
-  section.hero h1 {
+  section.hero h1,
+  section h1 {
     font-size: var(--h4);
   }
-  section.hero h2 {
+  section.hero h2,
+  section h2 {
     font-size: var(--h5);
   }
-  section.hero h3 {
+  section.hero h3,
+  section h3 {
     font-size: var(--h6);
   }
-  section.hero h4 {
+  section.hero h4,
+  section h4 {
     font-size: var(--p);
   }
-  section.hero h5 {
+  section.hero h5,
+  section h5 {
     font-size: var(--small);
   }
-  section.hero h6 {
+  section.hero h6,
+  section h6 {
     font-size: var(--tiny);
   }
 }
@@ -425,15 +496,20 @@ section.home h1 img {
   width: var(--h2);
 }
 
-section.home h2 {
-  font-size: var(--h2);
-  text-align: center;
-}
-
 section.home p {
   font-size: var(--h6);
   max-width: 80%;
   width: 100%;
+}
+
+section.home .hero-buttons {
+  display: flex;
+  gap: 2em;
+  margin: 2em 0 0 0;
+}
+
+section.home .hero-buttons .cta {
+  margin: 0;
 }
 
 @media (max-width: 768px) {
@@ -446,6 +522,9 @@ section.home p {
   section.home h1 img {
     width: var(--h2);
   }
+  section.home .hero-buttons {
+    gap: 1em;
+  }
 }
 @media (max-width: 480px) {
   section.home h1 {
@@ -457,12 +536,16 @@ section.home p {
   section.home p {
     font-size: var(--p);
   }
+  section.home .hero-buttons {
+    flex-direction: column;
+  }
 }
 
 .cta {
-  margin: 2em 0 1em 0;
+  margin: 0.8em 2em;
   padding: 0.8em 2em;
   cursor: pointer;
+  text-align: center;
 
   text-decoration: none;
   color: var(--text);
@@ -543,6 +626,10 @@ https://vt.tiktok.com/ZSNaJXRJr/
 
 .final {
   background: url("../images/final.jpg") center center;
+}
+
+section.prototypes {
+  margin: 0 0 6em 0;
 }
 
 .prototypes .container {
@@ -628,17 +715,32 @@ https://vt.tiktok.com/ZSNaJXRJr/
 }
 
 section.about {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin: 0 auto;
-  margin-top: 6em;
+  display: grid;
+  grid-template-columns: [main-start] 3fr [divide] 1fr [main-end];
+  grid-template-areas: "col-text col-image";
+  margin: 6em auto 4em auto;
   max-width: min(75em, 90%);
   width: 100%;
 }
 
 section.about h6 {
   font-weight: 600;
+}
+
+section.about .col-text {
+  grid-area: col-text;
+}
+
+section.about .col-image {
+  grid-area: col-image;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section.about .col-image img {
+  width: 22em;
+  margin: 0 -2em;
 }
 
 section.about h1,
@@ -649,10 +751,35 @@ section.about h5,
 section.about h6,
 section.about p {
   text-align: left;
-  margin: initial;
+  margin: 0;
+}
+
+section.github {
+  margin: 0 0 6em 0;
+}
+
+section.github img,
+section.socials img {
+  max-width: min(75em, 100%);
+  background-size: cover;
 }
 
 @media (max-width: 768px) {
+  section.about {
+    align-items: center;
+    grid-template-columns: 1fr;
+    grid-template-areas: "col-image" "col-text";
+  }
+  section.about .col-text {
+    grid-area: col-text;
+    margin: 2em 0 0 0;
+  }
+  section.about .col-image {
+    grid-area: col-image;
+  }
+  section.about .col-image img {
+    width: 12em;
+  }
   section.about h1,
   section.about h2,
   section.about h3,
@@ -668,7 +795,7 @@ section.about p {
 /* Nav + Hero Wrapper */
 .nav-hero-wrapper {
   position: relative;
-  padding-bottom: 10em;
+  padding: 0 0 8em 0;
   background-color: #99e6ff;
   background-image: radial-gradient(
       at 92% 42%,
@@ -709,11 +836,11 @@ section.about p {
   max-width: min(75em, 90%);
   margin: 0 auto;
   position: relative;
+  padding: 1em 0;
 }
 
 section.form {
   display: flex;
-  padding-top: 5em;
   max-width: min(40em, 100%);
   margin: 0 auto;
   place-items: center;
@@ -735,7 +862,6 @@ section.form {
   background-color: var(--glass-primary);
   border-radius: 12px;
   border: 1px solid rgba(209, 213, 219, 0.3);
-  box-shadow: var(--shadow-elevation-medium);
 }
 
 .party-package-form fieldset {
@@ -773,8 +899,7 @@ section.form {
 }
 
 .party-package-form fieldset .subheader {
-  margin: 0;
-  margin-bottom: 1em;
+  margin: 0.5em 0 2em 0;
   cursor: default;
 
   -moz-column-break-inside: avoid;
@@ -799,18 +924,12 @@ section.form {
   margin-bottom: 0.5em;
 }
 
-.subheader + .subheader {
-  margin-top: 1em;
-}
-
 @media (max-width: 480px) {
   .party-details-wrapper {
     -moz-columns: 1;
     columns: 1;
   }
   .party-package-form fieldset .subheader {
-    margin: 0;
-    margin-bottom: 1em;
     cursor: default;
 
     -moz-column-break-inside: initial;
@@ -845,7 +964,6 @@ section.form {
   width: 100%;
   border-radius: 4px;
   background: var(--background);
-  transition: ease-in-out 0.2s;
 }
 
 .radio-label,
@@ -988,7 +1106,6 @@ section.form {
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   background-color: var(--glass-primary);
   border-radius: 8px;
-  box-shadow: var(--shadow-elevation-medium);
   transition: ease-in-out 0.2s;
 }
 
