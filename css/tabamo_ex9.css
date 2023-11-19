@@ -761,7 +761,6 @@ section.github {
 section.github img,
 section.socials img {
   max-width: min(75em, 100%);
-  background-size: cover;
 }
 
 @media (max-width: 768px) {
@@ -789,6 +788,12 @@ section.socials img {
   section.about p {
     text-align: center;
     margin: 0 auto;
+  }
+}
+@media (max-width: 480px) {
+  section.github img,
+  section.socials img {
+    max-width: 115%;
   }
 }
 
