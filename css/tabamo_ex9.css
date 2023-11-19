@@ -869,7 +869,7 @@ section.form {
 }
 
 .party-package-form fieldset {
-  padding: 2em min(2em, 5%);
+  padding: min(2em, 5%);
   margin: 0;
   margin-bottom: 4em;
   border: none;
@@ -961,7 +961,7 @@ section.form {
   font-weight: 400;
   font-size: var(--p);
   color: var(--text);
-  margin: 0.5em 0 1.5em 0;
+  margin: 0.5em 0 1em 0;
   padding: 0.5em;
   border: none;
   outline: none;
