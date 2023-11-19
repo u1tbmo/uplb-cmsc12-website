@@ -498,8 +498,7 @@ section.home h1 img {
 
 section.home p {
   font-size: var(--h6);
-  max-width: 80%;
-  width: 100%;
+  max-width: min(50em, 90%);
 }
 
 section.home .hero-buttons {
