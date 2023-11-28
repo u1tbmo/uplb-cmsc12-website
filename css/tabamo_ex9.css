@@ -793,9 +793,63 @@ This allows a background to be applied to the nav and hero section.
 /* Form Section */
 section.form {
   display: flex;
-  max-width: min(40em, 100%);
+  max-width: min(90em, 90%);
   margin: 0 auto;
-  place-items: center;
+  place-content: center;
+  padding: 4em 0 0 0;
+}
+.summary {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5em 0 1em 0;
+  padding: 0.5em;
+  border: none;
+  outline: none;
+  width: 100%;
+  border-radius: 4px;
+  background: var(--background);
+}
+
+.summary-fieldset {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: var(--glass-secondary);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+.two-col {
+  max-width: min(75em, 90%);
+  display: grid;
+  grid-template-columns: 2.4fr 1fr;
+  grid-template-areas: "col-form col-summary";
+  gap: 2em;
+}
+@media (max-width: 768px) {
+  .two-col {
+    grid-template-columns: 1fr;
+    grid-template-areas: "col-form" "col-summary";
+  }
+}
+
+.form-column {
+  grid-area: col-form;
+}
+
+.summary-column {
+  grid-area: col-summary;
+}
+
+.summary-fieldset > p {
+  font-weight: 600;
+}
+
+.selected {
+  background: #bbffbb;
+}
+
+.na {
+  background: #ffbbbb;
 }
 
 /* Style the form, fieldset, legend, etc. */
@@ -812,11 +866,11 @@ section.form {
 .party-package-form fieldset {
   padding: min(2em, 5%);
   margin: 0;
-  margin-bottom: 4em;
+  margin-bottom: 1em;
   border: none;
   width: 100%;
 }
-.party-package-form fieldset legend {
+legend {
   font-family: var(--ibm-plex-sans);
   font-weight: 700;
   font-size: var(--h4);
@@ -851,7 +905,7 @@ section.form {
   break-after: column;
   display: block;
 }
-.party-package-form fieldset .subheader p {
+.party-package-form fieldset .subheader > p {
   font-family: var(--ibm-plex-sans);
   font-weight: 700;
   font-size: var(--h5);
@@ -914,7 +968,7 @@ section.form {
   font-weight: 400;
   line-height: 1.1;
   display: grid;
-  grid-template-columns: 1em auto;
+  grid-template-columns: 1em auto 4em;
   gap: 0.5em;
 }
 .radio-label input {
@@ -1174,20 +1228,4 @@ section.footer .about {
 
 .footer-tilt .shape-fill {
   fill: var(--background);
-}
-
-.summary {
-  display: flex;
-  flex-direction: column;
-  margin: 0.5em 0 1em 0;
-  padding: 0.5em;
-  border: none;
-  outline: none;
-  width: 100%;
-  border-radius: 4px;
-  background: var(--background);
-}
-
-.invalid {
-  background: red;
 }

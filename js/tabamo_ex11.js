@@ -1,4 +1,44 @@
-function updateSummary() {}
+function updateSummary() {
+  textInputSummary();
+  radioSummary();
+  styleSummary();
+}
+
+function textInputSummary() {
+  if (document.getElementById("name").value != "") {
+    document.getElementById("sName").innerHTML =
+      document.getElementById("name").value;
+    console.log(`Name: ${document.getElementById("name").value}`);
+  }
+  if (document.getElementById("mobileNumber").value != "") {
+    document.getElementById("sMobileNumber").innerHTML =
+      document.getElementById("mobileNumber").value;
+    console.log(
+      `Mobile Number: ${document.getElementById("mobileNumber").value}`
+    );
+    console.log(
+      `Number Validity: ${
+        document.getElementById("mobileNumber").validity.valid
+      }`
+    );
+  }
+  if (document.getElementById("emailAddress").value != "") {
+    document.getElementById("sEmailAddress").innerHTML =
+      document.getElementById("emailAddress").value;
+    console.log(
+      `Email Address: ${document.getElementById("emailAddress").value}`
+    );
+    console.log(
+      `Email Validity: ${
+        document.getElementById("emailAddress").validity.valid
+      }`
+    );
+  }
+  if (document.getElementById("qty").value != "") {
+    document.getElementById("sQty").innerHTML =
+      document.getElementById("qty").value;
+  }
+}
 
 function radioSummary() {
   let appetizersObject = {
@@ -38,6 +78,23 @@ function radioSummary() {
     }
   }
 
+  let drinksObject = {
+    "Cucumber Lemonade": true,
+    "Red Iced Tea": false,
+    "Ripe Mango Juice": false,
+  };
+  let drinks = document.getElementsByName("drink");
+  for (let i = 0; i < drinks.length; i++) {
+    switch (drinks[i].id) {
+      case "cucumberLemonade":
+        drinksObject["Cucumber Lemonade"] = drinks[i].checked;
+      case "redIcedTea":
+        drinksObject["Red Iced Tea"] = drinks[i].checked;
+      case "ripeMangoJuice":
+        drinksObject["Ripe Mango Juice"] = drinks[i].checked;
+    }
+  }
+
   for (let [appetizer, checked] of Object.entries(appetizersObject)) {
     if (checked) {
       document.getElementById("sAppetizer").innerHTML =
@@ -50,16 +107,78 @@ function radioSummary() {
       document.getElementById("sRice").innerHTML = "<p>" + rice + "</p>";
     }
   }
-  styleSummary();
+
+  for (let [drink, checked] of Object.entries(drinksObject)) {
+    if (checked) {
+      document.getElementById("sDrink").innerHTML = "<p>" + drink + "</p>";
+    }
+  }
 }
 
 function checkboxSummary() {}
 
 function styleSummary() {
-  let summary = document.getElementsByClassName("summary");
-  for (let text in summary.innerText) {
-    if (text === "N/A") {
-      text.classList.add("invalid");
+  let inputs = document.getElementsByClassName("summary");
+  for (let i = 0; i < inputs.length; i++) {
+    if (inputs[i].innerText == "-") {
+      inputs[i].classList.add("na");
+      inputs[i].classList.remove("selected");
+    } else if (inputs[i].innerText == "") {
+      inputs[i].innerHTML = "<p>-</p>";
+      inputs[i].classList.add("na");
+      inputs[i].classList.remove("selected");
+    } else {
+      inputs[i].classList.remove("na");
+      inputs[i].classList.add("selected");
     }
   }
+  if (document.getElementById("name").validity.valid) {
+    document.getElementById("sName").classList.add("selected");
+    document.getElementById("sName").classList.remove("na");
+  } else if (document.getElementById("name").value == "") {
+    document.getElementById("sName").innerHTML = "<p>-</p>";
+    document.getElementById("sName").classList.add("na");
+    document.getElementById("sName").classList.remove("selected");
+  } else {
+    document.getElementById("sName").classList.remove("selected");
+    document.getElementById("sName").classList.add("na");
+  }
+
+  if (document.getElementById("mobileNumber").validity.valid) {
+    document.getElementById("sMobileNumber").classList.add("selected");
+    document.getElementById("sMobileNumber").classList.remove("na");
+  } else if (document.getElementById("mobileNumber").value == "") {
+    document.getElementById("sMobileNumber").innerHTML = "<p>-</p>";
+    document.getElementById("sMobileNumber").classList.add("na");
+    document.getElementById("sMobileNumber").classList.remove("selected");
+  } else {
+    document.getElementById("sMobileNumber").classList.remove("selected");
+    document.getElementById("sMobileNumber").classList.add("na");
+  }
+
+  if (document.getElementById("emailAddress").validity.valid) {
+    document.getElementById("sEmailAddress").classList.add("selected");
+    document.getElementById("sEmailAddress").classList.remove("na");
+  } else if (document.getElementById("emailAddress").value == "") {
+    document.getElementById("sEmailAddress").innerHTML = "<p>-</p>";
+    document.getElementById("sEmailAddress").classList.add("na");
+    document.getElementById("sEmailAddress").classList.remove("selected");
+  } else {
+    document.getElementById("sEmailAddress").classList.remove("selected");
+    document.getElementById("sEmailAddress").classList.add("na");
+  }
+
+  if (document.getElementById("qty").value >= 10) {
+    document.getElementById("sQty").classList.add("selected");
+    document.getElementById("sQty").classList.remove("na");
+  } else if (document.getElementById("qty").value == "") {
+    document.getElementById("sQty").innerHTML = "<p>-</p>";
+    document.getElementById("sQty").classList.add("na");
+    document.getElementById("sQty").classList.remove("selected");
+  } else {
+    document.getElementById("sQty").classList.remove("selected");
+    document.getElementById("sQty").classList.add("na");
+  }
 }
+
+window.onload = updateSummary;
