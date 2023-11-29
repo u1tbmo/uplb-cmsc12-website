@@ -848,8 +848,18 @@ section.form {
   background: #bbffbb;
 }
 
+.selected img {
+  width: var(--p);
+  vertical-align: middle;
+}
+
 .na {
   background: #ffbbbb;
+}
+
+.na img {
+  width: var(--p);
+  vertical-align: middle;
 }
 
 /* Style the form, fieldset, legend, etc. */

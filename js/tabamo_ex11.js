@@ -124,7 +124,8 @@ function styleSummary() {
       inputs[i].classList.add("na");
       inputs[i].classList.remove("selected");
     } else if (inputs[i].innerText == "") {
-      inputs[i].innerHTML = "<p>-</p>";
+      inputs[i].innerHTML =
+        "<p><img src='images/cross_mark_3d.png' alt='crossmark'></p>";
       inputs[i].classList.add("na");
       inputs[i].classList.remove("selected");
     } else {
@@ -136,7 +137,8 @@ function styleSummary() {
     document.getElementById("sName").classList.add("selected");
     document.getElementById("sName").classList.remove("na");
   } else if (document.getElementById("name").value == "") {
-    document.getElementById("sName").innerHTML = "<p>-</p>";
+    document.getElementById("sName").innerHTML =
+      "<p><img src='images/cross_mark_3d.png' alt='crossmark'></p>";
     document.getElementById("sName").classList.add("na");
     document.getElementById("sName").classList.remove("selected");
   } else {
@@ -148,7 +150,8 @@ function styleSummary() {
     document.getElementById("sMobileNumber").classList.add("selected");
     document.getElementById("sMobileNumber").classList.remove("na");
   } else if (document.getElementById("mobileNumber").value == "") {
-    document.getElementById("sMobileNumber").innerHTML = "<p>-</p>";
+    document.getElementById("sMobileNumber").innerHTML =
+      "<p><img src='images/cross_mark_3d.png' alt='crossmark'></p>";
     document.getElementById("sMobileNumber").classList.add("na");
     document.getElementById("sMobileNumber").classList.remove("selected");
   } else {
@@ -160,7 +163,8 @@ function styleSummary() {
     document.getElementById("sEmailAddress").classList.add("selected");
     document.getElementById("sEmailAddress").classList.remove("na");
   } else if (document.getElementById("emailAddress").value == "") {
-    document.getElementById("sEmailAddress").innerHTML = "<p>-</p>";
+    document.getElementById("sEmailAddress").innerHTML =
+      "<p><img src='images/cross_mark_3d.png' alt='crossmark'></p>";
     document.getElementById("sEmailAddress").classList.add("na");
     document.getElementById("sEmailAddress").classList.remove("selected");
   } else {
@@ -172,7 +176,8 @@ function styleSummary() {
     document.getElementById("sQty").classList.add("selected");
     document.getElementById("sQty").classList.remove("na");
   } else if (document.getElementById("qty").value == "") {
-    document.getElementById("sQty").innerHTML = "<p>-</p>";
+    document.getElementById("sQty").innerHTML =
+      "<p><img src='images/cross_mark_3d.png' alt='crossmark'></p>";
     document.getElementById("sQty").classList.add("na");
     document.getElementById("sQty").classList.remove("selected");
   } else {
