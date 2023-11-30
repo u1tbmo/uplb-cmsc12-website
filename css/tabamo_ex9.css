@@ -44,6 +44,7 @@ https://csshero.org/mesher/
 :root {
   --text: #07090d;
   --background: #f6f5ee;
+  --gray: #e4e4e4;
   --primary: #a2c2f6;
   --secondary: #a6a7ee;
   --accent: #3c5faa;
@@ -177,9 +178,10 @@ body {
 
 /* Sets a max width and centers the content inside the wrapper */
 .wrapper {
-  max-width: min(75em, 90%);
-  margin: 0 auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* NAVIGATION BAR */
@@ -793,9 +795,57 @@ This allows a background to be applied to the nav and hero section.
 /* Form Section */
 section.form {
   display: flex;
-  max-width: min(40em, 100%);
+  max-width: min(90em, 90%);
   margin: 0 auto;
-  place-items: center;
+  padding: 4em 0 0 0;
+}
+.summary,
+.cost {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5em 0 1.5em 0;
+  padding: 0.5em;
+  outline: none;
+  width: 100%;
+  border-radius: 4px;
+  border: solid 1px var(--background);
+}
+
+.multi {
+  max-width: 100%;
+}
+.cost {
+  background: var(--background);
+}
+
+.summary-fieldset {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: var(--glass-secondary);
+  border-radius: 12px;
+  border: 1px solid rgba(209, 213, 219, 0.3);
+}
+
+.summary-fieldset legend {
+  font-size: var(--h5);
+}
+
+@media (max-width: 768px) {
+  .summary-fieldset h6 {
+    font-size: var(--h6);
+  }
+}
+
+.summary-fieldset > p {
+  font-weight: 600;
+}
+
+.valid {
+  border: solid 1px #4caf50;
+}
+
+.invalid {
+  border: solid 1px #ff5959;
 }
 
 /* Style the form, fieldset, legend, etc. */
@@ -812,11 +862,11 @@ section.form {
 .party-package-form fieldset {
   padding: min(2em, 5%);
   margin: 0;
-  margin-bottom: 4em;
+  margin-bottom: 1em;
   border: none;
   width: 100%;
 }
-.party-package-form fieldset legend {
+legend {
   font-family: var(--ibm-plex-sans);
   font-weight: 700;
   font-size: var(--h4);
@@ -846,12 +896,12 @@ section.form {
   -moz-column-break-inside: avoid;
   break-inside: avoid-column;
 }
-.party-package-form fieldset .subheader:nth-of-type(2) {
+.party-package-form fieldset .subheader:nth-of-type(3) {
   -moz-column-break-after: column;
   break-after: column;
   display: block;
 }
-.party-package-form fieldset .subheader p {
+.party-package-form fieldset .subheader h5 {
   font-family: var(--ibm-plex-sans);
   font-weight: 700;
   font-size: var(--h5);
@@ -879,7 +929,7 @@ section.form {
     -moz-column-break-inside: initial;
     break-inside: initial;
   }
-  .party-package-form fieldset .subheader:nth-of-type(2) {
+  .party-package-form fieldset .subheader:nth-of-type(3) {
     -moz-column-break-after: initial;
     break-after: initial;
     display: initial;
@@ -899,7 +949,7 @@ section.form {
   font-weight: 400;
   font-size: var(--p);
   color: var(--text);
-  margin: 0.5em 0 1em 0;
+  margin: 0.2em 0;
   padding: 0.5em;
   border: none;
   outline: none;
@@ -914,7 +964,7 @@ section.form {
   font-weight: 400;
   line-height: 1.1;
   display: grid;
-  grid-template-columns: 1em auto;
+  grid-template-columns: 1em auto 4em;
   gap: 0.5em;
 }
 .radio-label input {
@@ -1005,21 +1055,23 @@ section.form {
 .venue-address-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin: 0;
 }
 .venue-address-wrapper .venue-address {
   width: 100%;
   resize: none;
 }
+.venue-address-wrapper .venue-address:disabled {
+  width: 100%;
+  resize: none;
+  background: var(--gray);
+}
 .form-buttons {
   display: flex;
   flex-direction: row;
   gap: 2em;
-  margin: 0 auto;
-  margin-bottom: 4em;
-  justify-content: center;
+  margin: 2em auto;
+  align-items: center;
   max-width: min(75em, 90%);
 }
 .form-buttons input {
@@ -1039,14 +1091,19 @@ section.form {
   border-radius: 8px;
   transition: ease-in-out 0.2s;
 }
-.form-buttons input:hover {
+.form-buttons input:hover:enabled {
   color: var(--background);
   background: var(--glass-accent);
 }
-.form-buttons input:active {
+.form-buttons input:active:enabled {
   color: var(--background);
   background: var(--glass-accent);
   box-shadow: inset 8px 8px 16px #32508f, inset -8px -8px 16px #466ec5;
+}
+.form-buttons input:disabled {
+  color: var(--text);
+  background: var(--gray);
+  cursor: not-allowed;
 }
 
 /* MEDIA QUERIES - SECTION.FORM */
