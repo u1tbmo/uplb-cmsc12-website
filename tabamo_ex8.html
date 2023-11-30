@@ -85,7 +85,7 @@
             </label>
             <div class="party-details-wrapper">
               <div class="subheader">
-                <p>Appetizer<br></p>
+                <h5>Appetizer<br></h5>
                 <label class="radio-label" for="salad"><input type="radio" name="appetizer" id="salad" checked
                     onchange="updateSummary()">Salad<p>₱100</p></label>
                 <label class="radio-label" for="breadWithDip"><input type="radio" name="appetizer" id="breadWithDip"
@@ -96,7 +96,7 @@
                     onchange="updateSummary()">Mushroom Bites<p>₱150</p></label>
               </div>
               <div class="subheader">
-                <p>Main Dishes<br></p>
+                <h5>Main Dishes<br></h5>
                 <label class="checkbox-label" for="roastBeef"><input type="checkbox" name="mainDishes" id="roastBeef"
                     onchange="updateSummary()">Roast Beef<p>₱300</p>
                 </label>
@@ -117,7 +117,7 @@
                     id="grilledSalmon" onchange="updateSummary()">Grilled Salmon<p>₱180</p></label>
               </div>
               <div class="subheader desserts">
-                <p>Desserts<br></p>
+                <h5>Desserts<br></h5>
                 <label class="checkbox-label" for="moltenChocolateCake"><input type="checkbox" name="desserts"
                     id="moltenChocolateCake" onchange="updateSummary()">Molten Chocolate Cake<p>₱120</p></label>
                 <label class="checkbox-label" for="redVelvetCake"><input type="checkbox" name="desserts"
@@ -134,7 +134,7 @@
                     id="lemonMeringuePie" onchange="updateSummary()">Lemon Meringue Pie<p>₱70</p></label>
               </div>
               <div class="subheader" for="rice">
-                <p>Rice<br></p>
+                <h5>Rice<br></h5>
                 <label class="radio-label" for="plainRice"><input type="radio" name="rice" id="plainRice"
                     onchange="updateSummary()" checked>Plain<p>₱30</p></label>
                 <label class="radio-label" for="garlicRice"><input type="radio" name="rice" id="garlicRice"
@@ -143,7 +143,7 @@
                     onchange="updateSummary()">Bagoong<p>₱35</p></label>
               </div>
               <div class="subheader" for="drinks">
-                <p>Drinks<br></p>
+                <h5>Drinks<br></h5>
                 <label class="radio-label" for="cucumberLemonade"><input type="radio" name="drink" id="cucumberLemonade"
                     onchange="updateSummary()" checked>Cucumber Lemonade<p>₱60</p></label>
                 <label class="radio-label" for="redIcedTea"><input type="radio" name="drink" id="redIcedTea"
@@ -190,38 +190,46 @@
         <div class="summary-column">
           <fieldset class="summary-fieldset shadow-background-elevation-medium">
             <legend>Party Summary</legend>
-            <h6>Customer Information</h6>
-            <p>Name</p>
-            <div id="sName" class="summary">❌ </div>
-            <p>Mobile Number</p>
-            <div id="sMobileNumber" class="summary">❌ </div>
-            <p>Email Address</p>
-            <div id="sEmailAddress" class="summary">❌ </div>
-            <h6>Party Details</h6>
-            <p>Number of People</p>
-            <div id="sQty" class="summary">❌ </div>
-            <p>Appetizer</p>
-            <div id="sAppetizer" class="summary">❌ </div>
-            <p>Main Dishes</p>
-            <div id="sMainDishes" class="summary multi">❌ </div>
-            <p>Desserts</p>
-            <div id="sDesserts" class="summary multi">❌ </div>
-            <p>Rice</p>
-            <div id="sRice" class="summary">❌ </div>
-            <p>Drinks</p>
-            <div id="sDrink" class="summary">❌ </div>
-            <h6>Venue Details</h6>
-            <p>Venue Address</p>
-            <div id="sVenueAddress" class="summary">❌ </div>
-            <p>Party Date</p>
-            <div id="sPartyDate" class="summary">❌ </div>
-            <p>Party Time</p>
-            <div id="sPartyTime" class="summary">❌ </div>
-            <p>Retrieval Option</p>
-            <div id="sRetrievalOption" class="summary">❌ </div>
-            <h6>Total Cost</h6>
-            <div id="sCost" class="cost">
-              <p>0</p>
+            <div class="summary-display-wrapper">
+              <div class="subheader">
+                <h6>Customer Information</h6>
+                <p>Name</p>
+                <div id="sName" class="summary">❌ </div>
+                <p>Mobile Number</p>
+                <div id="sMobileNumber" class="summary">❌ </div>
+                <p>Email Address</p>
+                <div id="sEmailAddress" class="summary">❌ </div>
+              </div>
+              <div class="subheader">
+                <h6>Party Details</h6>
+                <p>Number of People</p>
+                <div id="sQty" class="summary">❌ </div>
+                <p>Appetizer</p>
+                <div id="sAppetizer" class="summary">❌ </div>
+                <p>Main Dishes</p>
+                <div id="sMainDishes" class="summary multi">❌ </div>
+                <p>Desserts</p>
+                <div id="sDesserts" class="summary multi">❌ </div>
+                <p>Rice</p>
+                <div id="sRice" class="summary">❌ </div>
+                <p>Drinks</p>
+                <div id="sDrink" class="summary">❌ </div>
+              </div>
+              <div class="subheader">
+                <h6>Venue Details</h6>
+                <p>Retrieval Option</p>
+                <div id="sRetrievalOption" class="summary">❌ </div>
+                <p>Venue Address</p>
+                <div id="sVenueAddress" class="summary">❌ </div>
+                <p>Party Date</p>
+                <div id="sPartyDate" class="summary">❌ </div>
+                <p>Party Time</p>
+                <div id="sPartyTime" class="summary">❌ </div>
+                <h6>Total Cost</h6>
+                <div id="sCost" class="cost">
+                  <p>❌</p>
+                </div>
+              </div>
             </div>
           </fieldset>
         </div>

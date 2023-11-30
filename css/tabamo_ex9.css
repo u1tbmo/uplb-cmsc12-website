@@ -178,9 +178,10 @@ body {
 
 /* Sets a max width and centers the content inside the wrapper */
 .wrapper {
-  max-width: min(75em, 90%);
-  margin: 0 auto;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* NAVIGATION BAR */
@@ -796,7 +797,6 @@ section.form {
   display: flex;
   max-width: min(90em, 90%);
   margin: 0 auto;
-  place-content: center;
   padding: 4em 0 0 0;
 }
 .summary,
@@ -834,7 +834,7 @@ section.form {
 .two-col {
   max-width: min(75em, 90%);
   display: grid;
-  grid-template-columns: 1.8fr 16em;
+  grid-template-columns: 2fr 1fr;
   grid-template-areas: "col-form col-summary";
   justify-content: center;
   gap: 2em;
@@ -859,6 +859,10 @@ section.form {
 
 .summary-fieldset > p {
   font-weight: 600;
+}
+
+.summary-display-wrapper {
+  max-width: 16em;
 }
 
 .invalid {
@@ -918,7 +922,7 @@ legend {
   break-after: column;
   display: block;
 }
-.party-package-form fieldset .subheader > p {
+.party-package-form fieldset .subheader h5 {
   font-family: var(--ibm-plex-sans);
   font-weight: 700;
   font-size: var(--h5);
