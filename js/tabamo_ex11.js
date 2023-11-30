@@ -101,7 +101,7 @@ function updateSummary() {
   // Email Address
   if (emailAddress.value === "") {
     document.getElementById("sEmailAddress").innerHTML =
-      "❌ Missing email address";
+      "❌ Email address is missing";
   } else if (!emailAddress.validity.valid) {
     document.getElementById("sEmailAddress").innerHTML =
       "❌ Invalid email address";
