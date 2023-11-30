@@ -289,8 +289,7 @@ function updateSummary() {
       "✔️ No address needed for store pickup";
     document.getElementById("venueAddress").value = "";
   } else {
-    document.getElementById("sVenueAddress").innerHTML =
-      "✔️ " + venueAddress.value;
+    document.getElementById("sVenueAddress").innerHTML = "✔️ Valid";
   }
 
   // Venue Details: Party Date
