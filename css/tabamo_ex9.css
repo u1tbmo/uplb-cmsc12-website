@@ -181,7 +181,7 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
 }
 
 /* NAVIGATION BAR */
@@ -803,13 +803,12 @@ section.form {
 .cost {
   display: flex;
   flex-direction: column;
-  margin: 0.5em 0 1em 0;
+  margin: 0.5em 0 1.5em 0;
   padding: 0.5em;
-  border: none;
   outline: none;
   width: 100%;
   border-radius: 4px;
-  background: #bdffbb;
+  border: solid 1px var(--background);
 }
 
 .multi {
@@ -831,42 +830,22 @@ section.form {
   font-size: var(--h5);
 }
 
-.two-col {
-  max-width: min(75em, 90%);
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-areas: "col-form col-summary";
-  justify-content: center;
-  gap: 2em;
-}
 @media (max-width: 768px) {
-  .two-col {
-    grid-template-columns: 1fr;
-    grid-template-areas: "col-form" "col-summary";
-  }
   .summary-fieldset h6 {
     font-size: var(--h6);
   }
-}
-
-.form-column {
-  grid-area: col-form;
-}
-
-.summary-column {
-  grid-area: col-summary;
 }
 
 .summary-fieldset > p {
   font-weight: 600;
 }
 
-.summary-display-wrapper {
-  max-width: 16em;
+.valid {
+  border: solid 1px #4caf50;
 }
 
 .invalid {
-  background: #ffbbbb;
+  border: solid 1px #ff5959;
 }
 
 /* Style the form, fieldset, legend, etc. */
@@ -970,7 +949,7 @@ legend {
   font-weight: 400;
   font-size: var(--p);
   color: var(--text);
-  margin: 0.5em 0 1em 0;
+  margin: 0.2em 0;
   padding: 0.5em;
   border: none;
   outline: none;
@@ -1076,8 +1055,6 @@ legend {
 .venue-address-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin: 0;
 }
 .venue-address-wrapper .venue-address {
@@ -1093,9 +1070,8 @@ legend {
   display: flex;
   flex-direction: row;
   gap: 2em;
-  margin: 0 auto;
-  margin-bottom: 4em;
-  justify-content: center;
+  margin: 2em auto;
+  align-items: center;
   max-width: min(75em, 90%);
 }
 .form-buttons input {
@@ -1115,14 +1091,19 @@ legend {
   border-radius: 8px;
   transition: ease-in-out 0.2s;
 }
-.form-buttons input:hover {
+.form-buttons input:hover:enabled {
   color: var(--background);
   background: var(--glass-accent);
 }
-.form-buttons input:active {
+.form-buttons input:active:enabled {
   color: var(--background);
   background: var(--glass-accent);
   box-shadow: inset 8px 8px 16px #32508f, inset -8px -8px 16px #466ec5;
+}
+.form-buttons input:disabled {
+  color: var(--text);
+  background: var(--gray);
+  cursor: not-allowed;
 }
 
 /* MEDIA QUERIES - SECTION.FORM */

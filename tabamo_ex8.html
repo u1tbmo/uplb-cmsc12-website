@@ -11,7 +11,6 @@
   <title>Euan's Party Services</title>
   <link rel="stylesheet" href="css/tabamo_ex9.css">
   <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
-  <script src="js/tabamo_ex11.js"></script>
 </head>
 
 <body>
@@ -46,7 +45,7 @@
   <!-- Form Section -->
   <section class="form">
     <div class="wrapper">
-      <form action="" class="party-package-form two-col" id="form">
+      <form action="" class="party-package-form" id="form">
         <div class="form-column">
           <!-- Customer Information Fieldset -->
           <fieldset class="card shadow-background-elevation-medium">
@@ -54,22 +53,24 @@
             <label for="name">
               Name
               <div class="type-input-wrapper">
-                <input class="type-input" type="text" name="name" id="name" onchange="updateSummary()" required>
+                <input class="type-input" type="text" name="name" id="name" required>
               </div>
+              <div id="sName" class="summary">❌ </div>
             </label>
             <label for="mobileNumber">
               Mobile Number
               <div class="type-input-wrapper">
                 <input class="type-input" type="tel" pattern="09[0-9]{9}" title="09XXXXXXXXX" placeholder="09XXXXXXXXX"
-                  name="mobileNumber" id="mobileNumber" onchange="updateSummary()" required>
+                  name="mobileNumber" id="mobileNumber" required>
               </div>
+              <div id="sMobileNumber" class="summary">❌ </div>
             </label>
             <label for="emailAddress">
               Email Address
               <div class="type-input-wrapper">
-                <input class="type-input" type="email" name="emailAddress" id="emailAddress" onchange="updateSummary()"
-                  required>
+                <input class="type-input" type="email" name="emailAddress" id="emailAddress" required>
               </div>
+              <div id="sEmailAddress" class="summary">❌ </div>
             </label>
           </fieldset>
           <br>
@@ -79,77 +80,80 @@
             <label for="qty">
               Number of People <br>
               <div class="type-input-wrapper">
-                <input class="type-input" type="number" name="qty" id="qty" min="10" onchange="updateSummary()"
-                  required>
+                <input class="type-input" type="number" name="qty" id="qty" min="10" required>
               </div>
+              <div id="sQty" class="summary">❌ </div>
             </label>
             <div class="party-details-wrapper">
               <div class="subheader">
                 <h5>Appetizer<br></h5>
-                <label class="radio-label" for="salad"><input type="radio" name="appetizer" id="salad" checked
-                    onchange="updateSummary()">Salad<p>₱100</p></label>
-                <label class="radio-label" for="breadWithDip"><input type="radio" name="appetizer" id="breadWithDip"
-                    onchange="updateSummary()">Bread w/Dip<p>₱70</p></label>
-                <label class="radio-label" for="tomatoSurprise"><input type="radio" name="appetizer" id="tomatoSurprise"
-                    onchange="updateSummary()">Tomato Surprise<p>₱120</p></label>
-                <label class="radio-label" for="mushroomBites"><input type="radio" name="appetizer" id="mushroomBites"
-                    onchange="updateSummary()">Mushroom Bites<p>₱150</p></label>
+                <label class="radio-label" for="salad"><input type="radio" name="appetizer" id="salad" checked>Salad<p>
+                    ₱100</p></label>
+                <label class="radio-label" for="breadWithDip"><input type="radio" name="appetizer"
+                    id="breadWithDip">Bread w/Dip<p>₱70</p></label>
+                <label class="radio-label" for="tomatoSurprise"><input type="radio" name="appetizer"
+                    id="tomatoSurprise">Tomato Surprise<p>₱120</p></label>
+                <label class="radio-label" for="mushroomBites"><input type="radio" name="appetizer"
+                    id="mushroomBites">Mushroom Bites<p>₱150</p></label>
+                <div id="sAppetizer" class="summary">❌ </div>
               </div>
               <div class="subheader">
                 <h5>Main Dishes<br></h5>
-                <label class="checkbox-label" for="roastBeef"><input type="checkbox" name="mainDishes" id="roastBeef"
-                    onchange="updateSummary()">Roast Beef<p>₱300</p>
+                <label class="checkbox-label" for="roastBeef"><input type="checkbox" name="mainDishes"
+                    id="roastBeef">Roast Beef<p>₱300</p>
                 </label>
-                <label class="checkbox-label" for="beefSteak"><input type="checkbox" name="mainDishes" id="beefSteak"
-                    onchange="updateSummary()">Beef
+                <label class="checkbox-label" for="beefSteak"><input type="checkbox" name="mainDishes"
+                    id="beefSteak">Beef
                   Steak<p>₱270</p></label>
                 <label class="checkbox-label" for="porkSpareribs"><input type="checkbox" name="mainDishes"
-                    id="porkSpareribs" onchange="updateSummary()">Pork Spareribs<p>₱240</p></label>
+                    id="porkSpareribs">Pork Spareribs<p>₱240</p></label>
                 <label class="checkbox-label" for="porkMarbella"><input type="checkbox" name="mainDishes"
-                    id="porkMarbella" onchange="updateSummary()">Pork Marbella<p>₱250</p></label>
+                    id="porkMarbella">Pork Marbella<p>₱250</p></label>
                 <label class="checkbox-label" for="grilledChicken"><input type="checkbox" name="mainDishes"
-                    id="grilledChicken" onchange="updateSummary()">Grilled Chicken<p>₱190</p></label>
+                    id="grilledChicken">Grilled Chicken<p>₱190</p></label>
                 <label class="checkbox-label" for="roastChicken"><input type="checkbox" name="mainDishes"
-                    id="roastChicken" onchange="updateSummary()">Roast Chicken<p>₱190</p></label>
+                    id="roastChicken">Roast Chicken<p>₱190</p></label>
                 <label class="checkbox-label" for="broiledSalmon"><input type="checkbox" name="mainDishes"
-                    id="broiledSalmon" onchange="updateSummary()">Broiled Salmon<p>₱170</p></label>
+                    id="broiledSalmon">Broiled Salmon<p>₱170</p></label>
                 <label class="checkbox-label" for="grilledSalmon"><input type="checkbox" name="mainDishes"
-                    id="grilledSalmon" onchange="updateSummary()">Grilled Salmon<p>₱180</p></label>
+                    id="grilledSalmon">Grilled Salmon<p>₱180</p></label>
+                <div id="sMainDishes" class="summary multi">❌ </div>
               </div>
               <div class="subheader desserts">
                 <h5>Desserts<br></h5>
                 <label class="checkbox-label" for="moltenChocolateCake"><input type="checkbox" name="desserts"
-                    id="moltenChocolateCake" onchange="updateSummary()">Molten Chocolate Cake<p>₱120</p></label>
+                    id="moltenChocolateCake">Molten Chocolate Cake<p>₱120</p></label>
                 <label class="checkbox-label" for="redVelvetCake"><input type="checkbox" name="desserts"
-                    id="redVelvetCake" onchange="updateSummary()">Red Velvet Cake<p>₱90</p></label>
-                <label class="checkbox-label" for="lemonBars"><input type="checkbox" name="desserts" id="lemonBars"
-                    onchange="updateSummary()">Lemon
-                  Bars <p>₱50</p></label>
+                    id="redVelvetCake">Red Velvet Cake<p>₱90</p></label>
+                <label class="checkbox-label" for="lemonBars"><input type="checkbox" name="desserts"
+                    id="lemonBars">Lemon Bars <p>₱50</p></label>
                 <label class="checkbox-label" for="peanutButterBars"><input type="checkbox" name="desserts"
-                    id="peanutButterBars" onchange="updateSummary()">Peanut Butter Bars<p>₱60</p></label>
-                <label class="checkbox-label" for="bukoPie"><input type="checkbox" name="desserts" id="bukoPie"
-                    onchange="updateSummary()">Buko
-                  Pie<p>₱50</p></label>
+                    id="peanutButterBars">Peanut Butter Bars<p>₱60</p></label>
+                <label class="checkbox-label" for="bukoPie"><input type="checkbox" name="desserts" id="bukoPie">Buko Pie
+                  <p>₱50</p></label>
                 <label class="checkbox-label" for="lemonMeringuePie"><input type="checkbox" name="desserts"
-                    id="lemonMeringuePie" onchange="updateSummary()">Lemon Meringue Pie<p>₱70</p></label>
+                    id="lemonMeringuePie">Lemon Meringue Pie<p>₱70</p></label>
+                <div id="sDesserts" class="summary multi">❌ </div>
               </div>
               <div class="subheader" for="rice">
                 <h5>Rice<br></h5>
-                <label class="radio-label" for="plainRice"><input type="radio" name="rice" id="plainRice"
-                    onchange="updateSummary()" checked>Plain<p>₱30</p></label>
-                <label class="radio-label" for="garlicRice"><input type="radio" name="rice" id="garlicRice"
-                    onchange="updateSummary()">Garlic<p>₱40</p></label>
-                <label class="radio-label" for="bagoongRice"><input type="radio" name="rice" id="bagoongRice"
-                    onchange="updateSummary()">Bagoong<p>₱35</p></label>
+                <label class="radio-label" for="plainRice"><input type="radio" name="rice" id="plainRice" checked>Plain
+                  <p>₱30</p></label>
+                <label class="radio-label" for="garlicRice"><input type="radio" name="rice" id="garlicRice">Garlic<p>₱40
+                  </p></label>
+                <label class="radio-label" for="bagoongRice"><input type="radio" name="rice" id="bagoongRice">Bagoong<p>
+                    ₱35</p></label>
+                <div id="sRice" class="summary">❌ </div>
               </div>
               <div class="subheader" for="drinks">
                 <h5>Drinks<br></h5>
                 <label class="radio-label" for="cucumberLemonade"><input type="radio" name="drink" id="cucumberLemonade"
-                    onchange="updateSummary()" checked>Cucumber Lemonade<p>₱60</p></label>
-                <label class="radio-label" for="redIcedTea"><input type="radio" name="drink" id="redIcedTea"
-                    onchange="updateSummary()">Red Iced Tea<p>₱50</p></label>
-                <label class="radio-label" for="ripeMangoJuice"><input type="radio" name="drink" id="ripeMangoJuice"
-                    onchange="updateSummary()">Ripe Mango Juice<p>₱70</p></label>
+                    checked>Cucumber Lemonade<p>₱60</p></label>
+                <label class="radio-label" for="redIcedTea"><input type="radio" name="drink" id="redIcedTea">Red Iced
+                  Tea<p>₱50</p></label>
+                <label class="radio-label" for="ripeMangoJuice"><input type="radio" name="drink"
+                    id="ripeMangoJuice">Ripe Mango Juice<p>₱70</p></label>
+                <div id="sDrink" class="summary">❌ </div>
               </div>
             </div>
           </fieldset>
@@ -158,30 +162,32 @@
           <fieldset class="card shadow-background-elevation-medium">
             <legend>Venue Details</legend>
             <div class="subheader">
-              <p>Retrieval Option<br></p>
+              <h5>Retrieval Option<br></h5>
               <label for="storePickup" class="radio-label">
-                <input type="radio" name="retrievalOptions" id="storePickup" onchange="updateSummary()" checked>Store
+                <input type="radio" name="retrievalOptions" id="storePickup" checked>Store
                 Pickup
               </label>
               <label for="delivery" class="radio-label">
-                <input type="radio" name="retrievalOptions" id="delivery" onchange="updateSummary()">Delivery
+                <input type="radio" name="retrievalOptions" id="delivery">Delivery
               </label>
+              <div id="sRetrievalOption" class="summary">❌ </div>
             </div>
-            <label for="venueAddress">Venue Address
-              <div class="venue-address-wrapper">
-                <textarea class="type-input venue-address" name="venueAddress" id="venueAddress" rows="10"
-                  placeholder="Address here..." required></textarea>
-              </div>
+            <label class="venue-address-wrapper" for="venueAddress"">Venue Address
+              <textarea class=" type-input venue-address" name="venueAddress" id="venueAddress" rows="10"
+              placeholder="Address here..." required></textarea>
+              <div id="sVenueAddress" class="summary sVenueAddress">❌ </div>
             </label><br>
             <label for="partyDate">Party Date
               <div class="type-input-wrapper">
                 <input class="type-input" type="date" name="partyDate" id="partyDate" required>
               </div>
+              <div id="sPartyDate" class="summary">❌ </div>
             </label><br>
             <label for="partyTime">Party Time
               <div class="type-input-wrapper">
                 <input class="type-input" type="time" name="partyTime" id="partyTime" required>
               </div>
+              <div id="sPartyTime" class="summary">❌ </div>
             </label>
           </fieldset>
           <br>
@@ -189,60 +195,26 @@
         <!-- Summary -->
         <div class="summary-column">
           <fieldset class="summary-fieldset shadow-background-elevation-medium">
-            <legend>Party Summary</legend>
-            <div class="summary-display-wrapper">
-              <div class="subheader">
-                <h6>Customer Information</h6>
-                <p>Name</p>
-                <div id="sName" class="summary">❌ </div>
-                <p>Mobile Number</p>
-                <div id="sMobileNumber" class="summary">❌ </div>
-                <p>Email Address</p>
-                <div id="sEmailAddress" class="summary">❌ </div>
-              </div>
-              <div class="subheader">
-                <h6>Party Details</h6>
-                <p>Number of People</p>
-                <div id="sQty" class="summary">❌ </div>
-                <p>Appetizer</p>
-                <div id="sAppetizer" class="summary">❌ </div>
-                <p>Main Dishes</p>
-                <div id="sMainDishes" class="summary multi">❌ </div>
-                <p>Desserts</p>
-                <div id="sDesserts" class="summary multi">❌ </div>
-                <p>Rice</p>
-                <div id="sRice" class="summary">❌ </div>
-                <p>Drinks</p>
-                <div id="sDrink" class="summary">❌ </div>
-              </div>
-              <div class="subheader">
-                <h6>Venue Details</h6>
-                <p>Retrieval Option</p>
-                <div id="sRetrievalOption" class="summary">❌ </div>
-                <p>Venue Address</p>
-                <div id="sVenueAddress" class="summary">❌ </div>
-                <p>Party Date</p>
-                <div id="sPartyDate" class="summary">❌ </div>
-                <p>Party Time</p>
-                <div id="sPartyTime" class="summary">❌ </div>
-                <h6>Total Cost</h6>
-                <div id="sCost" class="cost">
-                  <p>❌</p>
-                </div>
-              </div>
+            <legend>Cost</legend>
+            <div class="subheader">
+              <p>Cost per Meal</p>
+              <div id="sMealCost" class="cost">❌ </div>
+              <p>Delivery Fee</p>
+              <div id="sDeliveryFee" class="cost">❌ </div>
+              <p>Total Cost</p>
+              <div id="sCost" class="cost">❌ </div>
             </div>
           </fieldset>
         </div>
-        <!-- Buttons -->
         <div class="form-buttons">
-          <input class="shadow-background-elevation-medium" type="submit" value="Submit"><input
-            class="shadow-background-elevation-medium" type="reset" value="Reset">
+          <input id="submit-button" class="shadow-background-elevation-medium" type="submit" value="Submit">
+          <input id="reset-button" class="shadow-background-elevation-medium" type="reset" value="Reset">
         </div>
+        <!-- Buttons -->
       </form>
       <script type="text/javascript">
         document.getElementById("form").addEventListener("submit", function (event) {
           event.preventDefault();
-          alert("Order Submitted!");
         });
       </script>
     </div>
@@ -279,6 +251,7 @@
       </div>
     </div>
   </section>
+  <script src="js/tabamo_ex11.js"></script>
 </body>
 
 </html>
