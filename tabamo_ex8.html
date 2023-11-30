@@ -6,11 +6,11 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Euan's Party Services</title>
-  <link rel="stylesheet" href="css/tabamo_ex9.css" />
-  <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="css/tabamo_ex9.css">
+  <link rel="shortcut icon" href="icons/favicon.ico" type="image/x-icon">
   <script src="js/tabamo_ex11.js"></script>
 </head>
 
@@ -20,7 +20,7 @@
     <header class="nav-bar">
       <div class="nav-items">
         <a href="index.html">
-          <img class="u1tbmo-logo" src="images/u1tbmo-party-logo.png" alt="" />
+          <img class="u1tbmo-logo" src="images/u1tbmo-party-logo.png" alt="">
         </a>
         <nav class="nav-buttons">
           <ul>
@@ -33,8 +33,8 @@
     </header>
     <!-- Hero Section -->
     <section class="hero order">
-      <img class="emoji" src="images/party_popper_3d.png" alt="Party Popper Emoji" />
-      <h1>Party Package<br />Order Form</h1>
+      <img class="emoji" src="images/party_popper_3d.png" alt="Party Popper Emoji">
+      <h1>Party Package<br>Order Form</h1>
       <p>Order your party packages here!</p>
     </section>
     <div class="nav-hero-tilt">
@@ -45,196 +45,198 @@
   </div>
   <!-- Form Section -->
   <section class="form">
-    <div class="wrapper two-col">
-      <form action="" class="party-package-form form-column">
-        <!-- Customer Information Fieldset -->
-        <fieldset class="card shadow-background-elevation-medium">
-          <legend>Customer Information</legend>
-          <label for="name">
-            Name
-            <div class="type-input-wrapper">
-              <input class="type-input" type="text" name="name" id="name" onchange="updateSummary()" required />
+    <div class="wrapper">
+      <form action="" class="party-package-form two-col" id="form">
+        <div class="form-column">
+          <!-- Customer Information Fieldset -->
+          <fieldset class="card shadow-background-elevation-medium">
+            <legend>Customer Information</legend>
+            <label for="name">
+              Name
+              <div class="type-input-wrapper">
+                <input class="type-input" type="text" name="name" id="name" onchange="updateSummary()" required>
+              </div>
+            </label>
+            <label for="mobileNumber">
+              Mobile Number
+              <div class="type-input-wrapper">
+                <input class="type-input" type="tel" pattern="09[0-9]{9}" title="09XXXXXXXXX" placeholder="09XXXXXXXXX"
+                  name="mobileNumber" id="mobileNumber" onchange="updateSummary()" required>
+              </div>
+            </label>
+            <label for="emailAddress">
+              Email Address
+              <div class="type-input-wrapper">
+                <input class="type-input" type="email" name="emailAddress" id="emailAddress" onchange="updateSummary()"
+                  required>
+              </div>
+            </label>
+          </fieldset>
+          <br>
+          <!-- Party Details Fieldset -->
+          <fieldset class="card shadow-background-elevation-medium">
+            <legend>Party Details</legend>
+            <label for="qty">
+              Number of People <br>
+              <div class="type-input-wrapper">
+                <input class="type-input" type="number" name="qty" id="qty" min="10" onchange="updateSummary()"
+                  required>
+              </div>
+            </label>
+            <div class="party-details-wrapper">
+              <div class="subheader">
+                <p>Appetizer<br></p>
+                <label class="radio-label" for="salad"><input type="radio" name="appetizer" id="salad" checked
+                    onchange="updateSummary()">Salad<p>₱100</p></label>
+                <label class="radio-label" for="breadWithDip"><input type="radio" name="appetizer" id="breadWithDip"
+                    onchange="updateSummary()">Bread w/Dip<p>₱70</p></label>
+                <label class="radio-label" for="tomatoSurprise"><input type="radio" name="appetizer" id="tomatoSurprise"
+                    onchange="updateSummary()">Tomato Surprise<p>₱120</p></label>
+                <label class="radio-label" for="mushroomBites"><input type="radio" name="appetizer" id="mushroomBites"
+                    onchange="updateSummary()">Mushroom Bites<p>₱150</p></label>
+              </div>
+              <div class="subheader">
+                <p>Main Dishes<br></p>
+                <label class="checkbox-label" for="roastBeef"><input type="checkbox" name="mainDishes" id="roastBeef"
+                    onchange="updateSummary()">Roast Beef<p>₱300</p>
+                </label>
+                <label class="checkbox-label" for="beefSteak"><input type="checkbox" name="mainDishes" id="beefSteak"
+                    onchange="updateSummary()">Beef
+                  Steak<p>₱270</p></label>
+                <label class="checkbox-label" for="porkSpareribs"><input type="checkbox" name="mainDishes"
+                    id="porkSpareribs" onchange="updateSummary()">Pork Spareribs<p>₱240</p></label>
+                <label class="checkbox-label" for="porkMarbella"><input type="checkbox" name="mainDishes"
+                    id="porkMarbella" onchange="updateSummary()">Pork Marbella<p>₱250</p></label>
+                <label class="checkbox-label" for="grilledChicken"><input type="checkbox" name="mainDishes"
+                    id="grilledChicken" onchange="updateSummary()">Grilled Chicken<p>₱190</p></label>
+                <label class="checkbox-label" for="roastChicken"><input type="checkbox" name="mainDishes"
+                    id="roastChicken" onchange="updateSummary()">Roast Chicken<p>₱190</p></label>
+                <label class="checkbox-label" for="broiledSalmon"><input type="checkbox" name="mainDishes"
+                    id="broiledSalmon" onchange="updateSummary()">Broiled Salmon<p>₱170</p></label>
+                <label class="checkbox-label" for="grilledSalmon"><input type="checkbox" name="mainDishes"
+                    id="grilledSalmon" onchange="updateSummary()">Grilled Salmon<p>₱180</p></label>
+              </div>
+              <div class="subheader desserts">
+                <p>Desserts<br></p>
+                <label class="checkbox-label" for="moltenChocolateCake"><input type="checkbox" name="desserts"
+                    id="moltenChocolateCake" onchange="updateSummary()">Molten Chocolate Cake<p>₱120</p></label>
+                <label class="checkbox-label" for="redVelvetCake"><input type="checkbox" name="desserts"
+                    id="redVelvetCake" onchange="updateSummary()">Red Velvet Cake<p>₱90</p></label>
+                <label class="checkbox-label" for="lemonBars"><input type="checkbox" name="desserts" id="lemonBars"
+                    onchange="updateSummary()">Lemon
+                  Bars <p>₱50</p></label>
+                <label class="checkbox-label" for="peanutButterBars"><input type="checkbox" name="desserts"
+                    id="peanutButterBars" onchange="updateSummary()">Peanut Butter Bars<p>₱60</p></label>
+                <label class="checkbox-label" for="bukoPie"><input type="checkbox" name="desserts" id="bukoPie"
+                    onchange="updateSummary()">Buko
+                  Pie<p>₱50</p></label>
+                <label class="checkbox-label" for="lemonMeringuePie"><input type="checkbox" name="desserts"
+                    id="lemonMeringuePie" onchange="updateSummary()">Lemon Meringue Pie<p>₱70</p></label>
+              </div>
+              <div class="subheader" for="rice">
+                <p>Rice<br></p>
+                <label class="radio-label" for="plainRice"><input type="radio" name="rice" id="plainRice"
+                    onchange="updateSummary()" checked>Plain<p>₱30</p></label>
+                <label class="radio-label" for="garlicRice"><input type="radio" name="rice" id="garlicRice"
+                    onchange="updateSummary()">Garlic<p>₱40</p></label>
+                <label class="radio-label" for="bagoongRice"><input type="radio" name="rice" id="bagoongRice"
+                    onchange="updateSummary()">Bagoong<p>₱35</p></label>
+              </div>
+              <div class="subheader" for="drinks">
+                <p>Drinks<br></p>
+                <label class="radio-label" for="cucumberLemonade"><input type="radio" name="drink" id="cucumberLemonade"
+                    onchange="updateSummary()" checked>Cucumber Lemonade<p>₱60</p></label>
+                <label class="radio-label" for="redIcedTea"><input type="radio" name="drink" id="redIcedTea"
+                    onchange="updateSummary()">Red Iced Tea<p>₱50</p></label>
+                <label class="radio-label" for="ripeMangoJuice"><input type="radio" name="drink" id="ripeMangoJuice"
+                    onchange="updateSummary()">Ripe Mango Juice<p>₱70</p></label>
+              </div>
             </div>
-          </label>
-          <label for="mobileNumber">
-            Mobile Number
-            <div class="type-input-wrapper">
-              <input class="type-input" type="tel" pattern="09[0-9]{9}" title="09XXXXXXXXX" placeholder="09XXXXXXXXX"
-                name="mobileNumber" id="mobileNumber" onchange="updateSummary()" required />
-            </div>
-          </label>
-          <label for="emailAddress">
-            Email Address
-            <div class="type-input-wrapper">
-              <input class="type-input" type="email" name="emailAddress" id="emailAddress" onchange="updateSummary()"
-                required />
-            </div>
-          </label>
-        </fieldset>
-        <br />
-        <!-- Party Details Fieldset -->
-        <fieldset class="card shadow-background-elevation-medium">
-          <legend>Party Details</legend>
-          <label for="qty">
-            Number of People <br />
-            <div class="type-input-wrapper">
-              <input class="type-input" type="number" name="qty" id="qty" onchange="updateSummary()" required />
-            </div>
-          </label>
-          <div class="party-details-wrapper">
+          </fieldset>
+          <br>
+          <!-- Venue Details Fieldset -->
+          <fieldset class="card shadow-background-elevation-medium">
+            <legend>Venue Details</legend>
             <div class="subheader">
-              <p>Appetizer<br /></p>
-              <label class="radio-label" for="salad"><input type="radio" name="appetizer" id="salad" checked
-                  onchange="updateSummary()" />Salad<p>₱100</p></label>
-              <label class="radio-label" for="breadWithDip"><input type="radio" name="appetizer" id="breadWithDip"
-                  onchange="updateSummary()" />Bread w/Dip<p>₱70</p></label>
-              <label class="radio-label" for="tomatoSurprise"><input type="radio" name="appetizer" id="tomatoSurprise"
-                  onchange="updateSummary()" />Tomato Surprise<p>₱120</p></label>
-              <label class="radio-label" for="mushroomBites"><input type="radio" name="appetizer" id="mushroomBites"
-                  onchange="updateSummary()" />Mushroom Bites<p>₱150</p></label>
+              <p>Retrieval Option<br></p>
+              <label for="storePickup" class="radio-label">
+                <input type="radio" name="retrievalOptions" id="storePickup" onchange="updateSummary()" checked>Store
+                Pickup
+              </label>
+              <label for="delivery" class="radio-label">
+                <input type="radio" name="retrievalOptions" id="delivery" onchange="updateSummary()">Delivery
+              </label>
             </div>
-            <div class="subheader">
-              <p>Main Dishes<br /></p>
-              <label class="checkbox-label" for="roastBeef"><input type="checkbox" name="mainDishes"
-                  id="roastBeef" />Roast Beef<p>₱300</p></label>
-              <label class="checkbox-label" for="beefSteak"><input type="checkbox" name="mainDishes"
-                  id="beefSteak" />Beef Steak<p>₱270</p></label>
-              <label class="checkbox-label" for="porkSpareribs"><input type="checkbox" name="mainDishes"
-                  id="porkSpareribs" />Pork Spareribs<p>₱240</p></label>
-              <label class="checkbox-label" for="porkMarbella"><input type="checkbox" name="mainDishes"
-                  id="porkMarbella" />Pork Marbella<p>₱250</p></label>
-              <label class="checkbox-label" for="grilledChicken"><input type="checkbox" name="mainDishes"
-                  id="grilledChicken" />Grilled Chicken<p>₱190</p></label>
-              <label class="checkbox-label" for="roastChicken"><input type="checkbox" name="mainDishes"
-                  id="roastChicken" />Roast Chicken<p>₱190</p></label>
-              <label class="checkbox-label" for="broiledSalmon"><input type="checkbox" name="mainDishes"
-                  id="broiledSalmon" />Broiled Salmon<p>₱170</p></label>
-              <label class="checkbox-label" for="grilledSalmon"><input type="checkbox" name="mainDishes"
-                  id="grilledSalmon" />Grilled Salmon<p>₱180</p></label>
+            <label for="venueAddress">Venue Address
+              <div class="venue-address-wrapper">
+                <textarea class="type-input venue-address" name="venueAddress" id="venueAddress" rows="10"
+                  placeholder="Address here..." required></textarea>
+              </div>
+            </label><br>
+            <label for="partyDate">Party Date
+              <div class="type-input-wrapper">
+                <input class="type-input" type="date" name="partyDate" id="partyDate" required>
+              </div>
+            </label><br>
+            <label for="partyTime">Party Time
+              <div class="type-input-wrapper">
+                <input class="type-input" type="time" name="partyTime" id="partyTime" required>
+              </div>
+            </label>
+          </fieldset>
+          <br>
+        </div>
+        <!-- Summary -->
+        <div class="summary-column">
+          <fieldset class="summary-fieldset shadow-background-elevation-medium">
+            <legend>Party Summary</legend>
+            <h6>Customer Information</h6>
+            <p>Name</p>
+            <div id="sName" class="summary">❌ </div>
+            <p>Mobile Number</p>
+            <div id="sMobileNumber" class="summary">❌ </div>
+            <p>Email Address</p>
+            <div id="sEmailAddress" class="summary">❌ </div>
+            <h6>Party Details</h6>
+            <p>Number of People</p>
+            <div id="sQty" class="summary">❌ </div>
+            <p>Appetizer</p>
+            <div id="sAppetizer" class="summary">❌ </div>
+            <p>Main Dishes</p>
+            <div id="sMainDishes" class="summary multi">❌ </div>
+            <p>Desserts</p>
+            <div id="sDesserts" class="summary multi">❌ </div>
+            <p>Rice</p>
+            <div id="sRice" class="summary">❌ </div>
+            <p>Drinks</p>
+            <div id="sDrink" class="summary">❌ </div>
+            <h6>Venue Details</h6>
+            <p>Venue Address</p>
+            <div id="sVenueAddress" class="summary">❌ </div>
+            <p>Party Date</p>
+            <div id="sPartyDate" class="summary">❌ </div>
+            <p>Party Time</p>
+            <div id="sPartyTime" class="summary">❌ </div>
+            <p>Retrieval Option</p>
+            <div id="sRetrievalOption" class="summary">❌ </div>
+            <h6>Total Cost</h6>
+            <div id="sCost" class="cost">
+              <p>0</p>
             </div>
-            <div class="subheader desserts">
-              <p>Desserts<br /></p>
-              <label class="checkbox-label" for="moltenChocoCake"><input type="checkbox" name="desserts"
-                  id="moltenChocoCake" />Molten Chocolate Cake<p>₱120</p></label>
-              <label class="checkbox-label" for="redVelvetCake"><input type="checkbox" name="desserts"
-                  id="redVelvetCake" />Red Velvet Cake<p>₱90</p></label>
-              <label class="checkbox-label" for="lemonBars"><input type="checkbox" name="desserts"
-                  id="lemonBars" />Lemon Bars <p>₱50</p></label>
-              <label class="checkbox-label" for="peanutButterBars"><input type="checkbox" name="desserts"
-                  id="peanutButterBars" />Peanut Butter Bars<p>₱60</p></label>
-              <label class="checkbox-label" for="bukoPie"><input type="checkbox" name="desserts" id="bukoPie" />Buko
-                Pie<p>₱50</p></label>
-              <label class="checkbox-label" for="lemonMeringuePie"><input type="checkbox" name="desserts"
-                  id="lemonMeringuePie" />Lemon Meringue Pie<p>₱70</p></label>
-            </div>
-            <div class="subheader" for="rice">
-              <p>Rice<br /></p>
-              <label class="radio-label" for="plainRice"><input type="radio" name="rice" id="plainRice"
-                  onchange="updateSummary()" checked />Plain<p>₱30</p></label>
-              <label class="radio-label" for="garlicRice"><input type="radio" name="rice" id="garlicRice"
-                  onchange="updateSummary()" />Garlic<p>₱40</p></label>
-              <label class="radio-label" for="bagoongRice"><input type="radio" name="rice" id="bagoongRice"
-                  onchange="updateSummary()" />Bagoong<p>₱35</p></label>
-            </div>
-            <div class="subheader" for="drinks">
-              <p>Drinks<br /></p>
-              <label class="radio-label" for="cucumberLemonade"><input type="radio" name="drink" id="cucumberLemonade"
-                  onchange="updateSummary()" checked />Cucumber Lemonade<p>₱60</p></label>
-              <label class="radio-label" for="redIcedTea"><input type="radio" name="drink" id="redIcedTea"
-                  onchange="updateSummary()" />Red Iced Tea<p>₱50</p></label>
-              <label class="radio-label" for="ripeMangoJuice"><input type="radio" name="drink" id="ripeMangoJuice"
-                  onchange="updateSummary()" />Ripe Mango Juice<p>₱70</p></label>
-            </div>
-          </div>
-        </fieldset>
-        <br />
-        <!-- Venue Details Fieldset -->
-        <fieldset class="card shadow-background-elevation-medium">
-          <legend>Venue Details</legend>
-          <label for="venueAddress">Venue Address
-            <div class="venue-address-wrapper">
-              <textarea class="type-input venue-address" name="venueAddress" id="venueAddress" rows="10"
-                placeholder="Address here..." required></textarea>
-            </div>
-          </label><br />
-          <label for="partyDate">Party Date
-            <div class="type-input-wrapper">
-              <input class="type-input" type="date" name="partyDate" id="partyDate" required />
-            </div>
-          </label><br />
-          <label for="partyTime">Party Time
-            <div class="type-input-wrapper">
-              <input class="type-input" type="time" name="partyTime" id="partyTime" required />
-            </div>
-          </label>
-        </fieldset>
-        <br />
+          </fieldset>
+        </div>
         <!-- Buttons -->
         <div class="form-buttons">
-          <input class="shadow-background-elevation-medium" type="submit" value="Submit" /><input
-            class="shadow-background-elevation-medium" type="reset" value="Reset" />
+          <input class="shadow-background-elevation-medium" type="submit" value="Submit"><input
+            class="shadow-background-elevation-medium" type="reset" value="Reset">
         </div>
       </form>
-      <!-- Summary -->
-      <div class="summary-column">
-        <fieldset class="summary-fieldset shadow-background-elevation-medium">
-          <legend>Party Summary</legend>
-          <h5>Customer Information</h5>
-          <p>Name</p>
-          <div id="sName" class="summary">
-            <p><img src="images/cross_mark_3d.png" alt=""></p>
-          </div>
-          <p>Mobile Number</p>
-          <div id="sMobileNumber" class="summary">
-            <p><img src="images/cross_mark_3d.png" alt=""></p>
-          </div>
-          <p>Email Address</p>
-          <div id="sEmailAddress" class="summary">
-            <p><img src="images/cross_mark_3d.png" alt=""></p>
-          </div>
-          <h5>Party Details</h5>
-          <p>Number of People</p>
-          <div id="sQty" class="summary">
-            <p><img src="images/cross_mark_3d.png" alt=""></p>
-          </div>
-          <p>Appetizer</p>
-          <div id="sAppetizer" class="summary">
-            <p><img src="images/cross_mark_3d.png" alt=""></p>
-          </div>
-          <p>Main Dishes</p>
-          <div id="sMainDishes" class="summary">
-            <p><img src="images/cross_mark_3d.png" alt=""></p>
-          </div>
-          <p>Desserts</p>
-          <div id="sDesserts" class="summary">
-            <p><img src="images/cross_mark_3d.png" alt=""></p>
-          </div>
-          <p>Rice</p>
-          <div id="sRice" class="summary">
-            <p><img src="images/cross_mark_3d.png" alt=""></p>
-          </div>
-          <p>Drinks</p>
-          <div id="sDrink" class="summary">
-            <p><img src="images/cross_mark_3d.png" alt=""></p>
-          </div>
-          <h5>Venue Details</h5>
-          <p>Venue Address</p>
-          <div id="sVenueAddress" class="summary">
-            <p><img src="images/cross_mark_3d.png" alt=""></p>
-          </div>
-          <p>Party Date</p>
-          <div id="sPartyDate" class="summary">
-            <p><img src="images/cross_mark_3d.png" alt=""></p>
-          </div>
-          <p>Party Time</p>
-          <div id="sPartyTime" class="summary">
-            <p><img src="images/cross_mark_3d.png" alt=""></p>
-          </div>
-          <h5>Total Cost</h5>
-          <div id="sCost" class="summary">
-            <p><img src="images/cross_mark_3d.png" alt=""></p>
-        </fieldset>
-      </div>
+      <script type="text/javascript">
+        document.getElementById("form").addEventListener("submit", function (event) {
+          event.preventDefault();
+          alert("Order Submitted!");
+        });
+      </script>
     </div>
   </section>
   <section class="footer">
@@ -245,9 +247,9 @@
     </div>
     <div class="footer-wrapper">
       <div class="about">
-        <h4>Created by: <br /></h4>
+        <h4>Created by: <br></h4>
         <p>
-          Euan Jed Tabamo<br />
+          Euan Jed Tabamo<br>
           CMSC 12 B-1L
         </p>
       </div>

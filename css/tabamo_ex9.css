@@ -44,6 +44,7 @@ https://csshero.org/mesher/
 :root {
   --text: #07090d;
   --background: #f6f5ee;
+  --gray: #e4e4e4;
   --primary: #a2c2f6;
   --secondary: #a6a7ee;
   --accent: #3c5faa;
@@ -798,7 +799,8 @@ section.form {
   place-content: center;
   padding: 4em 0 0 0;
 }
-.summary {
+.summary,
+.cost {
   display: flex;
   flex-direction: column;
   margin: 0.5em 0 1em 0;
@@ -807,6 +809,13 @@ section.form {
   outline: none;
   width: 100%;
   border-radius: 4px;
+  background: #bdffbb;
+}
+
+.multi {
+  max-width: 100%;
+}
+.cost {
   background: var(--background);
 }
 
@@ -818,17 +827,25 @@ section.form {
   border: 1px solid rgba(209, 213, 219, 0.3);
 }
 
+.summary-fieldset legend {
+  font-size: var(--h5);
+}
+
 .two-col {
   max-width: min(75em, 90%);
   display: grid;
-  grid-template-columns: 2.4fr 1fr;
+  grid-template-columns: 1.8fr 16em;
   grid-template-areas: "col-form col-summary";
+  justify-content: center;
   gap: 2em;
 }
 @media (max-width: 768px) {
   .two-col {
     grid-template-columns: 1fr;
     grid-template-areas: "col-form" "col-summary";
+  }
+  .summary-fieldset h6 {
+    font-size: var(--h6);
   }
 }
 
@@ -844,22 +861,8 @@ section.form {
   font-weight: 600;
 }
 
-.selected {
-  background: #bbffbb;
-}
-
-.selected img {
-  width: var(--p);
-  vertical-align: middle;
-}
-
-.na {
+.invalid {
   background: #ffbbbb;
-}
-
-.na img {
-  width: var(--p);
-  vertical-align: middle;
 }
 
 /* Style the form, fieldset, legend, etc. */
@@ -910,7 +913,7 @@ legend {
   -moz-column-break-inside: avoid;
   break-inside: avoid-column;
 }
-.party-package-form fieldset .subheader:nth-of-type(2) {
+.party-package-form fieldset .subheader:nth-of-type(3) {
   -moz-column-break-after: column;
   break-after: column;
   display: block;
@@ -943,7 +946,7 @@ legend {
     -moz-column-break-inside: initial;
     break-inside: initial;
   }
-  .party-package-form fieldset .subheader:nth-of-type(2) {
+  .party-package-form fieldset .subheader:nth-of-type(3) {
     -moz-column-break-after: initial;
     break-after: initial;
     display: initial;
@@ -1076,6 +1079,11 @@ legend {
 .venue-address-wrapper .venue-address {
   width: 100%;
   resize: none;
+}
+.venue-address-wrapper .venue-address:disabled {
+  width: 100%;
+  resize: none;
+  background: var(--gray);
 }
 .form-buttons {
   display: flex;
