@@ -408,8 +408,13 @@ function alertSummary() {
   alert(summaryMessage);
 }
 
+function resetForm() {
+  document.getElementById("form").reset();
+  updateSummary();
+}
+
 document.getElementById("form").oninput = updateSummary;
 document.getElementById("submit-button").onclick = alertSummary;
-document.getElementById("reset-button").onclick = updateSummary;
+document.getElementById("reset-button").onclick = resetForm;
 
 window.onload = updateSummary;
