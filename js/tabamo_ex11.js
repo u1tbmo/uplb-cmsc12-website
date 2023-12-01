@@ -396,7 +396,7 @@ function alertSummary() {
   summaryMessage += "Party Date: " + partyDate.value + "\n";
   summaryMessage += "Party Time: " + partyTime.value + "\n";
   summaryMessage += "--- COST ---\n";
-  summaryMessage += "Meal Cost: ₱" + mealCost + "\n";
+  summaryMessage += "Meal Cost per Person: ₱" + mealCost + "\n";
   if (selectedRetrievalOption === "Delivery") {
     summaryMessage += "Delivery Fee: ₱" + deliveryFee + "\n";
   }
