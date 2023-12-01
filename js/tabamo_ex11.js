@@ -381,7 +381,6 @@ function alertSummary() {
   summaryMessage += "Name: " + personName.value + "\n";
   summaryMessage += "Mobile Number: " + mobileNumber.value + "\n";
   summaryMessage += "Email Address: " + emailAddress.value + "\n";
-  summaryMessage += "\n";
   summaryMessage += "--- PARTY DETAILS ---\n";
   summaryMessage += "Number of People: " + qtyPeople + "\n";
   summaryMessage += "Appetizer: " + selectedAppetizer + "\n";
@@ -389,7 +388,6 @@ function alertSummary() {
   summaryMessage += "Desserts: " + selectedDesserts.join(", ") + "\n";
   summaryMessage += "Rice: " + selectedRice + "\n";
   summaryMessage += "Drink: " + selectedDrink + "\n";
-  summaryMessage += "\n";
   summaryMessage += "--- VENUE DETAILS ---\n";
   summaryMessage += "Retrieval Option: " + selectedRetrievalOption + "\n";
   if (selectedRetrievalOption === "Delivery") {
@@ -397,7 +395,6 @@ function alertSummary() {
   }
   summaryMessage += "Party Date: " + partyDate.value + "\n";
   summaryMessage += "Party Time: " + partyTime.value + "\n";
-  summaryMessage += "\n";
   summaryMessage += "--- COST ---\n";
   summaryMessage += "Meal Cost: ₱" + mealCost + "\n";
   if (selectedRetrievalOption === "Delivery") {
