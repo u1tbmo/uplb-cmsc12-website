@@ -81,6 +81,7 @@ function updateSummary() {
   deliveryFee = 0;
 
   // Name
+  // Check if the name is empty, then update the message.
   if (personName.value === "") {
     document.getElementById("sName").innerHTML = "❌ Name is missing";
   } else {
@@ -88,6 +89,7 @@ function updateSummary() {
   }
 
   // Mobile Number
+  // Check if the mobile number is empty or is invalid, then update the message.
   if (mobileNumber.value === "") {
     document.getElementById("sMobileNumber").innerHTML =
       "❌ Mobile number is missing";
@@ -99,6 +101,7 @@ function updateSummary() {
   }
 
   // Email Address
+  // Check if the email address is empty or is invalid, then update the message.
   if (emailAddress.value === "") {
     document.getElementById("sEmailAddress").innerHTML =
       "❌ Email address is missing";
@@ -127,6 +130,8 @@ function updateSummary() {
   }
 
   // Party Details: Appetizers
+  // Iterate through all appetizers and check if they are checked.
+  // If they are checked, update the object.
   for (let i = 0; i < appetizers.length; i++) {
     switch (appetizers[i].id) {
       case "salad":
@@ -139,6 +144,8 @@ function updateSummary() {
         appetizersObject["Mushroom Bites"][0] = appetizers[i].checked;
     }
   }
+  // Iterate through the appetizers object and check if they are checked.
+  // If they are checked, update the message, update the selected appetizer, and add the price to the meal cost.
   for (let [appetizer, [checked, price]] of Object.entries(appetizersObject)) {
     if (checked) {
       document.getElementById("sAppetizer").innerHTML = "✔️ Valid";
@@ -148,6 +155,8 @@ function updateSummary() {
   }
 
   // Party Details: Main Dishes
+  // Iterate through all main dishes and check if they are checked.
+  // If they are checked, update the object.
   for (let i = 0; i < mainDish.length; i++) {
     switch (mainDish[i].id) {
       case "roastBeef":
@@ -168,6 +177,9 @@ function updateSummary() {
         mainDishObject["Grilled Salmon"][0] = mainDish[i].checked;
     }
   }
+  // Reset the selected main dishes array.
+  // Iterate through the main dishes object and check if they are checked.
+  // If they are checked, add them to the selected main dishes array and add the price to the meal cost.
   selectedMainDishes = [];
   for (let [mainDish, [checked, price]] of Object.entries(mainDishObject)) {
     if (checked) {
@@ -175,6 +187,7 @@ function updateSummary() {
       mealCost += price;
     }
   }
+  // Check if there are no selected main dishes, then update the message.
   if (selectedMainDishes.length === 0) {
     document.getElementById("sMainDishes").innerHTML =
       "❌ No main dishes selected";
@@ -183,6 +196,8 @@ function updateSummary() {
   }
 
   // Party Details: Desserts
+  // Iterate through all desserts and check if they are checked.
+  // If they are checked, update the object.
   for (let i = 0; i < dessert.length; i++) {
     switch (dessert[i].id) {
       case "moltenChocolateCake":
@@ -199,6 +214,9 @@ function updateSummary() {
         dessertObject["Lemon Meringue Pie"][0] = dessert[i].checked;
     }
   }
+  // Reset the selected desserts array.
+  // Iterate through the desserts object and check if they are checked.
+  // If they are checked, add them to the selected desserts array and add the price to the meal cost.
   selectedDesserts = [];
   for (let [dessert, [checked, price]] of Object.entries(dessertObject)) {
     if (checked) {
@@ -206,6 +224,7 @@ function updateSummary() {
       mealCost += price;
     }
   }
+  // Check if there are no selected desserts, then update the message.
   if (selectedDesserts.length === 0) {
     document.getElementById("sDesserts").innerHTML = "❌ No desserts selected";
   } else {
@@ -213,6 +232,8 @@ function updateSummary() {
   }
 
   // Party Details: Rice
+  // Iterate through all rice and check if they are checked.
+  // If they are checked, update the object.
   for (let i = 0; i < rice.length; i++) {
     switch (rice[i].id) {
       case "plainRice":
@@ -223,6 +244,8 @@ function updateSummary() {
         riceObject["Bagoong Rice"][0] = rice[i].checked;
     }
   }
+  // Iterate through the rice object and check if they are checked.
+  // If they are checked, update the message, update the selected rice, and add the price to the meal cost.
   for (let [rice, [checked, price]] of Object.entries(riceObject)) {
     if (checked) {
       selectedRice = rice;
@@ -232,6 +255,8 @@ function updateSummary() {
   }
 
   // Party Details: Drinks
+  // Iterate through all drinks and check if they are checked.
+  // If they are checked, update the object.
   for (let i = 0; i < drinks.length; i++) {
     switch (drinks[i].id) {
       case "cucumberLemonade":
@@ -242,6 +267,8 @@ function updateSummary() {
         drinksObject["Ripe Mango Juice"][0] = drinks[i].checked;
     }
   }
+  // Iterate through the drinks object and check if they are checked.
+  // If they are checked, update the message, update the selected drink, and add the price to the meal cost.
   for (let [drink, [checked, price]] of Object.entries(drinksObject)) {
     if (checked) {
       selectedDrink = drink;
@@ -251,7 +278,8 @@ function updateSummary() {
   }
 
   // Venue Details: Retrieval Options
-  let retrievalOptions = document.getElementsByName("retrievalOptions");
+  // Iterate through all retrieval options and check if they are checked.
+  // If they are checked, update the object.
   for (let i = 0; i < retrievalOptions.length; i++) {
     switch (retrievalOptions[i].id) {
       case "storePickup":
@@ -260,6 +288,7 @@ function updateSummary() {
         retrievalOptionsObject["Delivery"][0] = retrievalOptions[i].checked;
     }
   }
+  // Update the venue address textarea based on the selected retrieval option and the number of people.
   if (qtyPeople >= 10 && retrievalOptionsObject["Delivery"][0]) {
     deliveryFee = (Math.ceil(qtyPeople / 50) + 1) * 500;
     venueAddress.disabled = false;
@@ -272,6 +301,8 @@ function updateSummary() {
     venueAddress.disabled = true;
     venueAddress.placeholder = "Store pickup is selected.";
   }
+  // Iterate through the retrieval options object and check if they are checked.
+  // If they are checked, update the message and update the selected retrieval option.
   for (let [retrievalOption, [checked, _]] of Object.entries(
     retrievalOptionsObject
   )) {
@@ -281,6 +312,9 @@ function updateSummary() {
         "✔️ " + retrievalOption;
     }
   }
+
+  // Venue Details: Venue Address
+  // Check if the venue address is empty, then update the message.
   if (!venueAddress.disabled && venueAddress.value === "") {
     document.getElementById("sVenueAddress").innerHTML =
       "❌ Venue address is missing";
@@ -293,6 +327,8 @@ function updateSummary() {
   }
 
   // Venue Details: Party Date
+  // Get the current date and the party date.
+  // If the party date is empty or is invalid or is not a future date, then update the message.
   let currentDate = new Date();
   currentDateDay = parseInt(currentDate.toString().split(" ")[2]);
   partyDateDay = parseInt(partyDate.value.split("-")[2]);
@@ -314,6 +350,8 @@ function updateSummary() {
   }
 
   // Venue Details: Party Time
+  // Get the party time.
+  // Check if the party time is empty or is invalid or is not between 06:00 and 18:00, then update the message.
   partyTimeHour = parseInt(partyTime.value.split(":")[0]);
   partyTimeMinute = parseInt(partyTime.value.split(":")[1]);
   if (partyTime.value === "") {
@@ -336,6 +374,7 @@ function updateSummary() {
   }
 
   // Cost
+  // Update the cost summary.
   document.getElementById("sDeliveryFee").innerHTML = "₱" + deliveryFee;
   document.getElementById("sMealCost").innerHTML = "₱" + mealCost;
   if (qtyPeople >= 10) {
@@ -347,6 +386,9 @@ function updateSummary() {
   }
 
   // Validation User Feedback
+  // Iterate through all summary elements and check if they start with an "❌".
+  // If they do, then add the invalid class and remove the valid class to add a red border.
+  // If they don't, then add the valid class and remove the invalid class to add a green border.
   let inputs = document.getElementsByClassName("summary");
   for (let i = 0; i < inputs.length; i++) {
     if (inputs[i].innerHTML.startsWith("❌")) {
@@ -359,6 +401,8 @@ function updateSummary() {
   }
 }
 
+// This function pops up an alert with the summary message.
+// This function also checks if there is at least one main dish, at least one dessert, a future date, and a valid time.
 function alertSummary() {
   if (!document.getElementById("form").checkValidity()) {
     return;
@@ -376,6 +420,7 @@ function alertSummary() {
     return;
   }
 
+  // Create the summary message.
   summaryMessage = "";
   summaryMessage += "--- CUSTOMER INFORMATION ---\n";
   summaryMessage += "Name: " + personName.value + "\n";
@@ -404,6 +449,7 @@ function alertSummary() {
   alert(summaryMessage);
 }
 
+// This function resets the form and updates the summary.
 function resetForm() {
   document.getElementById("form").reset();
   updateSummary();
