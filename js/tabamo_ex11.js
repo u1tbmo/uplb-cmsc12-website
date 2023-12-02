@@ -136,12 +136,16 @@ function updateSummary() {
     switch (appetizers[i].id) {
       case "salad":
         appetizersObject["Salad"][0] = appetizers[i].checked;
+        break;
       case "breadWithDip":
         appetizersObject["Bread w/ Dip"][0] = appetizers[i].checked;
+        break;
       case "tomatoSurprise":
         appetizersObject["Tomato Surprise"][0] = appetizers[i].checked;
+        break;
       case "mushroomBites":
         appetizersObject["Mushroom Bites"][0] = appetizers[i].checked;
+        break;
     }
   }
   // Iterate through the appetizers object and check if they are checked.
@@ -161,20 +165,28 @@ function updateSummary() {
     switch (mainDish[i].id) {
       case "roastBeef":
         mainDishObject["Roast Beef"][0] = mainDish[i].checked;
+        break;
       case "beefSteak":
         mainDishObject["Beef Steak"][0] = mainDish[i].checked;
+        break;
       case "porkSpareribs":
         mainDishObject["Pork Spareribs"][0] = mainDish[i].checked;
+        break;
       case "porkMarbella":
         mainDishObject["Pork Marbella"][0] = mainDish[i].checked;
+        break;
       case "grilledChicken":
         mainDishObject["Grilled Chicken"][0] = mainDish[i].checked;
+        break;
       case "roastChicken":
         mainDishObject["Roast Chicken"][0] = mainDish[i].checked;
+        break;
       case "broiledSalmon":
         mainDishObject["Broiled Salmon"][0] = mainDish[i].checked;
+        break;
       case "grilledSalmon":
         mainDishObject["Grilled Salmon"][0] = mainDish[i].checked;
+        break;
     }
   }
   // Reset the selected main dishes array.
@@ -202,16 +214,22 @@ function updateSummary() {
     switch (dessert[i].id) {
       case "moltenChocolateCake":
         dessertObject["Molten Chocolate Cake"][0] = dessert[i].checked;
+        break;
       case "redVelvetCake":
         dessertObject["Red Velvet Cake"][0] = dessert[i].checked;
+        break;
       case "lemonBars":
         dessertObject["Lemon Bars"][0] = dessert[i].checked;
+        break;
       case "peanutButterBars":
         dessertObject["Peanut Butter Bars"][0] = dessert[i].checked;
+        break;
       case "bukoPie":
         dessertObject["Buko Pie"][0] = dessert[i].checked;
+        break;
       case "lemonMeringuePie":
         dessertObject["Lemon Meringue Pie"][0] = dessert[i].checked;
+        break;
     }
   }
   // Reset the selected desserts array.
@@ -238,10 +256,13 @@ function updateSummary() {
     switch (rice[i].id) {
       case "plainRice":
         riceObject["Plain Rice"][0] = rice[i].checked;
+        break;
       case "garlicRice":
         riceObject["Garlic Rice"][0] = rice[i].checked;
+        break;
       case "bagoongRice":
         riceObject["Bagoong Rice"][0] = rice[i].checked;
+        break;
     }
   }
   // Iterate through the rice object and check if they are checked.
@@ -261,10 +282,13 @@ function updateSummary() {
     switch (drinks[i].id) {
       case "cucumberLemonade":
         drinksObject["Cucumber Lemonade"][0] = drinks[i].checked;
+        break;
       case "redIcedTea":
         drinksObject["Red Iced Tea"][0] = drinks[i].checked;
+        break;
       case "ripeMangoJuice":
         drinksObject["Ripe Mango Juice"][0] = drinks[i].checked;
+        break;
     }
   }
   // Iterate through the drinks object and check if they are checked.
@@ -284,8 +308,10 @@ function updateSummary() {
     switch (retrievalOptions[i].id) {
       case "storePickup":
         retrievalOptionsObject["Pick-up"][0] = retrievalOptions[i].checked;
+        break;
       case "delivery":
         retrievalOptionsObject["Delivery"][0] = retrievalOptions[i].checked;
+        break;
     }
   }
   // Update the venue address textarea based on the selected retrieval option and the number of people.
@@ -379,7 +405,7 @@ function updateSummary() {
   document.getElementById("sMealCost").innerHTML = "₱" + mealCost;
   if (qtyPeople >= 10) {
     document.getElementById("sCost").innerHTML =
-      "<p>₱" + (mealCost * qtyPeople + deliveryFee);
+      "₱" + (mealCost * qtyPeople + deliveryFee);
   } else if (qtyPeople < 10) {
     document.getElementById("sCost").innerHTML =
       "❌ At least 10 people required";
