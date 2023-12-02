@@ -433,9 +433,11 @@ function alertSummary() {
   if (!document.getElementById("form").checkValidity()) {
     return;
   } else if (selectedMainDishes.length === 0) {
+    document.getElementById("mainDishesDiv").scrollIntoView();
     alert("Please select at least one main dish.");
     return;
   } else if (selectedDesserts.length === 0) {
+    document.getElementById("dessertsDiv").scrollIntoView();
     alert("Please select at least one dessert.");
     return;
   } else if (!validDate) {
@@ -467,7 +469,7 @@ function alertSummary() {
   summaryMessage += "Party Date: " + partyDate.value + "\n";
   summaryMessage += "Party Time: " + partyTime.value + "\n";
   summaryMessage += "--- COST ---\n";
-  summaryMessage += "Meal Cost per Person: ₱" + mealCost + "\n";
+  summaryMessage += "Cost per Meal: ₱" + mealCost + "\n";
   if (selectedRetrievalOption === "Delivery") {
     summaryMessage += "Delivery Fee: ₱" + deliveryFee + "\n";
   }
