@@ -35,6 +35,11 @@ let sPartyTime = document.getElementById("sPartyTime");
 let qtyPeople = 0;
 let mealCost = 0;
 let deliveryFee = 0;
+let currentDate = new Date();
+let currentDateDay = parseInt(currentDate.toString().split(" ")[2]);
+let partyDateDay = parseInt(partyDate.value.split("-")[2]);
+let partyTimeHour = parseInt(partyTime.value.split(":")[0]);
+let partyTimeMinute = parseInt(partyTime.value.split(":")[1]);
 
 // Objects
 // Keep track of checked items and their prices
@@ -336,9 +341,6 @@ function deliveryTimeIsInvalid() {
 }
 
 function validatePartyDate() {
-  let currentDate = new Date();
-  currentDateDay = parseInt(currentDate.toString().split(" ")[2]);
-  partyDateDay = parseInt(partyDate.value.split("-")[2]);
   if (partyDate.value === "") {
     sPartyDate.innerHTML = "❌ Please provide a future date.";
     validDate = false;
@@ -352,8 +354,6 @@ function validatePartyDate() {
 }
 
 function validatePartyTime() {
-  partyTimeHour = parseInt(partyTime.value.split(":")[0]);
-  partyTimeMinute = parseInt(partyTime.value.split(":")[1]);
   if (partyTime.value === "") {
     sPartyTime.innerHTML = "❌ Delivery times are only from 06:00 to 18:00.";
     validTime = false;
