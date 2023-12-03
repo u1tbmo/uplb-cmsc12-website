@@ -424,7 +424,7 @@ function updateValidationMessages() {
 
 function alertSummary() {
   if (!document.getElementById("form").checkValidity()) {
-    return;
+    return false;
   } else if (selectedMainDishes.length === 0) {
     document.getElementById("mainDishesDiv").scrollIntoView();
     alert("Please select at least one main dish.");
@@ -434,9 +434,11 @@ function alertSummary() {
     alert("Please select at least one dessert.");
     return;
   } else if (!validDate) {
+    document.getElementById("partyDate").scrollIntoView();
     alert("Please provide a future date.");
     return;
   } else if (!validTime) {
+    document.getElementById("partyTime").scrollIntoView();
     alert("Delivery times are only from 06:00 to 18:00.");
     return;
   }
@@ -491,3 +493,14 @@ document
   .addEventListener("click", alertSummary);
 document.getElementById("reset-button").addEventListener("click", resetForm);
 window.addEventListener("load", updateSummary);
+
+// HTML Element Attributes
+// Set minimum date to today
+let tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate() + 1);
+let timezoneOffset = tomorrow.getTimezoneOffset();
+tomorrow.setMinutes(tomorrow.getMinutes() - timezoneOffset);
+partyDate.setAttribute("min", tomorrow.toISOString().split("T")[0]);
+// Set minimum time to 06:00 and maximum time to 18:00
+partyTime.setAttribute("min", "06:00");
+partyTime.setAttribute("max", "18:00");
