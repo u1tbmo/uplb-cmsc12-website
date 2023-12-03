@@ -799,16 +799,24 @@ section.form {
   margin: 0 auto;
   padding: 4em 0 0 0;
 }
-.summary,
+.summary {
+  display: flex;
+  flex-direction: column;
+  margin: 0.2em 0 1em 0;
+  padding: 0.2em 0 0.5em 0;
+  outline: none;
+  width: 100%;
+  border-radius: 4px;
+}
+
 .cost {
   display: flex;
   flex-direction: column;
-  margin: 0.5em 0 1.5em 0;
+  margin: 0.2em 0 1em 0;
   padding: 0.5em;
   outline: none;
   width: 100%;
   border-radius: 4px;
-  border: solid 1px var(--background);
 }
 
 .multi {
@@ -838,14 +846,6 @@ section.form {
 
 .summary-fieldset > p {
   font-weight: 600;
-}
-
-.valid {
-  border: solid 1px #4caf50;
-}
-
-.invalid {
-  border: solid 1px #ff5959;
 }
 
 /* Style the form, fieldset, legend, etc. */
@@ -879,8 +879,11 @@ legend {
   transition: ease-in-out 0.2s;
 }
 .party-package-form fieldset label {
-  font-family: var(--inter);
   font-weight: 400;
+}
+.party-package-form fieldset > label {
+  font-family: var(--inter);
+  font-weight: 600;
   font-size: var(--p);
   color: var(--text);
   cursor: default;
@@ -949,9 +952,9 @@ legend {
   font-weight: 400;
   font-size: var(--p);
   color: var(--text);
-  margin: 0.2em 0;
+  margin: 0.2em 0 0.6em 0;
   padding: 0.5em;
-  border: none;
+  border: solid 1px var(--background);
   outline: none;
   width: 100%;
   border-radius: 4px;
@@ -1231,4 +1234,16 @@ section.footer .about {
 
 .footer-tilt .shape-fill {
   fill: var(--background);
+}
+
+.valid {
+  border: solid 1px #4caf50;
+}
+
+.invalid {
+  border: solid 1px #ff5959;
+}
+
+.hide {
+  display: none;
 }

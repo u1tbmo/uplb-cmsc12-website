@@ -16,14 +16,28 @@ let retrievalOptions = document.getElementsByName("retrievalOptions");
 let venueAddress = document.getElementById("venueAddress");
 let partyDate = document.getElementById("partyDate");
 let partyTime = document.getElementById("partyTime");
+let sName = document.getElementById("sName");
+let sMobileNumber = document.getElementById("sMobileNumber");
+let sEmailAddress = document.getElementById("sEmailAddress");
+let sQty = document.getElementById("sQty");
+let sAppetizers = document.getElementById("sAppetizers");
+let sMainDishes = document.getElementById("sMainDishes");
+let sDesserts = document.getElementById("sDesserts");
+let sRice = document.getElementById("sRice");
+let sDrinks = document.getElementById("sDrinks");
+let sRetrievalOption = document.getElementById("sRetrievalOption");
+let sVenueAddress = document.getElementById("sVenueAddress");
+let sPartyDate = document.getElementById("sPartyDate");
+let sPartyTime = document.getElementById("sPartyTime");
 
 // Variables
+// Keep track of qty of people, cost per meal, delivery fee
 let qtyPeople = 0;
 let mealCost = 0;
 let deliveryFee = 0;
-let summaryMessage = "";
 
 // Objects
+// Keep track of checked items and their prices
 let appetizersObject = {
   Salad: [true, 100],
   "Bread w/ Dip": [false, 70],
@@ -58,10 +72,36 @@ let drinksObject = {
   "Red Iced Tea": [false, 50],
   "Ripe Mango Juice": [false, 70],
 };
-let retrievalOptionsObject = {
-  "Store Pickup": [true, 0],
-  Delivery: [false, 1000],
-};
+
+// Arrays
+let elementsArray = [
+  personName,
+  mobileNumber,
+  emailAddress,
+  qty,
+  venueAddress,
+  partyDate,
+  partyTime,
+];
+
+let sElementsArray = [
+  sName,
+  sMobileNumber,
+  sEmailAddress,
+  sQty,
+  sVenueAddress,
+  sPartyDate,
+  sPartyTime,
+];
+
+let sOptionElementsArray = [
+  sAppetizers,
+  sMainDishes,
+  sDesserts,
+  sRice,
+  sDrinks,
+  sRetrievalOption,
+];
 
 // Selected Values
 let selectedAppetizer = "";
@@ -86,14 +126,12 @@ function updateSummary() {
   validateEmailAddress();
   validateQty();
 
-  // Meal Selection: Appetizer, Main Dishes, Desserts, Rice, Drink
+  // Selection: Appetizer, Main Dishes, Desserts, Rice, Drink, Retrieval Option
   updateAppetizerSelection();
   updateMainDishSelection();
   updateDessertSelection();
   updateRiceSelection();
   updateDrinkSelection();
-
-  // Selection: Retrieval Options
   updateRetrievalOptionSelection();
 
   // Input Validation: Venue Address, Party Date, Party Time
@@ -101,13 +139,286 @@ function updateSummary() {
   validatePartyDate();
   validatePartyTime();
 
-  // Calculate Cost: Cost per Meal, Delivery Fee, Total Cost
+  // Update: Cost per Meal, Delivery Fee, Total Cost
   updateMealCost();
   updateDeliveryFee();
   updateTotalCost();
 
   // Update Validation Messages
   updateValidationMessages();
+}
+
+// Input Validation Functions
+function validateName() {
+  if (personName.value === "") {
+    sName.innerHTML = "❌ Enter your name";
+  } else if (personName.value.length < 2) {
+    document.getElementById(
+      "sName"
+    ).innerHTML = `❌ ${personName.value} is too short`;
+  } else {
+    sName.innerHTML = "✔️ Valid";
+  }
+}
+
+function validateMobileNumber() {
+  if (mobileNumber.value === "") {
+    sMobileNumber.innerHTML = "❌ Enter your mobile number";
+  } else if (!mobileNumber.validity.valid) {
+    document.getElementById(
+      "sMobileNumber"
+    ).innerHTML = `❌ ${mobileNumber.value} is not a valid mobile number`;
+  } else {
+    sMobileNumber.innerHTML = "✔️ Valid";
+  }
+}
+
+function validateEmailAddress() {
+  if (emailAddress.value === "") {
+    sEmailAddress.innerHTML = "❌ Enter your email address";
+  } else if (!emailAddress.validity.valid) {
+    document.getElementById(
+      "sEmailAddress"
+    ).innerHTML = `❌ ${emailAddress.value} is not a valid email address`;
+  } else {
+    sEmailAddress.innerHTML = "✔️ Valid";
+  }
+}
+
+function validateQty() {
+  if (qty.value === "") {
+    sQty.innerHTML = "❌ Enter the number of people";
+    qtyPeople = null;
+  } else if (parseInt(qty.value) < 10 && parseInt(qty.value) >= 0) {
+    sQty.innerHTML = `❌ ${qty.value} is less than 10, we require at least 10 people`;
+    qtyPeople = null;
+  } else if (!qty.validity.valid || parseInt(qty.value) < 0) {
+    sQty.innerHTML = `❌ ${qty.value} is not a valid quantity`;
+    qtyPeople = null;
+  } else {
+    qtyPeople = qty.value;
+    sQty.innerHTML = "✔️ Valid";
+  }
+}
+
+// Selection Functions
+function updateSelection(choices, object) {
+  for (let i = 0; i < choices.length; i++) {
+    const choice = choices[i];
+    const itemId = choice.id;
+
+    if (itemId in object) {
+      object[itemId][0] = choice.checked;
+    }
+  }
+}
+
+function updateAppetizerSelection() {
+  updateSelection(appetizers, appetizersObject);
+  for (let [appetizer, [checked, price]] of Object.entries(appetizersObject)) {
+    if (checked) {
+      sAppetizers.innerHTML = "✔️ Valid";
+      selectedAppetizer = appetizer;
+      mealCost += price;
+      break;
+    }
+  }
+}
+
+function updateMainDishSelection() {
+  updateSelection(mainDishes, mainDishObject);
+
+  selectedMainDishes = [];
+  for (let [mainDish, [checked, price]] of Object.entries(mainDishObject)) {
+    if (checked) {
+      selectedMainDishes.push(mainDish);
+      mealCost += price;
+    }
+  }
+
+  if (selectedMainDishes.length === 0) {
+    sMainDishes.innerHTML = "❌ No main dishes selected";
+  } else {
+    sMainDishes.innerHTML = "✔️ Valid";
+  }
+}
+
+function updateDessertSelection() {
+  updateSelection(desserts, dessertObject);
+
+  selectedDesserts = [];
+  for (let [dessert, [checked, price]] of Object.entries(dessertObject)) {
+    if (checked) {
+      selectedDesserts.push(dessert);
+      mealCost += price;
+    }
+  }
+
+  if (selectedDesserts.length === 0) {
+    sDesserts.innerHTML = "❌ No desserts selected";
+  } else {
+    sDesserts.innerHTML = "✔️ Valid";
+  }
+}
+
+function updateRiceSelection() {
+  updateSelection(rice, riceObject);
+
+  for (let [riceType, [checked, price]] of Object.entries(riceObject)) {
+    if (checked) {
+      selectedRice = riceType;
+      sRice.innerHTML = "✔️ Valid";
+      mealCost += price;
+      break;
+    }
+  }
+}
+
+function updateDrinkSelection() {
+  updateSelection(drinks, drinksObject);
+  for (let [drink, [checked, price]] of Object.entries(drinksObject)) {
+    if (checked) {
+      selectedDrink = drink;
+      sDrinks.innerHTML = "✔️ Valid";
+      mealCost += price;
+      break;
+    }
+  }
+}
+
+function updateRetrievalOptionSelection() {
+  if (retrievalOptions[0].checked) {
+    selectedRetrievalOption = retrievalOptions[0].id;
+  } else {
+    selectedRetrievalOption = retrievalOptions[1].id;
+  }
+  sRetrievalOption.innerHTML = "✔️ " + selectedRetrievalOption;
+  updateVenueAddress();
+}
+
+// Input Validation Functions
+function updateVenueAddress() {
+  if (qtyPeople >= 10 && selectedRetrievalOption === "Delivery") {
+    deliveryFee = (Math.ceil(qtyPeople / 50) + 1) * 500;
+    venueAddress.disabled = false;
+    venueAddress.placeholder = "Address here...";
+  } else if (qtyPeople < 10 && selectedRetrievalOption === "Delivery") {
+    deliveryFee = 1000;
+    venueAddress.disabled = false;
+    venueAddress.placeholder = "Address here...";
+  } else {
+    venueAddress.disabled = true;
+    venueAddress.placeholder = "Store pickup is selected.";
+  }
+}
+
+function validateVenueAddress() {
+  if (!venueAddress.disabled && venueAddress.value === "") {
+    sVenueAddress.innerHTML = "❌ Venue address is missing";
+  } else if (venueAddress.disabled) {
+    sVenueAddress.innerHTML = "✔️ No address needed for store pickup";
+    document.getElementById("venueAddress").value = "";
+  } else {
+    sVenueAddress.innerHTML = "✔️ Valid";
+  }
+}
+
+function deliveryDateIsValid() {
+  return partyDate.valueAsDate < currentDate || partyDateDay === currentDateDay;
+}
+
+function deliveryTimeIsValid() {
+  return (
+    (hour > 6 && hour < 18) ||
+    (hour === 6 && minute >= 0) ||
+    (hour === 18 && minute === 0)
+  );
+}
+
+function validatePartyDate() {
+  let currentDate = new Date();
+  currentDateDay = parseInt(currentDate.toString().split(" ")[2]);
+  partyDateDay = parseInt(partyDate.value.split("-")[2]);
+  if (partyDate.value === "") {
+    sPartyDate.innerHTML = "❌ Please provide a future date.";
+    validDate = false;
+  } else if (!partyDate.validity.valid || !deliveryDateIsValid()) {
+    sPartyDate.innerHTML = "❌ Please provide a future date.";
+    validDate = false;
+  } else {
+    sPartyDate.innerHTML = "✔️ Valid";
+    validDate = true;
+  }
+}
+
+function validatePartyTime() {
+  partyTimeHour = parseInt(partyTime.value.split(":")[0]);
+  partyTimeMinute = parseInt(partyTime.value.split(":")[1]);
+  if (partyTime.value === "") {
+    sPartyTime.innerHTML = "❌ Delivery times are only from 06:00 to 18:00.";
+    validTime = false;
+  } else if (!partyTime.validity.valid || !deliveryTimeIsValid()) {
+    sPartyTime.innerHTML = "❌ Delivery times are only from 06:00 to 18:00.";
+    validTime = false;
+  } else {
+    sPartyTime.innerHTML = "✔️ Valid";
+    validTime = true;
+  }
+}
+
+// Update Functions
+function updateMealCost() {
+  document.getElementById("sMealCost").innerHTML =
+    "₱" +
+    mealCost.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+}
+
+function updateDeliveryFee() {
+  document.getElementById("sDeliveryFee").innerHTML =
+    "₱" +
+    deliveryFee.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+}
+
+function updateTotalCost() {
+  if (qtyPeople >= 10) {
+    document.getElementById("sCost").innerHTML =
+      "₱" +
+      (mealCost * qtyPeople + deliveryFee).toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
+  } else if (qtyPeople < 10) {
+    document.getElementById("sCost").innerHTML =
+      "❌ At least 10 people required";
+  }
+}
+
+function updateValidationMessages() {
+  for (let [idx, sElement] of sElementsArray.entries()) {
+    if (sElement.innerHTML.includes("❌")) {
+      elementsArray[idx].classList.add("invalid");
+      elementsArray[idx].classList.remove("valid");
+      sElement.classList.remove("hide");
+    } else {
+      elementsArray[idx].classList.add("valid");
+      elementsArray[idx].classList.remove("invalid");
+      sElement.classList.add("hide");
+    }
+  }
+
+  for (let sOptionElement of sOptionElementsArray) {
+    if (sOptionElement.innerHTML.includes("❌")) {
+      sOptionElement.classList.remove("hide");
+    } else {
+      sOptionElement.classList.add("hide");
+    }
+  }
 }
 
 function alertSummary() {
@@ -128,7 +439,7 @@ function alertSummary() {
     alert("Delivery times are only from 06:00 to 18:00.");
     return;
   }
-  summaryMessage = `--- CUSTOMER INFORMATION ---
+  let summaryMessage = `--- CUSTOMER INFORMATION ---
 Name: ${personName.value}
 Mobile Number: ${mobileNumber.value}
 Email Address: ${emailAddress.value}
@@ -172,274 +483,8 @@ function resetForm() {
   updateSummary();
 }
 
-function validateName() {
-  if (personName.value === "") {
-    document.getElementById("sName").innerHTML = "❌ Name is missing";
-  } else {
-    document.getElementById("sName").innerHTML = "✔️ Valid";
-  }
-}
-
-function validateMobileNumber() {
-  if (mobileNumber.value === "") {
-    document.getElementById("sMobileNumber").innerHTML =
-      "❌ Mobile number is missing";
-  } else if (!mobileNumber.validity.valid) {
-    document.getElementById("sMobileNumber").innerHTML =
-      "❌ Invalid mobile number";
-  } else {
-    document.getElementById("sMobileNumber").innerHTML = "✔️ Valid";
-  }
-}
-
-function validateEmailAddress() {
-  if (emailAddress.value === "") {
-    document.getElementById("sEmailAddress").innerHTML =
-      "❌ Email address is missing";
-  } else if (!emailAddress.validity.valid) {
-    document.getElementById("sEmailAddress").innerHTML =
-      "❌ Invalid email address";
-  } else {
-    document.getElementById("sEmailAddress").innerHTML = "✔️ Valid";
-  }
-}
-
-function validateQty() {
-  if (qty.value === "") {
-    document.getElementById("sQty").innerHTML =
-      "❌ Number of People is missing";
-    qtyPeople = null;
-  } else if (parseInt(qty.value) < 10) {
-    document.getElementById("sQty").innerHTML =
-      "❌ At least 10 people required";
-    qtyPeople = null;
-  } else if (!qty.validity.valid) {
-    document.getElementById("sQty").innerHTML = "❌ Invalid Number of People";
-    qtyPeople = null;
-  } else {
-    qtyPeople = qty.value;
-    document.getElementById("sQty").innerHTML = "✔️ Valid";
-  }
-}
-
-function updateAppetizerSelection() {
-  updateSelection(appetizers, appetizersObject);
-
-  for (let [appetizer, [checked, price]] of Object.entries(appetizersObject)) {
-    if (checked) {
-      document.getElementById("sAppetizer").innerHTML = "✔️ Valid";
-      selectedAppetizer = appetizer;
-      mealCost += price;
-      break;
-    }
-  }
-}
-
-function updateMainDishSelection() {
-  updateSelection(mainDishes, mainDishObject);
-
-  selectedMainDishes = [];
-  for (let [mainDish, [checked, price]] of Object.entries(mainDishObject)) {
-    if (checked) {
-      selectedMainDishes.push(mainDish);
-      mealCost += price;
-    }
-  }
-
-  if (selectedMainDishes.length === 0) {
-    document.getElementById("sMainDishes").innerHTML =
-      "❌ No main dishes selected";
-  } else {
-    document.getElementById("sMainDishes").innerHTML = "✔️ Valid";
-  }
-}
-function updateDessertSelection() {
-  updateSelection(desserts, dessertObject);
-
-  selectedDesserts = [];
-  for (let [dessert, [checked, price]] of Object.entries(dessertObject)) {
-    if (checked) {
-      selectedDesserts.push(dessert);
-      mealCost += price;
-    }
-  }
-
-  if (selectedDesserts.length === 0) {
-    document.getElementById("sDesserts").innerHTML = "❌ No desserts selected";
-  } else {
-    document.getElementById("sDesserts").innerHTML = "✔️ Valid";
-  }
-}
-function updateRiceSelection() {
-  updateSelection(rice, riceObject);
-
-  for (let [riceType, [checked, price]] of Object.entries(riceObject)) {
-    if (checked) {
-      selectedRice = riceType;
-      document.getElementById("sRice").innerHTML = "✔️ Valid";
-      mealCost += price;
-      break;
-    }
-  }
-}
-function updateDrinkSelection() {
-  updateSelection(drinks, drinksObject);
-
-  for (let [drink, [checked, price]] of Object.entries(drinksObject)) {
-    if (checked) {
-      selectedDrink = drink;
-      document.getElementById("sDrink").innerHTML = "✔️ Valid";
-      mealCost += price;
-      break;
-    }
-  }
-}
-
-function updateRetrievalOptionSelection() {
-  updateSelection(retrievalOptions, retrievalOptionsObject);
-  updateVenueAddress();
-
-  for (let [retrievalOption, [checked, _]] of Object.entries(
-    retrievalOptionsObject
-  )) {
-    if (checked) {
-      selectedRetrievalOption = retrievalOption;
-      document.getElementById("sRetrievalOption").innerHTML =
-        "✔️ " + retrievalOption;
-      break;
-    }
-  }
-}
-
-function updateVenueAddress() {
-  if (qtyPeople >= 10 && retrievalOptionsObject["Delivery"][0]) {
-    deliveryFee = (Math.ceil(qtyPeople / 50) + 1) * 500;
-    venueAddress.disabled = false;
-    venueAddress.placeholder = "Address here...";
-  } else if (qtyPeople < 10 && retrievalOptionsObject["Delivery"][0]) {
-    deliveryFee = 1000;
-    venueAddress.disabled = false;
-    venueAddress.placeholder = "Address here...";
-  } else {
-    venueAddress.disabled = true;
-    venueAddress.placeholder = "Store pickup is selected.";
-  }
-}
-
-function validateVenueAddress() {
-  if (!venueAddress.disabled && venueAddress.value === "") {
-    document.getElementById("sVenueAddress").innerHTML =
-      "❌ Venue address is missing";
-  } else if (venueAddress.disabled) {
-    document.getElementById("sVenueAddress").innerHTML =
-      "✔️ No address needed for store pickup";
-    document.getElementById("venueAddress").value = "";
-  } else {
-    document.getElementById("sVenueAddress").innerHTML = "✔️ Valid";
-  }
-}
-
-function validatePartyDate() {
-  let currentDate = new Date();
-  currentDateDay = parseInt(currentDate.toString().split(" ")[2]);
-  partyDateDay = parseInt(partyDate.value.split("-")[2]);
-  if (partyDate.value === "") {
-    document.getElementById("sPartyDate").innerHTML =
-      "❌ Please provide a future date.";
-    validDate = false;
-  } else if (
-    !partyDate.validity.valid ||
-    partyDate.valueAsDate < currentDate ||
-    partyDateDay === currentDateDay
-  ) {
-    document.getElementById("sPartyDate").innerHTML =
-      "❌ Please provide a future date.";
-    validDate = false;
-  } else {
-    document.getElementById("sPartyDate").innerHTML = "✔️ Valid";
-    validDate = true;
-  }
-}
-
-function validatePartyTime() {
-  partyTimeHour = parseInt(partyTime.value.split(":")[0]);
-  partyTimeMinute = parseInt(partyTime.value.split(":")[1]);
-  if (partyTime.value === "") {
-    document.getElementById("sPartyTime").innerHTML =
-      "❌ Delivery times are only from 06:00 to 18:00.";
-    validTime = false;
-  } else if (
-    !partyTime.validity.valid ||
-    partyTimeHour < 6 ||
-    partyTimeHour > 18 ||
-    (partyTimeHour === 18 && partyTimeMinute > 0) ||
-    (partyTimeHour === 6 && partyTimeMinute < 0)
-  ) {
-    document.getElementById("sPartyTime").innerHTML =
-      "❌ Delivery times are only from 06:00 to 18:00.";
-    validTime = false;
-  } else {
-    document.getElementById("sPartyTime").innerHTML = "✔️ Valid";
-    validTime = true;
-  }
-}
-
-function updateMealCost() {
-  document.getElementById("sMealCost").innerHTML =
-    "₱" +
-    mealCost.toLocaleString("en-US", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-}
-function updateDeliveryFee() {
-  document.getElementById("sDeliveryFee").innerHTML =
-    "₱" +
-    deliveryFee.toLocaleString("en-US", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-}
-function updateTotalCost() {
-  if (qtyPeople >= 10) {
-    document.getElementById("sCost").innerHTML =
-      "₱" +
-      (mealCost * qtyPeople + deliveryFee).toLocaleString("en-US", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      });
-  } else if (qtyPeople < 10) {
-    document.getElementById("sCost").innerHTML =
-      "❌ At least 10 people required";
-  }
-}
-
-function updateValidationMessages() {
-  let inputs = document.getElementsByClassName("summary");
-  for (let i = 0; i < inputs.length; i++) {
-    if (inputs[i].innerHTML.startsWith("❌")) {
-      inputs[i].classList.add("invalid");
-      inputs[i].classList.remove("valid");
-    } else {
-      inputs[i].classList.remove("invalid");
-      inputs[i].classList.add("valid");
-    }
-  }
-}
-
-function updateSelection(choices, object) {
-  for (let i = 0; i < choices.length; i++) {
-    const choice = choices[i];
-    const itemId = choice.id;
-
-    if (itemId in object) {
-      object[itemId][0] = choice.checked;
-    }
-  }
-}
-
 // Event Listeners
-document.getElementById("form").addEventListener("change", updateSummary);
+document.getElementById("form").addEventListener("input", updateSummary);
 document
   .getElementById("submit-button")
   .addEventListener("click", alertSummary);
