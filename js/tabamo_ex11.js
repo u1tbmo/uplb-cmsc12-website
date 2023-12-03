@@ -152,10 +152,6 @@ function updateSummary() {
 function validateName() {
   if (personName.value === "") {
     sName.innerHTML = "❌ Enter your name";
-  } else if (personName.value.length < 2) {
-    document.getElementById(
-      "sName"
-    ).innerHTML = `❌ ${personName.value} is too short`;
   } else {
     sName.innerHTML = "✔️ Valid";
   }
