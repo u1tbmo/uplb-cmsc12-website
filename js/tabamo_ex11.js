@@ -415,11 +415,11 @@ function updateValidationMessages() {
 
 function updateSelection(choices, object) {
   for (let i = 0; i < choices.length; i++) {
-    const checkbox = choices[i];
-    const itemId = checkbox.id;
+    const choice = choices[i];
+    const itemId = choice.id;
 
     if (itemId in object) {
-      object[itemId][0] = checkbox.checked;
+      object[itemId][0] = choice.checked;
     }
   }
 }
