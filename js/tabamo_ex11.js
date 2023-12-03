@@ -8,8 +8,8 @@ let mobileNumber = document.getElementById("mobileNumber");
 let emailAddress = document.getElementById("emailAddress");
 let qty = document.getElementById("qty");
 let appetizers = document.getElementsByName("appetizer");
-let mainDish = document.getElementsByName("mainDishes");
-let dessert = document.getElementsByName("desserts");
+let mainDishes = document.getElementsByName("mainDishes");
+let desserts = document.getElementsByName("desserts");
 let rice = document.getElementsByName("rice");
 let drinks = document.getElementsByName("drink");
 let retrievalOptions = document.getElementsByName("retrievalOptions");
@@ -236,7 +236,7 @@ function updateAppetizerSelection() {
 }
 
 function updateMainDishSelection() {
-  updateSelection(mainDish, mainDishObject);
+  updateSelection(mainDishes, mainDishObject);
 
   selectedMainDishes = [];
   for (let [mainDish, [checked, price]] of Object.entries(mainDishObject)) {
@@ -254,7 +254,7 @@ function updateMainDishSelection() {
   }
 }
 function updateDessertSelection() {
-  updateSelection(dessert, dessertObject);
+  updateSelection(desserts, dessertObject);
 
   selectedDesserts = [];
   for (let [dessert, [checked, price]] of Object.entries(dessertObject)) {
@@ -273,9 +273,9 @@ function updateDessertSelection() {
 function updateRiceSelection() {
   updateSelection(rice, riceObject);
 
-  for (let [rice, [checked, price]] of Object.entries(riceObject)) {
+  for (let [riceType, [checked, price]] of Object.entries(riceObject)) {
     if (checked) {
-      selectedRice = rice;
+      selectedRice = riceType;
       document.getElementById("sRice").innerHTML = "✔️ Valid";
       mealCost += price;
       break;
