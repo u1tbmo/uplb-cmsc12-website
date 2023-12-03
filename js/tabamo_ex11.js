@@ -110,8 +110,6 @@ function updateSummary() {
   updateValidationMessages();
 }
 
-// This function pops up an alert with the summary message.
-// This function also checks if there is at least one main dish, at least one dessert, a future date, and a valid time.
 function alertSummary() {
   if (!document.getElementById("form").checkValidity()) {
     return;
@@ -159,7 +157,6 @@ function alertSummary() {
   alert(summaryMessage);
 }
 
-// This function resets the form and updates the summary.
 function resetForm() {
   document.getElementById("form").reset();
   updateSummary();
@@ -217,6 +214,7 @@ function validateQty() {
 
 function updateAppetizerSelection() {
   updateSelection(appetizers, appetizersObject);
+
   for (let [appetizer, [checked, price]] of Object.entries(appetizersObject)) {
     if (checked) {
       document.getElementById("sAppetizer").innerHTML = "✔️ Valid";
@@ -237,7 +235,7 @@ function updateMainDishSelection() {
       mealCost += price;
     }
   }
-  // Check if there are no selected main dishes, then update the message.
+
   if (selectedMainDishes.length === 0) {
     document.getElementById("sMainDishes").innerHTML =
       "❌ No main dishes selected";
@@ -255,7 +253,7 @@ function updateDessertSelection() {
       mealCost += price;
     }
   }
-  // Check if there are no selected desserts, then update the message.
+
   if (selectedDesserts.length === 0) {
     document.getElementById("sDesserts").innerHTML = "❌ No desserts selected";
   } else {
@@ -319,8 +317,6 @@ function updateVenueAddress() {
 }
 
 function validateVenueAddress() {
-  // Venue Details: Venue Address
-  // Check if the venue address is empty, then update the message.
   if (!venueAddress.disabled && venueAddress.value === "") {
     document.getElementById("sVenueAddress").innerHTML =
       "❌ Venue address is missing";
@@ -334,9 +330,6 @@ function validateVenueAddress() {
 }
 
 function validatePartyDate() {
-  // Venue Details: Party Date
-  // Get the current date and the party date.
-  // If the party date is empty or is invalid or is not a future date, then update the message.
   let currentDate = new Date();
   currentDateDay = parseInt(currentDate.toString().split(" ")[2]);
   partyDateDay = parseInt(partyDate.value.split("-")[2]);
@@ -359,9 +352,6 @@ function validatePartyDate() {
 }
 
 function validatePartyTime() {
-  // Venue Details: Party Time
-  // Get the party time.
-  // Check if the party time is empty or is invalid or is not between 06:00 and 18:00, then update the message.
   partyTimeHour = parseInt(partyTime.value.split(":")[0]);
   partyTimeMinute = parseInt(partyTime.value.split(":")[1]);
   if (partyTime.value === "") {
