@@ -323,11 +323,11 @@ function validateVenueAddress() {
   }
 }
 
-function deliveryDateIsValid() {
+function deliveryDateIsInvalid() {
   return partyDate.valueAsDate < currentDate || partyDateDay === currentDateDay;
 }
 
-function deliveryTimeIsValid() {
+function deliveryTimeIsInvalid() {
   return (
     (hour > 6 && hour < 18) ||
     (hour === 6 && minute >= 0) ||
@@ -342,7 +342,7 @@ function validatePartyDate() {
   if (partyDate.value === "") {
     sPartyDate.innerHTML = "❌ Please provide a future date.";
     validDate = false;
-  } else if (!partyDate.validity.valid || !deliveryDateIsValid()) {
+  } else if (!partyDate.validity.valid || deliveryDateIsInvalid()) {
     sPartyDate.innerHTML = "❌ Please provide a future date.";
     validDate = false;
   } else {
@@ -357,7 +357,7 @@ function validatePartyTime() {
   if (partyTime.value === "") {
     sPartyTime.innerHTML = "❌ Delivery times are only from 06:00 to 18:00.";
     validTime = false;
-  } else if (!partyTime.validity.valid || !deliveryTimeIsValid()) {
+  } else if (!partyTime.validity.valid || deliveryTimeIsInvalid()) {
     sPartyTime.innerHTML = "❌ Delivery times are only from 06:00 to 18:00.";
     validTime = false;
   } else {
