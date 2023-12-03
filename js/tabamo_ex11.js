@@ -128,8 +128,7 @@ function alertSummary() {
     alert("Delivery times are only from 06:00 to 18:00.");
     return;
   }
-  summaryMessage = `
---- CUSTOMER INFORMATION ---
+  summaryMessage = `--- CUSTOMER INFORMATION ---
 Name: ${personName.value}
 Mobile Number: ${mobileNumber.value}
 Email Address: ${emailAddress.value}
