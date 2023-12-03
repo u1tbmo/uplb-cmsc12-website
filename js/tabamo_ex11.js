@@ -35,11 +35,6 @@ let sPartyTime = document.getElementById("sPartyTime");
 let qtyPeople = 0;
 let mealCost = 0;
 let deliveryFee = 0;
-let currentDate = new Date();
-let currentDateDay = parseInt(currentDate.toString().split(" ")[2]);
-let partyDateDay = parseInt(partyDate.value.split("-")[2]);
-let partyTimeHour = parseInt(partyTime.value.split(":")[0]);
-let partyTimeMinute = parseInt(partyTime.value.split(":")[1]);
 
 // Objects
 // Keep track of checked items and their prices
@@ -329,12 +324,19 @@ function validateVenueAddress() {
 }
 
 function deliveryDateIsInvalid() {
+  let currentDate = new Date();
+  let currentDateDay = parseInt(currentDate.toString().split(" ")[2]);
+  let partyDateDay = parseInt(partyDate.value.split("-")[2]);
+
   return partyDate.valueAsDate < currentDate || partyDateDay === currentDateDay;
 }
 
 function deliveryTimeIsInvalid() {
+  let partyTimeHour = parseInt(partyTime.value.split(":")[0]);
+  let partyTimeMinute = parseInt(partyTime.value.split(":")[1]);
   return (
-    (partyTimeHour < 6 && partyTimeHour > 18) ||
+    partyTimeHour < 6 ||
+    partyTimeHour > 18 ||
     (partyTimeHour === 18 && partyTimeMinute > 0)
   );
 }
