@@ -334,9 +334,9 @@ function deliveryDateIsInvalid() {
 
 function deliveryTimeIsInvalid() {
   return (
-    (hour > 6 && hour < 18) ||
-    (hour === 6 && minute >= 0) ||
-    (hour === 18 && minute === 0)
+    (partyTimeHour > 6 && partyTimeHour < 18) ||
+    (partyTimeHour === 6 && partyTimeMinute >= 0) ||
+    (partyTimeHour === 18 && partyTimeMinute === 0)
   );
 }
 
