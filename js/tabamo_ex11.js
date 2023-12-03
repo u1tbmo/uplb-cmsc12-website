@@ -129,44 +129,41 @@ function alertSummary() {
     return;
   }
   summaryMessage = `
-    --- CUSTOMER INFORMATION ---
-    Name: ${personName.value}
-    Mobile Number: ${mobileNumber.value}
-    Email Address: ${emailAddress.value}
-    --- PARTY DETAILS ---
-    Number of People: ${qtyPeople}
-    Appetizer: ${selectedAppetizer}
-    Main Dishes: ${selectedMainDishes.join(", ")}
-    Desserts: ${selectedDesserts.join(", ")}
-    Rice: ${selectedRice}
-    Drink: ${selectedDrink}
-    --- VENUE DETAILS ---
-    Retrieval Option: ${selectedRetrievalOption}
-    Venue Address: ${
-      selectedRetrievalOption === "Delivery" ? venueAddress.value : "N/A"
-    }
-    Party Date: ${partyDate.value}
-    Party Time: ${partyTime.value}
-    --- COST ---
-    Cost per Meal: ₱${mealCost.toLocaleString("en-US", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    })}
-    Delivery Fee: ${
-      selectedRetrievalOption === "Delivery"
-        ? `₱${deliveryFee.toLocaleString("en-US", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          })}`
-        : "N/A"
-    }
-    Total Cost: ₱${(mealCost * qtyPeople + deliveryFee).toLocaleString(
-      "en-US",
-      {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      }
-    )}
+--- CUSTOMER INFORMATION ---
+Name: ${personName.value}
+Mobile Number: ${mobileNumber.value}
+Email Address: ${emailAddress.value}
+--- PARTY DETAILS ---
+Number of People: ${qtyPeople}
+Appetizer: ${selectedAppetizer}
+Main Dishes: ${selectedMainDishes.join(", ")}
+Desserts: ${selectedDesserts.join(", ")}
+Rice: ${selectedRice}
+Drink: ${selectedDrink}
+--- VENUE DETAILS ---
+Retrieval Option: ${selectedRetrievalOption}
+Venue Address: ${
+    selectedRetrievalOption === "Delivery" ? venueAddress.value : "N/A"
+  }
+Party Date: ${partyDate.value}
+Party Time: ${partyTime.value}
+--- COST ---
+Cost per Meal: ₱${mealCost.toLocaleString("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}
+Delivery Fee: ${
+    selectedRetrievalOption === "Delivery"
+      ? `₱${deliveryFee.toLocaleString("en-US", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        })}`
+      : "N/A"
+  }
+Total Cost: ₱${(mealCost * qtyPeople + deliveryFee).toLocaleString("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })}
   `;
   alert(summaryMessage);
 }
