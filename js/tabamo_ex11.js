@@ -148,11 +148,25 @@ function alertSummary() {
     Party Date: ${partyDate.value}
     Party Time: ${partyTime.value}
     --- COST ---
-    Cost per Meal: ₱${mealCost}
+    Cost per Meal: ₱${mealCost.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })}
     Delivery Fee: ${
-      selectedRetrievalOption === "Delivery" ? `₱${deliveryFee}` : "N/A"
+      selectedRetrievalOption === "Delivery"
+        ? `₱${deliveryFee.toLocaleString("en-US", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}`
+        : "N/A"
     }
-    Total Cost: ₱${mealCost * qtyPeople + deliveryFee}
+    Total Cost: ₱${(mealCost * qtyPeople + deliveryFee).toLocaleString(
+      "en-US",
+      {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }
+    )}
   `;
   alert(summaryMessage);
 }
