@@ -104,7 +104,7 @@ function updateSummary() {
   // Calculate Cost: Cost per Meal, Delivery Fee, Total Cost
   updateMealCost();
   updateDeliveryFee();
-  calculateTotalCost();
+  updateTotalCost();
 
   // Update Validation Messages
   updateValidationMessages();
@@ -375,15 +375,29 @@ function validatePartyTime() {
 }
 
 function updateMealCost() {
-  document.getElementById("sMealCost").innerHTML = "₱" + mealCost;
+  document.getElementById("sMealCost").innerHTML =
+    "₱" +
+    mealCost.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
 }
 function updateDeliveryFee() {
-  document.getElementById("sDeliveryFee").innerHTML = "₱" + deliveryFee;
+  document.getElementById("sDeliveryFee").innerHTML =
+    "₱" +
+    deliveryFee.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
 }
-function calculateTotalCost() {
+function updateTotalCost() {
   if (qtyPeople >= 10) {
     document.getElementById("sCost").innerHTML =
-      "₱" + (mealCost * qtyPeople + deliveryFee);
+      "₱" +
+      (mealCost * qtyPeople + deliveryFee).toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
   } else if (qtyPeople < 10) {
     document.getElementById("sCost").innerHTML =
       "❌ At least 10 people required";
