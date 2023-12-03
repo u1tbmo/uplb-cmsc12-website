@@ -59,7 +59,7 @@ let drinksObject = {
   "Ripe Mango Juice": [false, 70],
 };
 let retrievalOptionsObject = {
-  "Pick-up": [true, 0],
+  "Store Pickup": [true, 0],
   Delivery: [false, 1000],
 };
 
@@ -80,16 +80,100 @@ function updateSummary() {
   mealCost = 0;
   deliveryFee = 0;
 
-  // Name
-  // Check if the name is empty, then update the message.
+  // Input Validation: Name, Mobile Number, Email Address, Number of People
+  validateName();
+  validateMobileNumber();
+  validateEmailAddress();
+  validateQty();
+
+  // Meal Selection: Appetizer, Main Dishes, Desserts, Rice, Drink
+  updateAppetizerSelection();
+  updateMainDishSelection();
+  updateDessertSelection();
+  updateRiceSelection();
+  updateDrinkSelection();
+
+  // Selection: Retrieval Options
+  updateRetrievalOptionSelection();
+
+  // Input Validation: Venue Address, Party Date, Party Time
+  validateVenueAddress();
+  validatePartyDate();
+  validatePartyTime();
+
+  // Calculate Cost: Cost per Meal, Delivery Fee, Total Cost
+  updateMealCost();
+  updateDeliveryFee();
+  calculateTotalCost();
+
+  // Update Validation Messages
+  updateValidationMessages();
+}
+
+// This function pops up an alert with the summary message.
+// This function also checks if there is at least one main dish, at least one dessert, a future date, and a valid time.
+function alertSummary() {
+  if (!document.getElementById("form").checkValidity()) {
+    return;
+  } else if (selectedMainDishes.length === 0) {
+    document.getElementById("mainDishesDiv").scrollIntoView();
+    alert("Please select at least one main dish.");
+    return;
+  } else if (selectedDesserts.length === 0) {
+    document.getElementById("dessertsDiv").scrollIntoView();
+    alert("Please select at least one dessert.");
+    return;
+  } else if (!validDate) {
+    alert("Please provide a future date.");
+    return;
+  } else if (!validTime) {
+    alert("Delivery times are only from 06:00 to 18:00.");
+    return;
+  }
+  summaryMessage = `
+    --- CUSTOMER INFORMATION ---
+    Name: ${personName.value}
+    Mobile Number: ${mobileNumber.value}
+    Email Address: ${emailAddress.value}
+    --- PARTY DETAILS ---
+    Number of People: ${qtyPeople}
+    Appetizer: ${selectedAppetizer}
+    Main Dishes: ${selectedMainDishes.join(", ")}
+    Desserts: ${selectedDesserts.join(", ")}
+    Rice: ${selectedRice}
+    Drink: ${selectedDrink}
+    --- VENUE DETAILS ---
+    Retrieval Option: ${selectedRetrievalOption}
+    Venue Address: ${
+      selectedRetrievalOption === "Delivery" ? venueAddress.value : "N/A"
+    }
+    Party Date: ${partyDate.value}
+    Party Time: ${partyTime.value}
+    --- COST ---
+    Cost per Meal: ₱${mealCost}
+    Delivery Fee: ${
+      selectedRetrievalOption === "Delivery" ? `₱${deliveryFee}` : "N/A"
+    }
+    Total Cost: ₱${mealCost * qtyPeople + deliveryFee}
+  `;
+  alert(summaryMessage);
+}
+
+// This function resets the form and updates the summary.
+function resetForm() {
+  document.getElementById("form").reset();
+  updateSummary();
+}
+
+function validateName() {
   if (personName.value === "") {
     document.getElementById("sName").innerHTML = "❌ Name is missing";
   } else {
     document.getElementById("sName").innerHTML = "✔️ Valid";
   }
+}
 
-  // Mobile Number
-  // Check if the mobile number is empty or is invalid, then update the message.
+function validateMobileNumber() {
   if (mobileNumber.value === "") {
     document.getElementById("sMobileNumber").innerHTML =
       "❌ Mobile number is missing";
@@ -99,9 +183,9 @@ function updateSummary() {
   } else {
     document.getElementById("sMobileNumber").innerHTML = "✔️ Valid";
   }
+}
 
-  // Email Address
-  // Check if the email address is empty or is invalid, then update the message.
+function validateEmailAddress() {
   if (emailAddress.value === "") {
     document.getElementById("sEmailAddress").innerHTML =
       "❌ Email address is missing";
@@ -111,8 +195,9 @@ function updateSummary() {
   } else {
     document.getElementById("sEmailAddress").innerHTML = "✔️ Valid";
   }
+}
 
-  // Number of People
+function validateQty() {
   if (qty.value === "") {
     document.getElementById("sQty").innerHTML =
       "❌ Number of People is missing";
@@ -128,70 +213,23 @@ function updateSummary() {
     qtyPeople = qty.value;
     document.getElementById("sQty").innerHTML = "✔️ Valid";
   }
+}
 
-  // Party Details: Appetizers
-  // Iterate through all appetizers and check if they are checked.
-  // If they are checked, update the object.
-  for (let i = 0; i < appetizers.length; i++) {
-    switch (appetizers[i].id) {
-      case "salad":
-        appetizersObject["Salad"][0] = appetizers[i].checked;
-        break;
-      case "breadWithDip":
-        appetizersObject["Bread w/ Dip"][0] = appetizers[i].checked;
-        break;
-      case "tomatoSurprise":
-        appetizersObject["Tomato Surprise"][0] = appetizers[i].checked;
-        break;
-      case "mushroomBites":
-        appetizersObject["Mushroom Bites"][0] = appetizers[i].checked;
-        break;
-    }
-  }
-  // Iterate through the appetizers object and check if they are checked.
-  // If they are checked, update the message, update the selected appetizer, and add the price to the meal cost.
+function updateAppetizerSelection() {
+  updateSelection(appetizers, appetizersObject);
   for (let [appetizer, [checked, price]] of Object.entries(appetizersObject)) {
     if (checked) {
       document.getElementById("sAppetizer").innerHTML = "✔️ Valid";
       selectedAppetizer = appetizer;
       mealCost += price;
+      break;
     }
   }
+}
 
-  // Party Details: Main Dishes
-  // Iterate through all main dishes and check if they are checked.
-  // If they are checked, update the object.
-  for (let i = 0; i < mainDish.length; i++) {
-    switch (mainDish[i].id) {
-      case "roastBeef":
-        mainDishObject["Roast Beef"][0] = mainDish[i].checked;
-        break;
-      case "beefSteak":
-        mainDishObject["Beef Steak"][0] = mainDish[i].checked;
-        break;
-      case "porkSpareribs":
-        mainDishObject["Pork Spareribs"][0] = mainDish[i].checked;
-        break;
-      case "porkMarbella":
-        mainDishObject["Pork Marbella"][0] = mainDish[i].checked;
-        break;
-      case "grilledChicken":
-        mainDishObject["Grilled Chicken"][0] = mainDish[i].checked;
-        break;
-      case "roastChicken":
-        mainDishObject["Roast Chicken"][0] = mainDish[i].checked;
-        break;
-      case "broiledSalmon":
-        mainDishObject["Broiled Salmon"][0] = mainDish[i].checked;
-        break;
-      case "grilledSalmon":
-        mainDishObject["Grilled Salmon"][0] = mainDish[i].checked;
-        break;
-    }
-  }
-  // Reset the selected main dishes array.
-  // Iterate through the main dishes object and check if they are checked.
-  // If they are checked, add them to the selected main dishes array and add the price to the meal cost.
+function updateMainDishSelection() {
+  updateSelection(mainDish, mainDishObject);
+
   selectedMainDishes = [];
   for (let [mainDish, [checked, price]] of Object.entries(mainDishObject)) {
     if (checked) {
@@ -206,35 +244,10 @@ function updateSummary() {
   } else {
     document.getElementById("sMainDishes").innerHTML = "✔️ Valid";
   }
+}
+function updateDessertSelection() {
+  updateSelection(dessert, dessertObject);
 
-  // Party Details: Desserts
-  // Iterate through all desserts and check if they are checked.
-  // If they are checked, update the object.
-  for (let i = 0; i < dessert.length; i++) {
-    switch (dessert[i].id) {
-      case "moltenChocolateCake":
-        dessertObject["Molten Chocolate Cake"][0] = dessert[i].checked;
-        break;
-      case "redVelvetCake":
-        dessertObject["Red Velvet Cake"][0] = dessert[i].checked;
-        break;
-      case "lemonBars":
-        dessertObject["Lemon Bars"][0] = dessert[i].checked;
-        break;
-      case "peanutButterBars":
-        dessertObject["Peanut Butter Bars"][0] = dessert[i].checked;
-        break;
-      case "bukoPie":
-        dessertObject["Buko Pie"][0] = dessert[i].checked;
-        break;
-      case "lemonMeringuePie":
-        dessertObject["Lemon Meringue Pie"][0] = dessert[i].checked;
-        break;
-    }
-  }
-  // Reset the selected desserts array.
-  // Iterate through the desserts object and check if they are checked.
-  // If they are checked, add them to the selected desserts array and add the price to the meal cost.
   selectedDesserts = [];
   for (let [dessert, [checked, price]] of Object.entries(dessertObject)) {
     if (checked) {
@@ -248,73 +261,49 @@ function updateSummary() {
   } else {
     document.getElementById("sDesserts").innerHTML = "✔️ Valid";
   }
+}
+function updateRiceSelection() {
+  updateSelection(rice, riceObject);
 
-  // Party Details: Rice
-  // Iterate through all rice and check if they are checked.
-  // If they are checked, update the object.
-  for (let i = 0; i < rice.length; i++) {
-    switch (rice[i].id) {
-      case "plainRice":
-        riceObject["Plain Rice"][0] = rice[i].checked;
-        break;
-      case "garlicRice":
-        riceObject["Garlic Rice"][0] = rice[i].checked;
-        break;
-      case "bagoongRice":
-        riceObject["Bagoong Rice"][0] = rice[i].checked;
-        break;
-    }
-  }
-  // Iterate through the rice object and check if they are checked.
-  // If they are checked, update the message, update the selected rice, and add the price to the meal cost.
   for (let [rice, [checked, price]] of Object.entries(riceObject)) {
     if (checked) {
       selectedRice = rice;
       document.getElementById("sRice").innerHTML = "✔️ Valid";
       mealCost += price;
+      break;
     }
   }
+}
+function updateDrinkSelection() {
+  updateSelection(drinks, drinksObject);
 
-  // Party Details: Drinks
-  // Iterate through all drinks and check if they are checked.
-  // If they are checked, update the object.
-  for (let i = 0; i < drinks.length; i++) {
-    switch (drinks[i].id) {
-      case "cucumberLemonade":
-        drinksObject["Cucumber Lemonade"][0] = drinks[i].checked;
-        break;
-      case "redIcedTea":
-        drinksObject["Red Iced Tea"][0] = drinks[i].checked;
-        break;
-      case "ripeMangoJuice":
-        drinksObject["Ripe Mango Juice"][0] = drinks[i].checked;
-        break;
-    }
-  }
-  // Iterate through the drinks object and check if they are checked.
-  // If they are checked, update the message, update the selected drink, and add the price to the meal cost.
   for (let [drink, [checked, price]] of Object.entries(drinksObject)) {
     if (checked) {
       selectedDrink = drink;
       document.getElementById("sDrink").innerHTML = "✔️ Valid";
       mealCost += price;
+      break;
     }
   }
+}
 
-  // Venue Details: Retrieval Options
-  // Iterate through all retrieval options and check if they are checked.
-  // If they are checked, update the object.
-  for (let i = 0; i < retrievalOptions.length; i++) {
-    switch (retrievalOptions[i].id) {
-      case "storePickup":
-        retrievalOptionsObject["Pick-up"][0] = retrievalOptions[i].checked;
-        break;
-      case "delivery":
-        retrievalOptionsObject["Delivery"][0] = retrievalOptions[i].checked;
-        break;
+function updateRetrievalOptionSelection() {
+  updateSelection(retrievalOptions, retrievalOptionsObject);
+  updateVenueAddress();
+
+  for (let [retrievalOption, [checked, _]] of Object.entries(
+    retrievalOptionsObject
+  )) {
+    if (checked) {
+      selectedRetrievalOption = retrievalOption;
+      document.getElementById("sRetrievalOption").innerHTML =
+        "✔️ " + retrievalOption;
+      break;
     }
   }
-  // Update the venue address textarea based on the selected retrieval option and the number of people.
+}
+
+function updateVenueAddress() {
   if (qtyPeople >= 10 && retrievalOptionsObject["Delivery"][0]) {
     deliveryFee = (Math.ceil(qtyPeople / 50) + 1) * 500;
     venueAddress.disabled = false;
@@ -327,18 +316,9 @@ function updateSummary() {
     venueAddress.disabled = true;
     venueAddress.placeholder = "Store pickup is selected.";
   }
-  // Iterate through the retrieval options object and check if they are checked.
-  // If they are checked, update the message and update the selected retrieval option.
-  for (let [retrievalOption, [checked, _]] of Object.entries(
-    retrievalOptionsObject
-  )) {
-    if (checked) {
-      selectedRetrievalOption = retrievalOption;
-      document.getElementById("sRetrievalOption").innerHTML =
-        "✔️ " + retrievalOption;
-    }
-  }
+}
 
+function validateVenueAddress() {
   // Venue Details: Venue Address
   // Check if the venue address is empty, then update the message.
   if (!venueAddress.disabled && venueAddress.value === "") {
@@ -351,7 +331,9 @@ function updateSummary() {
   } else {
     document.getElementById("sVenueAddress").innerHTML = "✔️ Valid";
   }
+}
 
+function validatePartyDate() {
   // Venue Details: Party Date
   // Get the current date and the party date.
   // If the party date is empty or is invalid or is not a future date, then update the message.
@@ -374,7 +356,9 @@ function updateSummary() {
     document.getElementById("sPartyDate").innerHTML = "✔️ Valid";
     validDate = true;
   }
+}
 
+function validatePartyTime() {
   // Venue Details: Party Time
   // Get the party time.
   // Check if the party time is empty or is invalid or is not between 06:00 and 18:00, then update the message.
@@ -398,11 +382,15 @@ function updateSummary() {
     document.getElementById("sPartyTime").innerHTML = "✔️ Valid";
     validTime = true;
   }
+}
 
-  // Cost
-  // Update the cost summary.
-  document.getElementById("sDeliveryFee").innerHTML = "₱" + deliveryFee;
+function updateMealCost() {
   document.getElementById("sMealCost").innerHTML = "₱" + mealCost;
+}
+function updateDeliveryFee() {
+  document.getElementById("sDeliveryFee").innerHTML = "₱" + deliveryFee;
+}
+function calculateTotalCost() {
   if (qtyPeople >= 10) {
     document.getElementById("sCost").innerHTML =
       "₱" + (mealCost * qtyPeople + deliveryFee);
@@ -410,11 +398,9 @@ function updateSummary() {
     document.getElementById("sCost").innerHTML =
       "❌ At least 10 people required";
   }
+}
 
-  // Validation User Feedback
-  // Iterate through all summary elements and check if they start with an "❌".
-  // If they do, then add the invalid class and remove the valid class to add a red border.
-  // If they don't, then add the valid class and remove the invalid class to add a green border.
+function updateValidationMessages() {
   let inputs = document.getElementsByClassName("summary");
   for (let i = 0; i < inputs.length; i++) {
     if (inputs[i].innerHTML.startsWith("❌")) {
@@ -427,64 +413,21 @@ function updateSummary() {
   }
 }
 
-// This function pops up an alert with the summary message.
-// This function also checks if there is at least one main dish, at least one dessert, a future date, and a valid time.
-function alertSummary() {
-  if (!document.getElementById("form").checkValidity()) {
-    return;
-  } else if (selectedMainDishes.length === 0) {
-    document.getElementById("mainDishesDiv").scrollIntoView();
-    alert("Please select at least one main dish.");
-    return;
-  } else if (selectedDesserts.length === 0) {
-    document.getElementById("dessertsDiv").scrollIntoView();
-    alert("Please select at least one dessert.");
-    return;
-  } else if (!validDate) {
-    alert("Please provide a future date.");
-    return;
-  } else if (!validTime) {
-    alert("Delivery times are only from 06:00 to 18:00.");
-    return;
-  }
+function updateSelection(choices, object) {
+  for (let i = 0; i < choices.length; i++) {
+    const checkbox = choices[i];
+    const itemId = checkbox.id;
 
-  // Create the summary message.
-  summaryMessage = "";
-  summaryMessage += "--- CUSTOMER INFORMATION ---\n";
-  summaryMessage += "Name: " + personName.value + "\n";
-  summaryMessage += "Mobile Number: " + mobileNumber.value + "\n";
-  summaryMessage += "Email Address: " + emailAddress.value + "\n";
-  summaryMessage += "--- PARTY DETAILS ---\n";
-  summaryMessage += "Number of People: " + qtyPeople + "\n";
-  summaryMessage += "Appetizer: " + selectedAppetizer + "\n";
-  summaryMessage += "Main Dishes: " + selectedMainDishes.join(", ") + "\n";
-  summaryMessage += "Desserts: " + selectedDesserts.join(", ") + "\n";
-  summaryMessage += "Rice: " + selectedRice + "\n";
-  summaryMessage += "Drink: " + selectedDrink + "\n";
-  summaryMessage += "--- VENUE DETAILS ---\n";
-  summaryMessage += "Retrieval Option: " + selectedRetrievalOption + "\n";
-  if (selectedRetrievalOption === "Delivery") {
-    summaryMessage += "Venue Address: " + venueAddress.value + "\n";
+    if (itemId in object) {
+      object[itemId][0] = checkbox.checked;
+    }
   }
-  summaryMessage += "Party Date: " + partyDate.value + "\n";
-  summaryMessage += "Party Time: " + partyTime.value + "\n";
-  summaryMessage += "--- COST ---\n";
-  summaryMessage += "Cost per Meal: ₱" + mealCost + "\n";
-  if (selectedRetrievalOption === "Delivery") {
-    summaryMessage += "Delivery Fee: ₱" + deliveryFee + "\n";
-  }
-  summaryMessage += "Total Cost: ₱" + (mealCost * qtyPeople + deliveryFee);
-  alert(summaryMessage);
 }
 
-// This function resets the form and updates the summary.
-function resetForm() {
-  document.getElementById("form").reset();
-  updateSummary();
-}
-
-document.getElementById("form").oninput = updateSummary;
-document.getElementById("submit-button").onclick = alertSummary;
-document.getElementById("reset-button").onclick = resetForm;
-
-window.onload = updateSummary;
+// Event Listeners
+document.getElementById("form").addEventListener("change", updateSummary);
+document
+  .getElementById("submit-button")
+  .addEventListener("click", alertSummary);
+document.getElementById("reset-button").addEventListener("click", resetForm);
+window.addEventListener("load", updateSummary);
