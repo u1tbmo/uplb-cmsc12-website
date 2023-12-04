@@ -48,6 +48,8 @@ https://csshero.org/mesher/
   --primary: #a2c2f6;
   --secondary: #a6a7ee;
   --accent: #3c5faa;
+  --valid: #4caf50;
+  --invalid: #ff5959;
   --glass-primary: rgba(162, 194, 246, 0.75);
   --glass-secondary: rgba(166, 167, 238, 0.75);
   --glass-accent: rgba(60, 95, 170, 0.75);
@@ -807,6 +809,7 @@ section.form {
   outline: none;
   width: 100%;
   border-radius: 4px;
+  font-weight: 400;
 }
 
 .cost {
@@ -980,7 +983,7 @@ legend {
   color: var(--accent);
   width: 1.15em;
   height: 1.15em;
-  border: none;
+  border: solid 1px var(--background);
   border-radius: 50%;
   transform: translateY(-0.075em);
 
@@ -999,7 +1002,7 @@ legend {
   color: var(--accent);
   width: 1.15em;
   height: 1.15em;
-  border: none;
+  border: solid 1px var(--background);
   border-radius: 0.2em;
   transform: translateY(-0.075em);
 
@@ -1234,16 +1237,4 @@ section.footer .about {
 
 .footer-tilt .shape-fill {
   fill: var(--background);
-}
-
-.valid {
-  border: solid 1px #4caf50;
-}
-
-.invalid {
-  border: solid 1px #ff5959;
-}
-
-.hide {
-  display: none;
 }

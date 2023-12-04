@@ -2,7 +2,9 @@
 /* Exercise 11 - November 29, 2023 */
 /* This JS file contains all logic for summarizing costs, validation of inputs, etc. */
 
-// DOM elements
+// DOM Elements
+// DOM Elements are referenced, not copied, meaning they are updated in real time
+// If we were to use .value, we would have to update the variables every time we update the DOM Elements
 let personName = document.getElementById("name");
 let mobileNumber = document.getElementById("mobileNumber");
 let emailAddress = document.getElementById("emailAddress");
@@ -73,6 +75,7 @@ let drinksObject = {
 };
 
 // Arrays
+// These parallel arrays are used to update the validation messages
 let elementsArray = [
   personName,
   mobileNumber,
@@ -92,7 +95,6 @@ let sElementsArray = [
   sPartyDate,
   sPartyTime,
 ];
-
 let sOptionElementsArray = [
   sAppetizers,
   sMainDishes,
@@ -100,6 +102,14 @@ let sOptionElementsArray = [
   sRice,
   sDrinks,
   sRetrievalOption,
+];
+let inputBoxesArray = [
+  document.getElementsByName("appetizer"),
+  document.getElementsByName("mainDishes"),
+  document.getElementsByName("desserts"),
+  document.getElementsByName("rice"),
+  document.getElementsByName("drink"),
+  document.getElementsByName("retrievalOptions"),
 ];
 
 // Selected Values
@@ -282,7 +292,7 @@ function updateRetrievalOptionSelection() {
   } else {
     selectedRetrievalOption = retrievalOptions[1].id;
   }
-  sRetrievalOption.innerHTML = "✔️ " + selectedRetrievalOption;
+  document.getElementById("sRetrievalOption").innerHTML = "✔️ Valid";
   updateVenueAddress();
 }
 
@@ -291,14 +301,17 @@ function updateVenueAddress() {
   if (qty.value >= 10 && selectedRetrievalOption === "Delivery") {
     deliveryFee = (Math.ceil(qty.value / 50) + 1) * 500;
     venueAddress.disabled = false;
+    venueAddress.required = true;
     venueAddress.placeholder = "Address here...";
   } else if (qty.value < 10 && selectedRetrievalOption === "Delivery") {
     deliveryFee = 1000;
     venueAddress.disabled = false;
+    venueAddress.required = true;
     venueAddress.placeholder = "Address here...";
   } else {
     venueAddress.disabled = true;
-    venueAddress.placeholder = "Store pickup is selected.";
+    venueAddress.required = false;
+    venueAddress.placeholder = "No address needed for store pickup";
   }
 }
 
@@ -393,43 +406,33 @@ function updateTotalCost() {
 function updateValidationMessages() {
   for (let [idx, sElement] of sElementsArray.entries()) {
     if (sElement.innerHTML.includes("❌")) {
-      elementsArray[idx].classList.add("invalid");
-      elementsArray[idx].classList.remove("valid");
-      sElement.classList.remove("hide");
+      elementsArray[idx].style.border = "solid 1px var(--invalid)";
+      sElement.style.display = "block";
     } else {
-      elementsArray[idx].classList.add("valid");
-      elementsArray[idx].classList.remove("invalid");
-      sElement.classList.add("hide");
+      elementsArray[idx].style.border = "solid 1px var(--valid)";
+      sElement.style.display = "none";
     }
   }
 
-  for (let sOptionElement of sOptionElementsArray) {
+  for (let [idx, sOptionElement] of sOptionElementsArray.entries()) {
+    let inputBoxesOfElement = inputBoxesArray[idx];
     if (sOptionElement.innerHTML.includes("❌")) {
-      sOptionElement.classList.remove("hide");
+      for (let inputBox of inputBoxesOfElement) {
+        inputBox.style.border = "solid 1px var(--invalid)";
+      }
+      sOptionElement.style.display = "block";
     } else {
-      sOptionElement.classList.add("hide");
+      for (let inputBox of inputBoxesOfElement) {
+        inputBox.style.border = "initial";
+      }
+      sOptionElement.style.display = "none";
     }
   }
 }
 
 function alertSummary() {
-  console.log("personName", personName.value);
-  console.log("mobileNumber", mobileNumber.value);
-  console.log("emailAddress", emailAddress.value);
-  console.log("qty", qty.value);
-  console.log("selectedAppetizer", selectedAppetizer);
-  console.log("selectedMainDishes", selectedMainDishes);
-  console.log("selectedDesserts", selectedDesserts);
-  console.log("selectedRice", selectedRice);
-  console.log("selectedDrink", selectedDrink);
-  console.log("selectedRetrievalOption", selectedRetrievalOption);
-  console.log("venueAddress", venueAddress.value);
-  console.log("partyDate", partyDate.value);
-  console.log("partyTime", partyTime.value);
-  console.log("mealCost", mealCost);
-  console.log("deliveryFee", deliveryFee);
-  console.log("totalCost", mealCost * qty.value + deliveryFee);
   if (!document.getElementById("form").checkValidity()) {
+    alert("Please fill out all required fields.");
     return false;
   } else if (selectedMainDishes.length === 0) {
     document.getElementById("mainDishesDiv").scrollIntoView();
@@ -439,51 +442,43 @@ function alertSummary() {
     document.getElementById("dessertsDiv").scrollIntoView();
     alert("Please select at least one dessert.");
     return;
-  } else if (!validDate) {
-    document.getElementById("partyDate").scrollIntoView();
-    alert("Please provide a future date.");
-    return;
-  } else if (!validTime) {
-    document.getElementById("partyTime").scrollIntoView();
-    alert("Delivery times are only from 06:00 to 18:00.");
-    return;
   }
-  let summaryMessage = `--- CUSTOMER INFORMATION ---
-${personName.value}
-${mobileNumber.value}
-${emailAddress.value}
---- PARTY DETAILS ---
-Number of People: ${qty.value}
-Appetizer: ${selectedAppetizer}
-Main Dishes: ${selectedMainDishes.join(", ")}
-Desserts: ${selectedDesserts.join(", ")}
-Rice: ${selectedRice}
-Drink: ${selectedDrink}
---- VENUE DETAILS ---
-Retrieval Option: ${selectedRetrievalOption}
-Venue Address: ${
-    selectedRetrievalOption === "Delivery" ? venueAddress.value : "N/A"
+  let summaryMessage = "--- CUSTOMER INFORMATION ---";
+  summaryMessage += `\nName: ${personName.value}`;
+  summaryMessage += `\nMobile Number: ${mobileNumber.value}`;
+  summaryMessage += `\nEmail Address: ${emailAddress.value}`;
+  summaryMessage += `\n--- PARTY DETAILS ---`;
+  summaryMessage += `\nNumber of People: ${qty.value}`;
+  summaryMessage += `\nAppetizer: ${selectedAppetizer}`;
+  summaryMessage += `\nMain Dishes: ${selectedMainDishes.join(", ")}`;
+  summaryMessage += `\nDesserts: ${selectedDesserts.join(", ")}`;
+  summaryMessage += `\nRice: ${selectedRice}`;
+  summaryMessage += `\nDrink: ${selectedDrink}`;
+  summaryMessage += `\n--- VENUE DETAILS ---`;
+  summaryMessage += `\nRetrieval Option: ${selectedRetrievalOption}`;
+  if (selectedRetrievalOption === "Delivery") {
+    summaryMessage += `\nVenue Address:\n${venueAddress.value}`;
   }
-Party Date: ${partyDate.value}
-Party Time: ${partyTime.value}
---- COST ---
-Cost per Meal: ₱${mealCost.toLocaleString("en-US", {
+  summaryMessage += `\nParty Date: ${partyDate.value}`;
+  summaryMessage += `\nParty Time: ${partyTime.value}`;
+  summaryMessage += `\n--- COST ---`;
+  summaryMessage += `\nCost per Meal: ₱${mealCost.toLocaleString("en-US", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  })}
-Delivery Fee: ${
-    selectedRetrievalOption === "Delivery"
-      ? `₱${deliveryFee.toLocaleString("en-US", {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        })}`
-      : "N/A"
+  })}`;
+  if (selectedRetrievalOption === "Delivery") {
+    summaryMessage += `\nDelivery Fee: ₱${deliveryFee.toLocaleString("en-US", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })}`;
   }
-Total Cost: ₱${(mealCost * qty.value + deliveryFee).toLocaleString("en-US", {
+  summaryMessage += `\nTotal Cost: ₱${(
+    mealCost * qty.value +
+    deliveryFee
+  ).toLocaleString("en-US", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
-  })}
-  `;
+  })}`;
   alert(summaryMessage);
 }
 
