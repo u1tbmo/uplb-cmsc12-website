@@ -33,7 +33,7 @@ let sPartyDate = document.getElementById("sPartyDate");
 let sPartyTime = document.getElementById("sPartyTime");
 
 // Variables
-// Keep track of qty of people, cost per meal, delivery fee
+// Keep track of cost per meal, delivery fee
 let mealCost = 0;
 let deliveryFee = 0;
 
@@ -85,7 +85,6 @@ let elementsArray = [
   partyDate,
   partyTime,
 ];
-
 let sElementsArray = [
   sName,
   sMobileNumber,
