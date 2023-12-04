@@ -32,7 +32,6 @@ let sPartyTime = document.getElementById("sPartyTime");
 
 // Variables
 // Keep track of qty of people, cost per meal, delivery fee
-let qtyPeople = 0;
 let mealCost = 0;
 let deliveryFee = 0;
 
@@ -116,7 +115,6 @@ let validTime = false;
 // This function summarizes the costs and validates the inputs.
 function updateSummary() {
   // Reset values
-  qtyPeople = 0;
   mealCost = 0;
   deliveryFee = 0;
 
@@ -184,15 +182,11 @@ function validateEmailAddress() {
 function validateQty() {
   if (qty.value === "") {
     sQty.innerHTML = "❌ Enter the number of people";
-    qtyPeople = null;
   } else if (parseInt(qty.value) < 10 && parseInt(qty.value) >= 0) {
     sQty.innerHTML = `❌ ${qty.value} is less than 10, we require at least 10 people`;
-    qtyPeople = null;
   } else if (!qty.validity.valid || parseInt(qty.value) < 0) {
     sQty.innerHTML = `❌ ${qty.value} is not a valid quantity`;
-    qtyPeople = null;
   } else {
-    qtyPeople = qty.value;
     sQty.innerHTML = "✔️ Valid";
   }
 }
@@ -294,11 +288,11 @@ function updateRetrievalOptionSelection() {
 
 // Input Validation Functions
 function updateVenueAddress() {
-  if (qtyPeople >= 10 && selectedRetrievalOption === "Delivery") {
-    deliveryFee = (Math.ceil(qtyPeople / 50) + 1) * 500;
+  if (qty.value >= 10 && selectedRetrievalOption === "Delivery") {
+    deliveryFee = (Math.ceil(qty.value / 50) + 1) * 500;
     venueAddress.disabled = false;
     venueAddress.placeholder = "Address here...";
-  } else if (qtyPeople < 10 && selectedRetrievalOption === "Delivery") {
+  } else if (qty.value < 10 && selectedRetrievalOption === "Delivery") {
     deliveryFee = 1000;
     venueAddress.disabled = false;
     venueAddress.placeholder = "Address here...";
@@ -383,14 +377,14 @@ function updateDeliveryFee() {
 }
 
 function updateTotalCost() {
-  if (qtyPeople >= 10) {
+  if (qty.value >= 10) {
     document.getElementById("sCost").innerHTML =
       "₱" +
-      (mealCost * qtyPeople + deliveryFee).toLocaleString("en-US", {
+      (mealCost * qty.value + deliveryFee).toLocaleString("en-US", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       });
-  } else if (qtyPeople < 10) {
+  } else if (qty.value < 10) {
     document.getElementById("sCost").innerHTML =
       "❌ At least 10 people required";
   }
@@ -419,6 +413,22 @@ function updateValidationMessages() {
 }
 
 function alertSummary() {
+  console.log("personName", personName.value);
+  console.log("mobileNumber", mobileNumber.value);
+  console.log("emailAddress", emailAddress.value);
+  console.log("qty", qty.value);
+  console.log("selectedAppetizer", selectedAppetizer);
+  console.log("selectedMainDishes", selectedMainDishes);
+  console.log("selectedDesserts", selectedDesserts);
+  console.log("selectedRice", selectedRice);
+  console.log("selectedDrink", selectedDrink);
+  console.log("selectedRetrievalOption", selectedRetrievalOption);
+  console.log("venueAddress", venueAddress.value);
+  console.log("partyDate", partyDate.value);
+  console.log("partyTime", partyTime.value);
+  console.log("mealCost", mealCost);
+  console.log("deliveryFee", deliveryFee);
+  console.log("totalCost", mealCost * qty.value + deliveryFee);
   if (!document.getElementById("form").checkValidity()) {
     return false;
   } else if (selectedMainDishes.length === 0) {
@@ -439,11 +449,11 @@ function alertSummary() {
     return;
   }
   let summaryMessage = `--- CUSTOMER INFORMATION ---
-Name: ${personName.value}
-Mobile Number: ${mobileNumber.value}
-Email Address: ${emailAddress.value}
+${personName.value}
+${mobileNumber.value}
+${emailAddress.value}
 --- PARTY DETAILS ---
-Number of People: ${qtyPeople}
+Number of People: ${qty.value}
 Appetizer: ${selectedAppetizer}
 Main Dishes: ${selectedMainDishes.join(", ")}
 Desserts: ${selectedDesserts.join(", ")}
@@ -469,7 +479,7 @@ Delivery Fee: ${
         })}`
       : "N/A"
   }
-Total Cost: ₱${(mealCost * qtyPeople + deliveryFee).toLocaleString("en-US", {
+Total Cost: ₱${(mealCost * qty.value + deliveryFee).toLocaleString("en-US", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   })}
@@ -497,6 +507,3 @@ tomorrow.setDate(tomorrow.getDate() + 1);
 let timezoneOffset = tomorrow.getTimezoneOffset();
 tomorrow.setMinutes(tomorrow.getMinutes() - timezoneOffset);
 partyDate.setAttribute("min", tomorrow.toISOString().split("T")[0]);
-// Set minimum time to 06:00 and maximum time to 18:00
-partyTime.setAttribute("min", "06:00");
-partyTime.setAttribute("max", "18:00");
