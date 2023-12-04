@@ -495,7 +495,7 @@ document.getElementById("reset-button").addEventListener("click", resetForm);
 window.addEventListener("load", updateSummary);
 
 // HTML Element Attributes
-// Set minimum date to today
+// Set minimum date to tomorrow
 let tomorrow = new Date();
 tomorrow.setDate(tomorrow.getDate() + 1);
 let timezoneOffset = tomorrow.getTimezoneOffset();
